@@ -1,16 +1,17 @@
 import { Container } from './styles.js'
 import { Button } from '../../components/Button'
-import { SaveButton } from '../../components/SaveButton/index.jsx'
- 
+import { OrderButton } from '../../components/OrderButton/index.jsx'
+import { Ingredient } from '../../components/Ingredient/index.jsx'
+import { Stepper } from '../../components/Stepper/index.jsx'
+  
 export default function App() {
 
   return(
     <Container>
-      <Button />
-      <Button />
-      <Button />
-      <Button />
-      <SaveButton />
+      <Button title="incluir" loading/>
+      <OrderButton title="Meu pedido (0)" />
+      <Ingredient title="alface" />
+      <Stepper></Stepper>
     </Container>
   )
 }

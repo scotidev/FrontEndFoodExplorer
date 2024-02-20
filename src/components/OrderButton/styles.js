@@ -4,10 +4,13 @@ export const Container = styled.button`
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
-    width: 9.2rem;
-    height: 4.8rem;
-    padding: 1.2rem 2.4rem;
+    width: 21.6rem;
+    height: 5.6rem;
+    padding: 1.6rem 3.3rem;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     
     font-family: 'Poppins', sans-serif;
 
@@ -15,5 +18,9 @@ export const Container = styled.button`
 
     &:hover {
         background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
+    }
+
+    >svg {
+        font-size: 3.5rem;
     }
 `
