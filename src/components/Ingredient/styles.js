@@ -11,6 +11,7 @@ export const Container = styled.button`
     border-radius: 5px;
     
     font-family: 'Poppins', sans-serif;
+    font-weight: 500;
 
     cursor: default;
 `

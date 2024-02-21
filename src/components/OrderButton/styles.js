@@ -13,6 +13,7 @@ export const Container = styled.button`
     justify-content: space-between;
     
     font-family: 'Poppins', sans-serif;
+    font-weight: 500;
 
     transition: .3s;
 
