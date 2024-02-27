@@ -1,17 +1,14 @@
 import { Container } from './styles.js'
-import { Button } from '../../components/Button'
+import { HeaderUser } from '../../components/HeaderUser/index.jsx'
+import { Logo } from '../../components/Logo/index.jsx'
 import { OrderButton } from '../../components/OrderButton/index.jsx'
-import { Ingredient } from '../../components/Ingredient/index.jsx'
-import { Stepper } from '../../components/Stepper/index.jsx'
+import { HeaderAdmin } from '../../components/HeaderAdmin/index.jsx'
   
 export default function App() {
 
   return(
     <Container>
-      <Button title="incluir" loading/>
-      <OrderButton title="Meu pedido (0)" />
-      <Ingredient title="alface" />
-      <Stepper></Stepper>
+      <HeaderAdmin></HeaderAdmin>
     </Container>
   )
 }

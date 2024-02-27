@@ -8,9 +8,11 @@ export const Container = styled.button`
     height: 5.6rem;
     padding: 1.6rem 3.3rem;
     border-radius: 5px;
+
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: .8rem;
     
     font-family: 'Poppins', sans-serif;
     font-weight: 500;

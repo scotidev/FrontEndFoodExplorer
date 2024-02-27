@@ -1,14 +1,13 @@
 import { Container } from './styles'
-import { Minus } from '../Minus'
-import { Plus } from '../Plus'
-import { Counter } from '../Counter'
+import { PiMinusBold } from "react-icons/pi";
+import { PiPlusBold } from "react-icons/pi";
 
 export function Stepper() {
     return(
         <Container>
-            <Minus></Minus>
-            <Counter value="01"></Counter>
-            <Plus></Plus>
+            <PiMinusBold />
+            <span> 01 </span>
+            <PiPlusBold />
         </Container>
     )
 }

@@ -8,7 +8,7 @@ export const Container = styled.button`
     height: 4.8rem;
     padding: 1.2rem 2.4rem;
     border-radius: 5px;
-    
+
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 
@@ -20,5 +20,6 @@ export const Container = styled.button`
 
     &:disabled {
         background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
+        cursor: default;
     }
 `

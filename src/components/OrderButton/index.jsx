@@ -1,4 +1,5 @@
 import { Container } from './styles'
+
 import { PiReceipt } from 'react-icons/pi'
 
 export function OrderButton({ title }) {
@@ -6,7 +7,7 @@ export function OrderButton({ title }) {
         <Container 
         type='button' 
         >
-            <PiReceipt></PiReceipt>
+            <PiReceipt />
             {title}
         </Container>
     )
