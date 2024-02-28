@@ -1,8 +1,12 @@
-import { Container, Menu, Orders } from './styles'
+import { Container, Menu, Searchbar, Orders, SignOut } from './styles'
 import { Logo } from '../Logo'
+import { OrderButton } from '../OrderButton';
+import { Input } from '../Input';
 
-import { PiReceipt } from 'react-icons/pi'
 import { PiListBold } from "react-icons/pi";
+import { PiReceipt } from 'react-icons/pi'
+import { PiSignOutBold } from "react-icons/pi";
+import { PiMagnifyingGlass } from "react-icons/pi";
 
 export function HeaderUser() {
     return(
@@ -10,7 +14,22 @@ export function HeaderUser() {
             <Menu>
                 <PiListBold />
             </Menu>
+            
             <Logo></Logo>
+
+            <Searchbar>
+                <Input 
+                placeholder='Busque por pratos ou ingredientes'
+                icon={PiMagnifyingGlass}
+                />
+            </Searchbar>
+
+            <OrderButton title={'Pedidos (0)'} id='OrdersBtn'/>
+
+            <SignOut>
+                <PiSignOutBold />
+            </SignOut>
+
                 <div>
                     <Orders>
                         <PiReceipt />

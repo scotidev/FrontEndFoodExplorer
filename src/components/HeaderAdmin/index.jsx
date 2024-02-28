@@ -1,23 +1,34 @@
 import { Container, Menu, Searchbar, SignOut } from './styles'
-import { Button } from '../Button';
 import { Logo } from '../Logo'
+import { Button } from '../Button';
+import { Input } from '../Input'
 
 import { PiListBold } from "react-icons/pi";
 import { PiSignOutBold } from "react-icons/pi";
+import { PiMagnifyingGlass } from "react-icons/pi";
 
 export function HeaderAdmin() {
     return(
         <Container>
-            <div id='jus'>
-            <Menu>
-                <PiListBold />
-            </Menu>
-            
-                <Logo></Logo>
-                <span>admin</span>
+            <div >
+                <Menu>
+                    <PiListBold />
+                </Menu>
+
+                <div className="LogoWrap">
+                    <Logo></Logo>
+                    <span>admin</span>    
+                </div>
             </div>
-            <Searchbar placeholder='Busque por pratos ou ingredientes'></Searchbar>
-            <Button title='Novo Prato' id='NewDish' />
+            
+            <Searchbar>
+                <Input 
+                placeholder='Busque por pratos ou ingredientes'
+                icon={PiMagnifyingGlass}
+                />
+            </Searchbar>
+
+            <Button title={'Novo prato'} id='NewDishBtn' />
 
             <SignOut>
                 <PiSignOutBold />
