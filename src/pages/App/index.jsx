@@ -8,7 +8,7 @@ export default function App() {
 
   return(
     <Container>
-      <HeaderUser></HeaderUser>
+      <HeaderAdmin></HeaderAdmin>
     </Container>
   )
 }

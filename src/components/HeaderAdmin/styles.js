@@ -12,6 +12,15 @@ export const Container = styled.nav`
     justify-content: center;
 
     position: relative;
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+            background-color: ${({ theme }) => theme.COLORS.DARK_700};
+
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 3.2rem; 
+}       
     
     >div {
             display: flex;
@@ -32,14 +41,14 @@ export const Container = styled.nav`
             font-size: 1.2rem;
 
                  @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                display: block;
+                    display: block;
 
-                width: 16rem;
-                height: 4rem;
-                margin-left: 8rem;
-                box-sizing: content-box;
+                    width: 16rem;
+                    height: 4rem;
+                    margin-left: 8rem;
+                    box-sizing: content-box;
 
-                text-align: end;
+                    text-align: end;
                 }   
             }
         }
@@ -48,22 +57,15 @@ export const Container = styled.nav`
             display: none;
             
             @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-            display: block;
+                display: inline-block;
 
-            width: 22rem;
-            margin-bottom: 2rem ;
+                width: 22rem;
+                margin-bottom: 2rem ;
+                font-size: 1.4rem;
+                white-space: nowrap;
 
 }
         }
-
-        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-            background-color: ${({ theme }) => theme.COLORS.DARK_700};
-
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            gap: 3.2rem; 
-}       
 `
 
 export const Menu = styled.button`

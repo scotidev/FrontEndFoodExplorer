@@ -14,10 +14,47 @@ export function HeaderUser() {
             <Menu>
                 <PiListBold />
             </Menu>
+
+            <Logo></Logo>
+
+            <Orders id='OrdersButton'>
+                <PiReceipt />
+                <span>0</span>
+            </Orders>
+
+            <Searchbar>
+                <Input 
+                placeholder='Busque por pratos ou ingredientes'
+                icon={PiMagnifyingGlass}
+                />
+            </Searchbar>
+
+            <OrderButton title={'Pedidos (0)'} id='OrdersDesktop'/>
+
+            <SignOut>
+                <PiSignOutBold />
+            </SignOut> 
+        </Container>
+    )
+}
+
+
+
+
+{/*<Menu>
+                <PiListBold />
+            </Menu>
             
             <Logo></Logo>
 
-            <Searchbar>
+            <div>
+                <Orders>
+                    <PiReceipt />
+                </Orders>
+                <span>0</span>
+            </div> 
+
+             <Searchbar>
                 <Input 
                 placeholder='Busque por pratos ou ingredientes'
                 icon={PiMagnifyingGlass}
@@ -28,14 +65,6 @@ export function HeaderUser() {
 
             <SignOut>
                 <PiSignOutBold />
-            </SignOut>
+            </SignOut> 
 
-                <div>
-                    <Orders>
-                        <PiReceipt />
-                    </Orders>
-                    <span>0</span>
-                </div>
-        </Container>
-    )
-}
+        </Container*/}
