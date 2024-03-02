@@ -26,7 +26,7 @@ export const Container = styled.div`
         gap: 1.2rem;
         
         padding: 3.8rem 0 2.4rem 0;
-
+        
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             gap: 1.5rem;
             }

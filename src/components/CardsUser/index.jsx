@@ -1,7 +1,6 @@
 import { Container, Favorite, Image, Title, Description, Price } from "./styles";
 import { Stepper } from '../Stepper'
 import { Button } from '../Button'
-import Maracuja from '../../assets/images/ravenello.png'
 
 import { PiHeartStraightBold } from "react-icons/pi";
 
@@ -14,7 +13,7 @@ export function CardsUser({image, title, description, price, ...rest }) {
                 </Favorite>
 
                 <Image>
-                    <img src="https://github.com/gabrielscoti42.png" alt="" width={88} height={88}/>
+                    <img src={(image)} alt="" width={88} height={88}/>
                 </Image>
 
                 <Title>

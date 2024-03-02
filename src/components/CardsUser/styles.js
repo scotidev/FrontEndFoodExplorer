@@ -28,6 +28,7 @@ export const Container = styled.div`
 
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             gap: 1.5rem;
+            padding: 3.8rem 0 2.4rem 0;
             }
 
 
@@ -73,7 +74,7 @@ export const Image = styled.div`
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             width: 17.6rem;
             height: auto;
-}
+        }
     }
 `
 
