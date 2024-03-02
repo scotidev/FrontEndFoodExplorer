@@ -63,7 +63,6 @@ export const Container = styled.nav`
                 margin-bottom: 2rem ;
                 font-size: 1.4rem;
                 white-space: nowrap;
-
 }
         }
 `
@@ -110,4 +109,12 @@ export const Searchbar = styled.div`
         margin-bottom: 2rem ;
         border-radius: 5px;
 }
+
+    > div {
+        display: none;
+
+        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+        display: flex;
+}
+    }
 `

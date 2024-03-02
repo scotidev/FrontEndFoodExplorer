@@ -2,14 +2,13 @@ import styled from "styled-components"
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.div`
-    display: none;
+    background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
-@media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
         
-        width: 100%;
+    width: 100%;
         
         >input{
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
@@ -38,5 +37,4 @@ export const Container = styled.div`
 
             margin-left: 15px;
         }
-}
 `

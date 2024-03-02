@@ -3,14 +3,14 @@ import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.form`
     height: 100vh;
-    padding: 16rem 5rem ;
+    padding: 32rem 10rem ;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    overflow-y: auto;
+    overflow-y: scroll;
 
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
 
@@ -52,6 +52,8 @@ export const Container = styled.form`
         line-height: 2.4rem; 
 
         width: fit-content;
-        margin: 3.2rem auto;
+        margin: 3.2rem 0;
+
+        white-space: nowrap;
     }
 `
