@@ -4,6 +4,7 @@ import { Button } from '../Button'
 
 import { PiHeartStraightBold } from "react-icons/pi";
 
+
 export function CardsUser({image, title, description, price, ...rest }) {
     return(
         <Container>
@@ -13,7 +14,7 @@ export function CardsUser({image, title, description, price, ...rest }) {
                 </Favorite>
 
                 <Image>
-                    <img src={(image)} alt="" width={88} height={88}/>
+                    <img src={(image)} alt="Foto de prato de comida" width={88} height={88}/>
                 </Image>
 
                 <Title>

@@ -11,7 +11,7 @@ export const Container = styled.footer`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 3rem;
 
     font-family: 'Roboto', sans-serif;
 

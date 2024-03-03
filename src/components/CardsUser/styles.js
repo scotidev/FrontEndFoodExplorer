@@ -15,8 +15,8 @@ export const Container = styled.div`
 
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
         width: 30.4rem;
-        height: 46.2rem;
-        padding: 2.4rem;
+        height: 48rem;
+        padding: 1rem 2.4rem;
         }
 
     >.card {
@@ -83,6 +83,8 @@ export const Title = styled.h2`
     font-weight: 500;
     font-size: 1.4rem;
     text-align: center;
+
+    white-space: nowrap;
 
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
         font-size: 2.4rem;

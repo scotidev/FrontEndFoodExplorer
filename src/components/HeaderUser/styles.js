@@ -12,6 +12,10 @@ export const Container = styled.nav`
     align-items: center;
     justify-content: space-around;
 
+    position: fixed;
+    top: 0;
+    z-index: 1;
+
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             background-color: ${({ theme }) => theme.COLORS.DARK_700};
 

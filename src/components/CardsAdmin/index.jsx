@@ -11,7 +11,7 @@ export function CardsAdmin({image, title, description, price, ...rest }) {
                 </Edit>
 
                 <Image>
-                    <img src={(image)} alt="" width={88} height={88}/>
+                    <img src={(image)} alt="Foto de prato de comida" width={88} height={88}/>
                 </Image>
 
                 <Title>

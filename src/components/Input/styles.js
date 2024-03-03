@@ -9,6 +9,7 @@ export const Container = styled.div`
     justify-content: center;
         
     width: 100%;
+    border-radius: 5px;
         
         >input{
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
