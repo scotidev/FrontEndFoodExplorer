@@ -21,10 +21,10 @@ export default function UserMenu() {
                     icon={PiMagnifyingGlass}
                     id='search'
                 />
-                    <div className="bottomBorder">
-                        <button>Sair</button>
-                    </div>
+                <div className="bottomBorder">
+                    <button>Sair</button>
                 </div>
+            </div>
 
             <Footer></Footer>
         </Container>

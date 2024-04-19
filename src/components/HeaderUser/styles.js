@@ -23,12 +23,17 @@ export const Container = styled.nav`
 
             display: flex;
             gap: 3.2rem;
-}   
+        }   
 
     >div{
         white-space: nowrap;
+        padding-bottom: .8rem;
         
         cursor: default;
+
+        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+            padding: 0;
+        }  
     }
 
     >#OrdersButton{
@@ -83,7 +88,7 @@ export const Menu = styled.button`
 
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
         display: none;
-}
+    }
 `
 
 export const Orders = styled.button`
@@ -94,7 +99,7 @@ export const Orders = styled.button`
 
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
         display: none;
-}
+    }
 `
 export const SignOut = styled.button`
     display: none;
@@ -106,7 +111,7 @@ export const SignOut = styled.button`
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
             font-size: 3.2rem;
-}
+        }
 `
 
 export const Searchbar = styled.div`
@@ -120,5 +125,5 @@ export const Searchbar = styled.div`
         width: 70%;
         height: 4.8rem;
         border-radius: 5px;
-}
+    }
 `

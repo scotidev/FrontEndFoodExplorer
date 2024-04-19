@@ -3,12 +3,10 @@ import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.form`
     height: 100vh;
-    padding: 16rem 5rem ;
+    padding: 16rem 6rem;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     overflow-y: auto;
 
@@ -18,8 +16,14 @@ export const Container = styled.form`
 
     >div {
         margin-bottom: 7rem;
+        font-size: 1.7rem;
         
         white-space: nowrap;
+
+        >svg {
+            min-height: 4rem;
+            min-width: 4rem;
+        }
     }
 
     >button {
@@ -32,10 +36,11 @@ export const Container = styled.form`
         margin-bottom: 3.2rem;
 
         >label {
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        
         display: inline-block;
         margin-bottom: 1rem;
 
-        color: ${({ theme }) => theme.COLORS.LIGHT_400};
         font-family: 'Roboto', sans-serif;
         font-size: 1.4rem;
         font-weight: 400;
@@ -45,6 +50,7 @@ export const Container = styled.form`
 
     >a {
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
         text-align: center;
         font-family: 'Poppins', sans-serif;
         font-size: 1.44rem;

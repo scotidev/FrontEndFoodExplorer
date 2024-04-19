@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.div`
     background-color: ${({ theme }) => theme.COLORS.DARK_900};
@@ -13,11 +12,11 @@ export const Container = styled.div`
         
         >input{
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
+            background-color: transparent;
 
             display: flex;
             justify-content: center;
-            
-            background-color: transparent;
+            padding-left: 16px;
 
             width: 100%;
             height: 4.8rem;
@@ -26,7 +25,7 @@ export const Container = styled.div`
             font-size: 1.6rem;
             font-weight: 400;
             line-height: 100%;
-            text-align: center;
+            text-align: star;
 
             border: none;
         }

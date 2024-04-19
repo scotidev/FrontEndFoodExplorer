@@ -7,11 +7,13 @@ export const Container = styled.footer`
     width: 100%;
     height: 6rem;
     padding: 2.4rem 6rem;
+    position: fixed;
+    bottom: 0;
+    gap: 1rem;
 
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 3rem;
+    justify-content: space-between;
 
     font-family: 'Roboto', sans-serif;
 
@@ -36,7 +38,7 @@ export const Container = styled.footer`
 
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
         font-size: 2rem;
-}
+        }
 
         >svg {
         width: clamp(1.5625rem, 0.8036rem + 3.7946vw, 2.625rem);
@@ -53,6 +55,6 @@ export const Container = styled.footer`
         
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
         font-size: 1.4rem;
-}
+        }
     }
 `

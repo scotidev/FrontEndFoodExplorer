@@ -3,6 +3,7 @@ import { HeaderUser } from '../../components/HeaderUser'
 import { CardsUser } from '../../components/CardsUser'
 import { Footer } from '../../components/Footer'
 
+//Para criar o carrossel de pratos
 import { useKeenSlider } from 'keen-slider/react' 
 import 'keen-slider/keen-slider.min.css'
 
@@ -53,28 +54,28 @@ export default function UserHome() {
                     image={ravanello}
                     title={'Salada Ravanello >'}
                     description={'Rabanetes, folhas verdes e molho agridoce salpicados com gergilim. '}
-                    price={49.97}
+                    price={'49,97'}
                     ></CardsUser>
 
                     <CardsUser 
                     image={gambe}
                     title={'Spaguetti Gambe >'}
                     description={'Massa fresca com camarões e pesto.'}
-                    price={79.97}
+                    price={'79,97'}
                     ></CardsUser>
 
                     <CardsUser 
                     image={parma}
                     title={'Torradas de parma >'}
                     description={'Presunto de parma e rúcula em um pão com fermentação natural.'}
-                    price={25.97}
+                    price={'25,97'}
                     ></CardsUser>
 
                     <CardsUser 
                     image={molla}
                     title={'Salada Molla >'}
                     description={'Massa fresca com legumes.'}
-                    price={32.17}
+                    price={'32,17'}
                     ></CardsUser>
                 </div>
 
@@ -91,28 +92,28 @@ export default function UserHome() {
                     image={prune}
                     title={'Prugna Pie >'}
                     description={'Torta de ameixa com massa amanteigada, polvilho em açúcar.'}
-                    price={79.97}
+                    price={'79,97'}
                     ></CardsUser>
 
                     <CardsUser 
                     image={pastry}
                     title={'Peachy Pastry >'}
                     description={'Delicioso folheado de pêssego com folhas de hortelã.'}
-                    price={32.97}
+                    price={'32,97'}
                     ></CardsUser>
 
                     <CardsUser 
                     image={macaron}
                     title={'Macarons >'}
                     description={'Farinha de amêndoas, manteiga, claras e açúcar.'}
-                    price={79.97}
+                    price={'79,97'}
                     ></CardsUser>
 
                     <CardsUser 
                     image={pie}
                     title={'Bolo de Damasco >'}
                     description={'Damascos frescos em uma massa suave.'}
-                    price={32.97}
+                    price={'32,97'}
                     ></CardsUser>
                 </div>
 
@@ -136,21 +137,21 @@ export default function UserHome() {
                     image={juice}
                     title={'Suco de Maracujá >'}
                     description={'Suco de maracujá gelado, cremoso, docinho.'}
-                    price={'13.97'}
+                    price={'13,97'}
                     ></CardsUser>
 
                     <CardsUser 
                     image={tea}
                     title={"Tè d'autunno >>"}
                     description={'Chá de anis, canela e limão. Sinta o outono italiano.'}
-                    price={'19.97'}
+                    price={'19,97'}
                     ></CardsUser>
 
                     <CardsUser 
                     image={soda}
                     title={'Soda de Pomelo >'}
                     description={'Maçã, pomelo e soda italiana'}
-                    price={32.97}
+                    price={'32,97'}
                     ></CardsUser>
                 </div>
                 

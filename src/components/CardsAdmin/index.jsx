@@ -4,7 +4,7 @@ import { PiPencilSimpleBold } from "react-icons/pi";
 
 export function CardsAdmin({image, title, description, price, ...rest }) {
     return(
-        <Container>
+        <Container {...rest}>
             <div className="card">
                 <Edit>
                     <PiPencilSimpleBold />

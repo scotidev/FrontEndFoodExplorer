@@ -11,7 +11,7 @@ export default function SignIn() {
         <div className="inputWrapper">
           <label htmlFor="email">Email</label>
           <Input
-            placeholder="exemplo@exemplo.com.br"
+            placeholder="Exemplo: exemplo@email.com.br"
             type="text"
             id='email'
           />

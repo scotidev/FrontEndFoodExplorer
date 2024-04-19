@@ -6,7 +6,9 @@ export function Stepper() {
     return(
         <Container>
             <PiMinusBold />
+
             <span> 01 </span>
+            
             <PiPlusBold />
         </Container>
     )

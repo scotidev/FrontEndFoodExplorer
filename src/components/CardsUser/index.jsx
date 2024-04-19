@@ -7,7 +7,7 @@ import { PiHeartStraightBold } from "react-icons/pi";
 
 export function CardsUser({image, title, description, price, ...rest }) {
     return(
-        <Container>
+        <Container {...rest}>
             <div className="card">
                 <Favorite>
                     <PiHeartStraightBold />

@@ -22,8 +22,8 @@ export const Container = styled.div`
         padding: 0 0 3rem 3rem;
 
         >button {
-            background-color: transparent;
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
+            background-color: transparent;
 
             font-size: 2.4rem;
             height: 2.4rem;
@@ -53,8 +53,8 @@ export const Container = styled.div`
             width: 100%;
             
                 >button {
-                background-color: transparent;
                 color: ${({ theme }) => theme.COLORS.LIGHT_300};
+                background-color: transparent;
 
                 font-family: 'Poppins', sans-serif;
                 font-size: 24px;

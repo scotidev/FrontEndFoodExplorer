@@ -2,15 +2,16 @@ import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
-    height: 100vh;
-    
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    
+
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+        
     display: flex;
     flex-direction: column;
 
     font-family: 'Poppins', sans-serif;
-
 
     >.banner {
         background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
@@ -25,7 +26,6 @@ export const Container = styled.div`
         }
         
         >.titleAndTextWrapper {
-
             >h1 {
                 font-size: 1.8rem;
                 font-weight: 600;
@@ -37,18 +37,14 @@ export const Container = styled.div`
                 font-size: 1.2rem;
                 font-weight: 400;
             }
-        }
-
-        
+        }     
     }
 
     >section {
-
         position: relative;
 
         >.cardsWrapper {
         display: flex;
-
         }
 
         >h2 {
@@ -60,7 +56,11 @@ export const Container = styled.div`
             display: none;
             @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             display: blo;
-}
+            }
         }
+    }
+
+    >footer {
+        position: relative;
     }
 `

@@ -45,9 +45,9 @@ export const Container = styled.nav`
                  @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                     display: block;
 
-                    width: 16rem;
+                    width: 14rem;
                     height: 4rem;
-                    margin-left: 8rem;
+                    margin: 0 0 1.3rem 8rem;
                     box-sizing: content-box;
 
                     text-align: end;
@@ -65,7 +65,7 @@ export const Container = styled.nav`
                 margin-bottom: 2rem ;
                 font-size: 1.4rem;
                 white-space: nowrap;
-}
+            }
         }
 `
 
@@ -110,13 +110,13 @@ export const Searchbar = styled.div`
         height: 4.8rem;
         margin-bottom: 2rem ;
         border-radius: 5px;
-}
+    }
 
     > div {
         display: none;
 
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
         display: flex;
-}
+        }
     }
 `

@@ -49,7 +49,7 @@ export const Image = styled.div`
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             width: 17.6rem;
             height: auto;
-}
+        }
     }
 `
 
@@ -64,7 +64,6 @@ export const Title = styled.h2`
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
         font-size: 2.4rem;
         font-weight: 700;
-
 }
 `
 
