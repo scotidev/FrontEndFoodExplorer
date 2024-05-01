@@ -48,7 +48,7 @@ export const Container = styled.div`
         gap: 1rem;
         
         
-        >.bottomBorder {
+        >.exitContainer, .newDishContainer {
             border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000}; 
             width: 100%;
             
