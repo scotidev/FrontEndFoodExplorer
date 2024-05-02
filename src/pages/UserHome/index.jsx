@@ -3,9 +3,9 @@ import { HeaderUser } from '../../components/HeaderUser'
 import { CardsUser } from '../../components/CardsUser'
 import { Footer } from '../../components/Footer'
 
-//Para criar o carrossel de pratos
-import { useKeenSlider } from 'keen-slider/react' 
-import 'keen-slider/keen-slider.min.css'
+// para criar o carrossel de imagens
+import { motion } from "framer-motion"
+import { useState, useEffect, useRef } from 'react'
 
 import { PiCaretLeftBold } from "react-icons/pi";
 import { PiCaretRightBold } from "react-icons/pi";
@@ -25,11 +25,13 @@ import soda from '../../assets/images/soda.png'
 import tea from '../../assets/images/tea.png'
 
 export default function UserHome() {
-    const {sliderRef} = useKeenSlider({
-        slides: {
-            perView: 2,
-        }
-    })
+    const carousel = useRef()
+    const [width, setWidth] = useState(0)
+
+    useEffect(() => {
+        setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth)
+    }, [])
+
 
     return(
         <Container>
@@ -44,12 +46,22 @@ export default function UserHome() {
                 </div>
             </div>
 
-            <section ref={sliderRef}>
+            <motion.section 
+            whileTap={{ cursor: "grabbing"}}
+            ref={carousel}
+            >
                 <PiCaretLeftBold />
 
                 <h2>Refeições</h2>
 
-                <div className="cardsWrapper">
+                <motion.div 
+                className="cardsWrapper"
+                drag='x'
+                dragConstraints={{right: 0, left: -width}}
+                initial={{x: 100}}
+                animate={{x: 0}}
+                transition={{ duration: 0.8}}
+                >
                     <CardsUser 
                     image={ravanello}
                     title={'Salada Ravanello >'}
@@ -77,17 +89,24 @@ export default function UserHome() {
                     description={'Massa fresca com legumes.'}
                     price={'32,17'}
                     ></CardsUser>
-                </div>
+                </motion.div>
 
                 <PiCaretRightBold />
-            </section>
+            </motion.section>
 
-            <section>
+            <motion.section whileTap={{ cursor: "grabbing"}}>
                 <PiCaretLeftBold />
 
                 <h2>Sobremesas</h2>
                 
-                <div className="cardsWrapper">
+                <motion.div 
+                className="cardsWrapper"
+                drag='x'
+                dragConstraints={{right: 0, left: -width}}
+                initial={{x: 100}}
+                animate={{x: 0}}
+                transition={{ duration: 0.8}}
+                >
                     <CardsUser 
                     image={prune}
                     title={'Prugna Pie >'}
@@ -115,17 +134,24 @@ export default function UserHome() {
                     description={'Damascos frescos em uma massa suave.'}
                     price={'32,97'}
                     ></CardsUser>
-                </div>
+                </motion.div>
 
                 <PiCaretRightBold />
-            </section>
+            </motion.section>
                 
-            <section>
+            <motion.section whileTap={{ cursor: "grabbing"}}>
                 <PiCaretLeftBold />
 
                 <h2>Bebidas</h2>
                 
-                <div className="cardsWrapper">
+                <motion.div 
+                className="cardsWrapper"
+                drag='x'
+                dragConstraints={{right: 0, left: -width}}
+                initial={{x: 100}}
+                animate={{x: 0}}
+                transition={{ duration: 0.8}}
+                >
                     <CardsUser 
                     image={coffe}
                     title={'Espresso >'}
@@ -153,11 +179,11 @@ export default function UserHome() {
                     description={'Maçã, pomelo e soda italiana'}
                     price={'32,97'}
                     ></CardsUser>
-                </div>
+                </motion.div>
                 
                 <PiCaretRightBold />
 
-            </section>
+            </motion.section>
             <Footer></Footer>
         </Container>
     )

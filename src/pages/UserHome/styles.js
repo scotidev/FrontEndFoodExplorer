@@ -12,6 +12,8 @@ export const Container = styled.div`
     flex-direction: column;
 
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+
 
     >.banner {
         background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
@@ -64,3 +66,6 @@ export const Container = styled.div`
         position: relative;
     }
 `
+
+ 
+//cursor: grab;
