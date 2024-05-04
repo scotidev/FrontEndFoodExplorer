@@ -5,8 +5,8 @@ export const Container = styled.div`
     background-color: ${({ theme }) => theme.COLORS.DARK_200};
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
-    width: 21rem;
-    height: 29rem;
+    min-width: 21rem;
+    min-height: 29rem;
     padding: 2.4rem;
     border: 1px solid ${({ theme }) => theme.COLORS.DARK_300};
     border-radius: 8px;
