@@ -38,6 +38,7 @@ export const Container = styled.div`
             font-size: 2.4rem;
             font-weight: 500;
         }
+        
 
         >h1 {
             font-size: 2.7rem;
@@ -56,18 +57,13 @@ export const Container = styled.div`
             text-align: center;
 
             >button{
-                margin: 1rem 0 0 1rem;
+                margin: 2rem 0 0 1.6rem;
                 display: inline-block;
             }
         }
 
-        >.stepperAndButtonWrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            margin-top: 4.8rem;
-            gap: 1.6rem;
+        >.editButton {
+            margin-top: 3rem;
         }
     }
 `

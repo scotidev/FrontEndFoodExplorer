@@ -1,8 +1,7 @@
 import { Container } from './styles'
-import { HeaderUser} from '../../components/HeaderUser'
+import { HeaderAdmin} from '../../components/HeaderAdmin'
 import { Ingredient } from '../../components/Ingredient'
-import { Stepper } from '../../components/Stepper'
-import { OrderButton } from '../../components/OrderButton'
+import { Button } from '../../components/Button'
 import { Footer } from '../../components/Footer'
 
 import { PiCaretLeftBold } from "react-icons/pi";
@@ -10,10 +9,10 @@ import { PiCaretLeftBold } from "react-icons/pi";
 import juice from '../../assets/images/juice.png'
 
 
-export default function UserDish() {
+export default function AdminDish() {
     return(
         <Container>
-            <HeaderUser></HeaderUser>
+            <HeaderAdmin></HeaderAdmin>
 
             <div className="content">
                 <button className="back">
@@ -35,11 +34,7 @@ export default function UserDish() {
                     <Ingredient title={'picles'} />
                 </div>
 
-                <div className='stepperAndButtonWrapper'>
-                    <Stepper></Stepper>
-
-                    <OrderButton title={'Pedir - R$ 49,50'}></OrderButton>
-                </div>
+                <Button title={'Editar Prato'} className='editButton'></Button>
 
             </div>
 
