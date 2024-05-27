@@ -30,6 +30,3 @@ export default createGlobalStyle`
         border: none;
     }
 `
-
-// font-family: 'Poppins', sans-serif;
-// font-family: 'Roboto', sans-serif;

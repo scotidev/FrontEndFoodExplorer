@@ -4,7 +4,9 @@ import { Button } from '../../components/Button'
 import { Footer } from '../../components/Footer'
  
 import { PiCaretLeftBold } from "react-icons/pi";
-
+import { PiUploadSimpleBold } from "react-icons/pi";
+import { VscClose } from "react-icons/vsc";
+import { HiOutlinePlus } from "react-icons/hi2";
 
 export default function AdminNewDish() {
     return (
@@ -20,22 +22,63 @@ export default function AdminNewDish() {
 
                 <h1>Novo Prato</h1>
 
-                <label htmlFor="">Imagem do Prato</label>
-                <input type="file" />
+                <div className="uploadContainer">
+                    <h2>Imagem do Prato</h2>
+                    <input type="file" id="upload"/>
+                    <label htmlFor="upload">
+                        <div className="uploadBox">
+                            <PiUploadSimpleBold />
+                            <p>Selecione a Imagem</p>
+                        </div>
+                    </label>
+                </div>
 
-                <label htmlFor="name"></label>
-                <input type="text" />
+                <label htmlFor="name">Nome</label>
+                <input type="text" placeholder="Ex.: Salada Ceasar" id='name'/>
 
+                <label htmlFor="category">Categoria</label>
+                <select name="category" id="category">
+                    <option value="category">Refeição</option>
+                    <option value="category">Prato Principal</option>
+                    <option value="category">Bebidas</option>
+                </select>
 
-                <label htmlFor="category">categoria</label>
-                <input type="text" />
-
-                <label htmlFor="">Ingredientes</label>
+                <h2>Ingredientes</h2>
+                <div className="ingredientsContainer">
+                    <div className="ingredient">
+                        Ingrediente 
+                        <button><VscClose /></button>
+                    </div>
+                    <div className="ingredient">
+                        Ingrediente 
+                        <button><VscClose /></button>
+                    </div>
+                    <div className="ingredient">
+                        Ingrediente 
+                        <button><VscClose /></button>
+                    </div>
+                    <div className="ingredient">
+                        Ingrediente 
+                        <button><VscClose /></button>
+                    </div>
+                    <button id="addIngredient">
+                        Adicionar
+                        <HiOutlinePlus />
+                    </button>
+                </div>
 
                 <label htmlFor="">Preço</label>
+                <input 
+                type="number" 
+                placeholder='R$ 00,00' 
+                id="price"
+                min="0"
+                max="1000"
+                step="0.01"
+                />
 
                 <label htmlFor="">Descrição</label>
-                <input type="textbox" name="" id="" />
+                <textarea name="" id=""></textarea>
 
                 <Button title={'Salvar Alterações'} disabled/>
 
