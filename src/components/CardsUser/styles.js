@@ -17,7 +17,7 @@ export const Container = styled.div`
         width: 30.4rem;
         height: 48rem;
         padding: 1rem 2.4rem;
-        }
+    }
 
     >.card {
         display: flex;
@@ -29,7 +29,7 @@ export const Container = styled.div`
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             gap: 1.5rem;
             padding: 3.8rem 0 2.4rem 0;
-            }
+        }
 
 
         >.stepperAndBtnWrap {
@@ -37,21 +37,21 @@ export const Container = styled.div`
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100%;
             gap: 1.2rem;
+            width: 100%;
 
             @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                 flex-direction: row;
-                }
+            }
 
-        >#addDishBtn {
-            height: 3.2rem;
-            padding: 0;
+            >#addDishBtn {
+                height: 3.2rem;
+                padding: 0;
 
-            @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                width: 9.2rem;
-                height: 4.8rem;
-                padding: 1.2rem 2.4rem;
+                @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                    width: 9.2rem;
+                    height: 4.8rem;
+                    padding: 1.2rem 2.4rem;
                 }
             }
         }
@@ -90,7 +90,7 @@ export const Title = styled.h2`
         font-size: 2.4rem;
         font-weight: 700;
 
-}
+    }
 `
 
 export const Description = styled.p`
@@ -105,7 +105,7 @@ export const Description = styled.p`
         font-family: 'Roboto', sans-serif;
         font-weight: 400;
         font-size: 1.4rem;
-}
+    }
 `
 
 export const Price = styled.span`
@@ -119,5 +119,5 @@ export const Price = styled.span`
         height: 5.2rem;
         font-size: 3.2rem;
         line-height: 160%;
-}
+    }
 `

@@ -16,16 +16,16 @@ export const Container = styled.nav`
     z-index: 1;
 
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-            background-color: ${({ theme }) => theme.COLORS.DARK_700};
+        background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            gap: 3.2rem; 
-}       
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3.2rem; 
+    }       
     
     >div {
-            display: flex;
+        display: flex;
         
         >.LogoWrap {
             background-color: transparent;
@@ -42,31 +42,31 @@ export const Container = styled.nav`
             font-weight: 400;
             font-size: 1.2rem;
 
-                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                    display: block;
-
-                    width: 14rem;
-                    height: 4rem;
-                    margin: 0 0 1.3rem 8rem;
-                    box-sizing: content-box;
-
-                    text-align: end;
-                }   
-            }
-        }
-
-        >#NewDishBtn {
-            display: none;
-            
             @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                display: inline-block;
+                display: block;
 
-                width: 22rem;
-                margin-bottom: 2rem ;
-                font-size: 1.4rem;
-                white-space: nowrap;
-            }
+                width: 14rem;
+                height: 4rem;
+                margin: 0 0 1.3rem 8rem;
+                box-sizing: content-box;
+
+                text-align: end;
+            }   
         }
+    }
+
+    >#NewDishBtn {
+        display: none;
+            
+        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+            display: inline-block;
+
+            width: 22rem;
+            margin-bottom: 2rem ;
+            font-size: 1.4rem;
+            white-space: nowrap;
+        }
+    }
 `
 
 export const Menu = styled.button`
@@ -79,25 +79,25 @@ export const Menu = styled.button`
     left: 2.5rem;
     top: 3.9rem;
 
-        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-            display: none;
-}
+    @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+        display: none;
+    }
 `
 
 export const SignOut = styled.button`
     display: none;
 
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-            display: block;
+        display: block;
 
-            background-color: transparent;
-            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        background-color: transparent;
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
-            font-size: 3.2rem;
+        font-size: 3.2rem;
 
-            margin-right: 8rem;
-            margin-bottom: 1.5rem ;
-}
+        margin-right: 8rem;
+        margin-bottom: 1.5rem ;
+    }
 `
 
 export const Searchbar = styled.div`
@@ -116,7 +116,7 @@ export const Searchbar = styled.div`
         display: none;
 
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-        display: flex;
+            display: flex;
         }
     }
 `

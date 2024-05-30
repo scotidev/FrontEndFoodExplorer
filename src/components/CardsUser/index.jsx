@@ -6,6 +6,7 @@ import { PiHeartStraightBold } from "react-icons/pi";
 
 
 export function CardsUser({image, title, description, price, ...rest }) {
+    
     return(
         <Container {...rest}>
             <div className="card">

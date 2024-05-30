@@ -15,27 +15,31 @@ export default function AdminDish() {
             <HeaderAdmin></HeaderAdmin>
 
             <div className="content">
-                <button className="back">
-                    <PiCaretLeftBold />
-                    voltar
-                </button>
 
-                <img src={juice} alt=""  height={260} width={260}/>
+                <div className="backAndImageWrapper">
+                    <button className="back">
+                        <PiCaretLeftBold />
+                        voltar
+                    </button>
 
-                <h1>Salada de Salada</h1>
-                <p>Salada salada salada salada salada salada salada salada salada salada salada salada.</p>
-
-                <div className="ingredientsWrapper">
-                    <Ingredient title={'alface'} />
-                    <Ingredient title={'requeijão'} />
-                    <Ingredient title={'cebola'} />
-                    <Ingredient title={'cebolinha'} />
-                    <Ingredient title={'banana'} />
-                    <Ingredient title={'picles'} />
+                    <img src={juice} alt=""  height={260} width={260}/>
                 </div>
 
-                <Button title={'Editar Prato'} className='editButton'></Button>
+                <div className="ingredientsAndDescriptionWrapper">
+                    <h1>Salada de Salada</h1>
+                    <p>Salada salada salada salada salada salada salada salada salada salada salada salada.</p>
 
+                    <div className="ingredientsWrapper">
+                        <Ingredient title={'alface'} />
+                        <Ingredient title={'requeijão'} />
+                        <Ingredient title={'cebola'} />
+                        <Ingredient title={'cebolinha'} />
+                        <Ingredient title={'banana'} />
+                        <Ingredient title={'picles'} />
+                    </div>
+
+                    <Button title={'Editar Prato'} className='editButton'></Button>
+                </div>
             </div>
 
             <Footer></Footer>

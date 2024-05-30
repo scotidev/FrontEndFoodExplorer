@@ -17,13 +17,13 @@ export const Container = styled.nav`
     z-index: 1;
 
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-            background-color: ${({ theme }) => theme.COLORS.DARK_700};
+        background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
-            padding: 2.4rem 8rem;
+        padding: 2.4rem 8rem;
 
-            display: flex;
-            gap: 3.2rem;
-        }   
+        display: flex;
+        gap: 3.2rem;
+    }   
 
     >div{
         white-space: nowrap;
@@ -69,9 +69,9 @@ export const Container = styled.nav`
 
     
     >#OrdersDesktop {
-            display: none;
+        display: none;
             
-            @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             display: flex;
             width: 22rem;
 
@@ -105,13 +105,13 @@ export const SignOut = styled.button`
     display: none;
 
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-            display: flex;
+        display: flex;
 
-            background-color: transparent;
-            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        background-color: transparent;
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
-            font-size: 3.2rem;
-        }
+        font-size: 3.2rem;
+    }
 `
 
 export const Searchbar = styled.div`

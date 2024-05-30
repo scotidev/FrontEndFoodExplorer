@@ -1,14 +1,9 @@
 import styled from "styled-components";
-import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
-
-    @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-
-}
 
     >.header {
         background-color: ${({ theme }) => theme.COLORS.DARK_700};
@@ -40,12 +35,12 @@ export const Container = styled.div`
     }
 
         >.content {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding: 2rem;
-        align-items: flex-start;
-        gap: 1rem;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 2rem;
+            align-items: flex-start;
+            gap: 1rem;
         
         
         >.bottomBorder {
@@ -53,16 +48,16 @@ export const Container = styled.div`
             width: 100%;
             
                 >button {
-                color: ${({ theme }) => theme.COLORS.LIGHT_300};
-                background-color: transparent;
+                    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+                    background-color: transparent;
 
-                margin-top: 2.6rem;
-                padding-bottom: 1rem;
+                    margin-top: 2.6rem;
+                    padding-bottom: 1rem;
 
-                font-family: 'Poppins', sans-serif;
-                font-size: 24px;
-                font-weight: 300;
-                line-height: 140%;           
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 24px;
+                    font-weight: 300;
+                    line-height: 140%;           
                 }
             }
         }   

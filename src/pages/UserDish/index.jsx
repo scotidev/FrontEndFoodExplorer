@@ -16,31 +16,35 @@ export default function UserDish() {
             <HeaderUser></HeaderUser>
 
             <div className="content">
-                <button className="back">
-                    <PiCaretLeftBold />
-                    voltar
-                </button>
 
-                <img src={juice} alt=""  height={260} width={260}/>
+                <div className="backAndImageWrapper">
+                    <button className="back">
+                        <PiCaretLeftBold />
+                        voltar
+                    </button>
 
-                <h1>Salada de Salada</h1>
-                <p>Salada salada salada salada salada salada salada salada salada salada salada salada.</p>
-
-                <div className="ingredientsWrapper">
-                    <Ingredient title={'alface'} />
-                    <Ingredient title={'requeijão'} />
-                    <Ingredient title={'cebola'} />
-                    <Ingredient title={'cebolinha'} />
-                    <Ingredient title={'banana'} />
-                    <Ingredient title={'picles'} />
+                    <img src={juice} alt=""  height={260} width={260}/>
                 </div>
 
-                <div className='stepperAndButtonWrapper'>
-                    <Stepper></Stepper>
+                <div className="ingredientsAndDescriptionWrapper">
+                    <h1>Salada de Salada</h1>
+                    <p>Salada salada salada salada salada salada salada salada salada salada salada salada.</p>
 
-                    <OrderButton title={'Pedir - R$ 49,50'}></OrderButton>
+                    <div className="ingredientsWrapper">
+                        <Ingredient title={'alface'} />
+                        <Ingredient title={'requeijão'} />
+                        <Ingredient title={'cebola'} />
+                        <Ingredient title={'cebolinha'} />
+                        <Ingredient title={'banana'} />
+                        <Ingredient title={'picles'} />
+                    </div>
+
+                    <div className='stepperAndButtonWrapper'>
+                        <Stepper></Stepper>
+
+                        <OrderButton title={'Pedir - R$ 49,50'}></OrderButton>
+                    </div>
                 </div>
-
             </div>
 
             <Footer></Footer>

@@ -10,31 +10,31 @@ export const Container = styled.div`
     width: 100%;
     border-radius: 5px;
         
-        >input{
-            color: ${({ theme }) => theme.COLORS.LIGHT_400};
-            background-color: transparent;
+    >input{
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        background-color: transparent;
 
-            display: flex;
-            justify-content: center;
-            padding-left: 16px;
+        display: flex;
+        justify-content: center;
+        padding-left: 16px;
 
-            width: 100%;
-            height: 4.8rem;
+        width: 100%;
+        height: 4.8rem;
 
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 400;
-            line-height: 100%;
-            text-align: star;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 100%;
+        text-align: star;
 
-            border: none;
-        }
+        border: none;
+    }
 
-        >svg {
-            color: ${({ theme }) => theme.COLORS.LIGHT_400};
+    >svg {
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
-            font-size: 2.4rem;
+        font-size: 2.4rem;
 
-            margin-left: 15px;
-        }
+        margin-left: 15px;
+    }
 `

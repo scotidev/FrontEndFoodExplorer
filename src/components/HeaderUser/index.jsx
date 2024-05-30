@@ -37,34 +37,3 @@ export function HeaderUser() {
         </Container>
     )
 }
-
-
-
-
-{/*<Menu>
-                <PiListBold />
-            </Menu>
-            
-            <Logo></Logo>
-
-            <div>
-                <Orders>
-                    <PiReceipt />
-                </Orders>
-                <span>0</span>
-            </div> 
-
-             <Searchbar>
-                <Input 
-                placeholder='Busque por pratos ou ingredientes'
-                icon={PiMagnifyingGlass}
-                />
-            </Searchbar>
-
-            <OrderButton title={'Pedidos (0)'} id='OrdersBtn'/>
-
-            <SignOut>
-                <PiSignOutBold />
-            </SignOut> 
-
-        </Container*/}

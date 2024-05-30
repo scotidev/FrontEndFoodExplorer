@@ -22,7 +22,7 @@ export const Container = styled.footer`
 
         padding: 4rem 0;
         gap: 30rem;
-}
+    }
 
     >div {
         color: ${({theme}) => theme.COLORS.LIGHT_700};
@@ -37,11 +37,11 @@ export const Container = styled.footer`
         white-space: nowrap;
 
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-        font-size: 2rem;
+            font-size: 2rem;
         }
 
         >svg {
-        width: clamp(1.5625rem, 0.8036rem + 3.7946vw, 2.625rem);
+            width: clamp(1.5625rem, 0.8036rem + 3.7946vw, 2.625rem);
         }
     }
 

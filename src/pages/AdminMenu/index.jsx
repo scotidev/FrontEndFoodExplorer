@@ -6,6 +6,7 @@ import { PiX } from "react-icons/pi";
 import { PiMagnifyingGlass } from "react-icons/pi"
 
 export default function AdminMenu() {
+    
     return(
         <Container>
             <div className="header">
