@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import AdminDish from './pages/AdminDish'
+import AdminNewDish from './pages/AdminNewDish'
 
 import { ThemeProvider } from 'styled-components'
 import theme from './styles/theme'
@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode >
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <AdminDish />
+      <AdminNewDish />
     </ThemeProvider>
   </React.StrictMode>,
 )

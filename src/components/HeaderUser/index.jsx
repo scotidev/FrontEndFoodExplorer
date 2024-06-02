@@ -6,7 +6,6 @@ import { Input } from '../Input';
 import { PiListBold } from "react-icons/pi";
 import { PiReceipt } from 'react-icons/pi'
 import { PiSignOutBold } from "react-icons/pi";
-import { PiMagnifyingGlass } from "react-icons/pi";
 
 export function HeaderUser() {
     return(
@@ -23,10 +22,7 @@ export function HeaderUser() {
             </Orders>
 
             <Searchbar>
-                <Input 
-                placeholder='Busque por pratos ou ingredientes'
-                icon={PiMagnifyingGlass}
-                />
+                <Input placeholder='Busque por pratos ou ingredientes'/>
             </Searchbar>
 
             <OrderButton title={'Pedidos (0)'} id='OrdersDesktop'/>

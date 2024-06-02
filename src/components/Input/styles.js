@@ -30,11 +30,19 @@ export const Container = styled.div`
         border: none;
     }
 
-    >svg {
+    >input:focus {
+        outline: none;
+    }
+
+    >button {
+        background-color: transparent;
+        
+        >svg {
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
         font-size: 2.4rem;
 
-        margin-left: 15px;
-    }
+        margin-right: 15px;
+        }
+    }    
 `

@@ -9,78 +9,103 @@ import { VscClose } from "react-icons/vsc";
 import { HiOutlinePlus } from "react-icons/hi2";
 
 export default function AdminNewDish() {
+
     return (
         <Container>
             <HeaderAdmin></HeaderAdmin>
 
             <form action="">
 
-                <button className="back">
+                <button className="backButton">
                         <PiCaretLeftBold />
                         voltar
                 </button>
 
                 <h1>Novo Prato</h1>
 
-                <div className="uploadContainer">
-                    <h2>Imagem do Prato</h2>
-                    <input type="file" id="upload"/>
-                    <label htmlFor="upload">
-                        <div className="uploadBox">
-                            <PiUploadSimpleBold />
-                            <p>Selecione a Imagem</p>
+                <section className="imageNameAndCategoryWrapper">
+
+                    <div className="uploadContainer">
+
+                        <h2>Imagem do Prato</h2>
+
+                        <input type="file" id="upload"/>
+                        <label htmlFor="upload">
+                            <div className="uploadBox">
+                                <PiUploadSimpleBold />
+                                <p>Selecione a Imagem</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div className="nameContainer">
+                        <label htmlFor="name">Nome</label>
+                        <input type="text" placeholder="Ex.: Salada Ceasar" id='name'/>
+                    </div>
+
+                    <div className="categoryContainer">
+
+                        <label htmlFor="category">Categoria</label>
+                        <select name="category" id="category">
+                            <option value="category">Refeição</option>
+                            <option value="category">Prato Principal</option>
+                            <option value="category">Bebidas</option>
+                        </select>
+                    </div>
+                </section>
+
+                <section className="ingredientsAndPriceWrapper">
+
+                    <div className="desktopFlow">
+
+                        <h2>Ingredientes</h2>
+
+                        <div className="ingredientsContainer">
+                    
+                            <div className="ingredient">
+                                Ingrediente 
+                                <button><VscClose /></button>
+                            </div>
+
+                            <div className="ingredient">
+                                Ingrediente 
+                                <button><VscClose /></button>
+                            </div>
+                        
+                            <div className="ingredient">
+                                Ingrediente 
+                                <button><VscClose /></button>
+                            </div>
+
+                            <button id="addIngredient">
+                                Adicionar
+                                <HiOutlinePlus />
+                            </button>
                         </div>
-                    </label>
-                </div>
-
-                <label htmlFor="name">Nome</label>
-                <input type="text" placeholder="Ex.: Salada Ceasar" id='name'/>
-
-                <label htmlFor="category">Categoria</label>
-                <select name="category" id="category">
-                    <option value="category">Refeição</option>
-                    <option value="category">Prato Principal</option>
-                    <option value="category">Bebidas</option>
-                </select>
-
-                <h2>Ingredientes</h2>
-                <div className="ingredientsContainer">
-                    <div className="ingredient">
-                        Ingrediente 
-                        <button><VscClose /></button>
                     </div>
-                    <div className="ingredient">
-                        Ingrediente 
-                        <button><VscClose /></button>
-                    </div>
-                    <div className="ingredient">
-                        Ingrediente 
-                        <button><VscClose /></button>
-                    </div>
-                    <div className="ingredient">
-                        Ingrediente 
-                        <button><VscClose /></button>
-                    </div>
-                    <button id="addIngredient">
-                        Adicionar
-                        <HiOutlinePlus />
-                    </button>
-                </div>
 
-                <label htmlFor="">Preço</label>
-                <input 
-                type="number" 
-                placeholder='R$ 00,00' 
-                id="price"
-                min="0"
-                max="1000"
-                step="0.01"
-                />
+                    <div className="priceContainer">
+                        <label htmlFor="price">Preço</label>
+                        <input 
+                        type="number" 
+                        placeholder='R$ 00,00' 
+                        id="price"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                    />
+                    </div>
+                </section>
 
-                <label htmlFor="">Descrição</label>
-                <textarea name="" id=""></textarea>
+                <section className="descriptionAndSaveButtonWrapper">
+                    
+                    <div className="descriptionContainer">
+                        <label htmlFor="textarea">Descrição</label>
+                        <textarea name="" id="textarea" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"></textarea>
+                    </div>
 
-                <Button title={'Salvar Alterações'} disabled/>
+                    <Button title={'Salvar Alterações'} id="saveButton" disabled/>
+                </section>
 
             </form>
 
