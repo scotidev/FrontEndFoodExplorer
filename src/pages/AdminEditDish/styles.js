@@ -327,14 +327,40 @@ export const Container = styled.div`
         
             }
 
-            >#saveButton {
-    
-                @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                    max-width: 18rem;
-                    align-self: flex-end;
-                    margin-bottom: 12rem;
+            >.buttonsContainer {
+                display: flex;
+                justify-content: end;
+
+                >#deleteDish {
+                    background-color: ${({ theme }) => theme.COLORS.DARK_800};
+                    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+                    font-size: 1.4rem;
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 500;
+                    line-height: 170%;
+
+                    padding: 1.2rem 2.4rem;
+
+                    border-radius: 8px;
+                    margin-right: 3.2rem;
+                    width: 100%;
+
+                    @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                        max-width: 13rem;
+                        max-height: 4.8rem;
+                    }
                 }
-            } 
+
+                >#saveButton {
+        
+                    @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                        max-width: 18rem;
+                        align-self: flex-end;
+                        margin-bottom: 12rem;
+                    }
+                } 
+            }
         }
     }
 
