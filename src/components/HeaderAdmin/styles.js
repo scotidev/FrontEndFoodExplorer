@@ -13,7 +13,7 @@ export const Container = styled.nav`
 
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 2;
 
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
         background-color: ${({ theme }) => theme.COLORS.DARK_700};

@@ -7,10 +7,12 @@ import { Footer } from '../../components/Footer'
 import { motion } from "framer-motion"
 import { useState, useEffect, useRef } from 'react'
 
+//icons
 import { PiCaretLeftBold } from "react-icons/pi";
 import { PiCaretRightBold } from "react-icons/pi";
 
-import homeImg from '../../assets/images/homeImage.png'
+//imagens
+import homeImg from '../../assets/images/homeImage.svg'
 import juice from '../../assets/images/juice.png'
 import coffe from '../../assets/images/coffe.png'
 import gambe from '../../assets/images/gambe.png'
@@ -50,7 +52,11 @@ export default function AdminHome() {
             whileTap={{ cursor: "grabbing"}}
             ref={carousel}
             >
-                <PiCaretLeftBold />
+                <div 
+                className="opacityAndLeftButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, #000A0F 0%, rgba(0, 10, 15, 0.27)  100%)'}}>
+                    <button className="leftButton"><PiCaretLeftBold /></button>
+                </div>
 
                 <h2>Refeições</h2>
 
@@ -91,11 +97,19 @@ export default function AdminHome() {
                     ></CardsAdmin>
                 </motion.div>
 
-                <PiCaretRightBold />
+                <div className="opacityAndRightButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)'}}>
+                    <button className="rightButton"><PiCaretRightBold /></button>
+                </div>
             </motion.section>
 
             <motion.section whileTap={{ cursor: "grabbing"}}>
-                <PiCaretLeftBold />
+
+                <div 
+                className="opacityAndLeftButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, #000A0F 0%, rgba(0, 10, 15, 0.27)  100%)'}}>
+                    <button className="leftButton"><PiCaretLeftBold /></button>
+                </div>
 
                 <h2>Sobremesas</h2>
                 
@@ -136,11 +150,18 @@ export default function AdminHome() {
                     ></CardsAdmin>
                 </motion.div>
 
-                <PiCaretRightBold />
+                <div className="opacityAndRightButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)'}}>
+                    <button className="rightButton"><PiCaretRightBold /></button>
+                </div>
             </motion.section>
                 
             <motion.section whileTap={{ cursor: "grabbing"}}>
-                <PiCaretLeftBold />
+                <div 
+                className="opacityAndLeftButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, #000A0F 0%, rgba(0, 10, 15, 0.27)  100%)'}}>
+                    <button className="leftButton"><PiCaretLeftBold /></button>
+                </div>
 
                 <h2>Bebidas</h2>
                 
@@ -181,7 +202,10 @@ export default function AdminHome() {
                     ></CardsAdmin>
                 </motion.div>
                 
-                <PiCaretRightBold />
+                <div className="opacityAndRightButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)'}}>
+                    <button className="rightButton"><PiCaretRightBold /></button>
+                </div>
 
             </motion.section>
             <Footer></Footer>

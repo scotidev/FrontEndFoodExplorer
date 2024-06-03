@@ -367,5 +367,10 @@ export const Container = styled.div`
     >footer {
         position: relative;
         margin-top: 5.3rem;
+
+        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+            position: sticky;
+            top: 100%;
+        }
     }
 `

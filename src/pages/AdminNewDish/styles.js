@@ -332,7 +332,7 @@ export const Container = styled.div`
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                     max-width: 18rem;
                     align-self: flex-end;
-                    margin-bottom: 12rem;
+                    margin-bottom: 11rem;
                 }
             } 
         }
@@ -341,5 +341,10 @@ export const Container = styled.div`
     >footer {
         position: relative;
         margin-top: 5.3rem;
+
+        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+            position: sticky;
+            top: 100%;
+        }
     }
 `

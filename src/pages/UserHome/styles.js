@@ -14,38 +14,50 @@ export const Container = styled.div`
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
 
-    @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-
-    }
-
     >.banner {
-        position: relative;
         display: flex;
         align-self: center;
         width: 88%;
+        max-width: 125rem;
         height: 10rem;
         margin: 13rem 0 6.2rem 1rem;
         border-radius: 3px;
 
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+            height: 18rem;
+            margin-top: 18rem;
+        }
+
+        @media (min-width: ${DEVICE_BREAKPOINTS.Desktop}) {
             justify-content: center;
             
             height: 26rem;
-            margin: 26rem 0 6.2rem 1rem;
+            margin-top: 26rem;
         }   
 
         >img {  
+            position: relative;
+            top: -36px;
+            right: 25px;
             opacity: calc(0.8);
-            position: sticky;
             z-index: 1;
-            top: 0;
 
             width: 191px;
-            height: 149px;
-
+            height: 149px; 
+            
             @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                width: 50vw;
-                height: 50vh;
+                width: 320px;
+                height: 245px;
+                top: -45px;
+            }
+
+            @media (min-width: ${DEVICE_BREAKPOINTS.Desktop}) {
+                background-color: transparent;
+                position: relative;
+                top: -145px;
+                left: -75px;
+                width: 632px;
+                height: 406px;
             }
         }
         
@@ -85,10 +97,19 @@ export const Container = styled.div`
 
     >section {
 
+        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+            align-self: flex-start;
+        }
+
+        @media (min-width: ${DEVICE_BREAKPOINTS.Desktop}) {
+            align-self: flex-start;
+            margin: 0 auto;
+        }
+
         >.opacityAndLeftButtonContainer, .opacityAndRightButtonContainer {
             display: none;
 
-            @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+            @media (min-width: ${DEVICE_BREAKPOINTS.Desktop}) {
                 position: absolute;
                 z-index: 1;
                 width: 31rem;
@@ -110,19 +131,13 @@ export const Container = styled.div`
         >.opacityAndLeftButtonContainer {
             margin-left: 2rem;
             transform: scaleX(1);
-
-            >.leftButton {
-                
-            }
         }
 
         .opacityAndRightButtonContainer {
-            margin-left: 100rem;
+            width: 34rem;
+            margin-left: 97rem;
             margin-top: -50.7rem;
-
-            >.rightButton {
-            
-            }
+            justify-content: end;
         }        
 
         >h2 {

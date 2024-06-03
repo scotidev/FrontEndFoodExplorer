@@ -18,19 +18,47 @@ export const Container = styled.div`
         display: flex;
         align-self: center;
         width: 88%;
-        height: 24%;
+        max-width: 125rem;
+        height: 10rem;
         margin: 13rem 0 6.2rem 1rem;
         border-radius: 3px;
 
+        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+            height: 18rem;
+            margin-top: 18rem;
+        }
+
+        @media (min-width: ${DEVICE_BREAKPOINTS.Desktop}) {
+            justify-content: center;
+            
+            height: 26rem;
+            margin-top: 26rem;
+        } 
+
         >img {  
-            opacity: calc(0.8);
             position: relative;
-            z-index: 0;
-            left: -30px;
-            top: -20px;
+            top: -36px;
+            right: 25px;
+            opacity: calc(0.8);
+            z-index: 1;
 
             width: 191px;
             height: 149px;
+
+            @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                width: 320px;
+                height: 245px;
+                top: -45px;
+            }
+
+            @media (min-width: ${DEVICE_BREAKPOINTS.Desktop}) {
+                background-color: transparent;
+                position: relative;
+                top: -145px;
+                left: -75px;
+                width: 632px;
+                height: 406px;
+            }
         }
         
         >.titleAndTextWrapper {
@@ -46,12 +74,23 @@ export const Container = styled.div`
                 font-size: 1.8rem;
                 font-weight: 600;
                 line-height: 140%;
+
+                @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                    font-size: 4rem;
+                    font-size: 500;
+                }
             }
             
             >p {
                 font-size: 1.2rem;
                 font-weight: 400;
                 line-height: 140%;
+
+                @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                    font-size: 1.6rem;
+                    font-size: 400;
+                    line-height: 100%;
+                }
             }
         }     
     }
@@ -59,28 +98,68 @@ export const Container = styled.div`
     >section {
         position: relative;
 
-        cursor: grab;
+        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+            align-self: flex-start;
+        }
+
+        @media (min-width: ${DEVICE_BREAKPOINTS.Desktop}) {
+            align-self: flex-start;
+            margin: 0 auto;
+        }
+
+        >.opacityAndLeftButtonContainer, .opacityAndRightButtonContainer {
+            display: none;
+
+            @media (min-width: ${DEVICE_BREAKPOINTS.Desktop}) {
+                position: absolute;
+                z-index: 1;
+                width: 31rem;
+                height: 48.5rem;
+                margin-top: 6.5rem;
+
+                display: flex;
+
+                >.leftButton, .rightButton {
+                    background-color: transparent;
+                    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+                    font-size: 4rem;
+                    height: fit-content;
+                    align-self: center;
+                }
+            }
+        }
+
+        >.opacityAndLeftButtonContainer {
+            margin-left: 2rem;
+            transform: scaleX(1);
+        }
+
+        .opacityAndRightButtonContainer {
+            width: 34rem;
+            margin-left: 97rem;
+            margin-top: -50.7rem;
+            justify-content: end;
+        }
+
 
         >h2 {
             font-size: 1.8rem;
             font-weight: 500;
 
             margin: 0 0 2.4rem 2.4rem; 
+
+            @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                font-size: 3.2rem;
+                line-height: 140%;
+            }
         }
 
         >.cardsWrapper {
             display: flex;
             gap: 1.6rem;
             margin: 0 0 2.4rem 2.4rem;
-        }
-
-
-        >svg {
-            display: none;
-            @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-            display: block;
-            font-size: 100px;
-            }
+            
+            cursor: grab;
         }
     }
 
