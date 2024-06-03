@@ -46,9 +46,15 @@ export const Container = styled.div`
                 font-weight: 500;
                 line-height: 140%;
 
+                transition: .5s;
+
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                     font-size: 2.4rem;
                 }
+            }
+
+            >.back:hover {
+                color: ${({ theme }) => theme.COLORS.LIGHT_500};
             }
         }
 

@@ -67,6 +67,11 @@ export const Container = styled.nav`
             white-space: nowrap;
         }
     }
+
+    >#signOutButton:hover {
+        color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        transition: .5s;
+    }
 `
 
 export const Menu = styled.button`

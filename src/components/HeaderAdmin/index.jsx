@@ -26,7 +26,7 @@ export function HeaderAdmin() {
 
             <Button title={'Novo prato'} id='NewDishBtn' />
 
-            <SignOut>
+            <SignOut id="signOutButton">
                 <PiSignOutBold />
             </SignOut>
         </Container>

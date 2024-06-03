@@ -106,7 +106,7 @@ export default function AdminEditDish() {
 
                     <div className="buttonsContainer">
 
-                        <button id="deleteDish">Exluir prato</button>
+                        <button id="deleteDish">Excluir prato</button>
 
                         <Button title={'Salvar Alterações'} id="saveButton" disabled/>
                     </div>

@@ -125,6 +125,12 @@ export const Container = styled.div`
                     font-size: 4rem;
                     height: fit-content;
                     align-self: center;
+
+                    transition: .5s;
+                }
+
+                >.leftButton:hover, .rightButton:hover {
+                    color: ${({ theme }) => theme.COLORS.LIGHT_700};
                 }
             }
         }

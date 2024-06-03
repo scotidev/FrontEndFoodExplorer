@@ -101,6 +101,11 @@ export const Container = styled.form`
             margin: 3.2rem auto 0;
 
             white-space: nowrap;
+            transition: .5s;
+        }
+
+        >a:hover {
+            color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
     }
 `

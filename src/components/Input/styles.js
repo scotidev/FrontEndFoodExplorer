@@ -43,6 +43,11 @@ export const Container = styled.div`
         font-size: 2.4rem;
 
         margin-right: 15px;
+        transition: .5s;
+        }
+
+        >svg:hover {
+            color: ${({ theme }) => theme.COLORS.LIGHT_100};
         }
     }    
 `

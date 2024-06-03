@@ -4,10 +4,6 @@ import { DEVICE_BREAKPOINTS } from "./deviceBreakpoints"
 export default createGlobalStyle`
     :root {
         font-size: 62.5%;
-
-        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-
-        }
     }
 
     * {

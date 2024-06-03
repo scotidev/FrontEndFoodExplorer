@@ -23,6 +23,12 @@ export const Container = styled.div`
             font-size: 2.4rem;
             height: 2.4rem;
             margin-right: 1rem;
+
+            transition: .5s;
+        }
+
+        >button:hover {
+            color: ${({ theme }) => theme.COLORS.LIGHT_700};
         }
 
         >span {
@@ -57,7 +63,13 @@ export const Container = styled.div`
                     font-family: 'Poppins', sans-serif;
                     font-size: 24px;
                     font-weight: 300;
-                    line-height: 140%;           
+                    line-height: 140%;  
+                    
+                    transition: .5s;
+                }
+
+                >button:hover {
+                    color: ${({ theme }) => theme.COLORS.LIGHT_700};
                 }
             }
         }   

@@ -38,10 +38,16 @@ export const Container = styled.div`
 
             margin-bottom: 2.4rem;
 
+            transition: .5s;
+
             @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                 font-size: 2.4rem;
                 font-weight: 700;
             }
+        }
+
+        >.backButton:hover {
+            color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
 
         >h1 {
@@ -116,6 +122,7 @@ export const Container = styled.div`
                     border-radius: 8px;
     
                     cursor: pointer;
+                    transition: .5s;
     
                     >.uploadBox {
                         display: flex;
@@ -130,7 +137,11 @@ export const Container = styled.div`
                             margin-right: .8rem;
                         }
                     }
-                }            
+                }   
+                
+                >label:hover {
+                    background-color: ${({ theme }) => theme.COLORS.DARK_600};
+                }
     
                 >#upload {
                  display: none;
@@ -178,6 +189,7 @@ export const Container = styled.div`
                     line-height: 160%;
         
                     cursor: pointer;
+                    transition: .5s;
 
                     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                         background-color: ${({ theme }) => theme.COLORS.DARK_800};
@@ -185,6 +197,10 @@ export const Container = styled.div`
                         height: 4.8rem;
                         
                     }
+                }
+
+                >#category:hover {
+                    background-color: ${({ theme }) => theme.COLORS.DARK_600};
                 }
             }
         }       
@@ -259,10 +275,17 @@ export const Container = styled.div`
     
                         gap: .8rem;
                         margin: .8rem 1.6rem .8rem;
+
+                        transition: .5s;
     
                         >svg {
                             margin-left: .8rem;
                         }
+                    }
+
+                    >#addIngredient:hover {
+                        background-color: ${({ theme }) => theme.COLORS.DARK_600};
+                        color: ${({ theme }) => theme.COLORS.LIGHT_100};
                     }
                 }
     
@@ -324,7 +347,6 @@ export const Container = styled.div`
                         min-height: 18rem;
                     }
                 }
-        
             }
 
             >#saveButton {

@@ -99,6 +99,11 @@ export const Container = styled.form`
 
             width: fit-content;
             margin: 3.2rem auto 0;
+            transition: .5s;
+        }
+
+        >a:hover {
+            color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
     }
 `

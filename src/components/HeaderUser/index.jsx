@@ -27,7 +27,7 @@ export function HeaderUser() {
 
             <OrderButton title={'Pedidos (0)'} id='OrdersDesktop'/>
 
-            <SignOut>
+            <SignOut id="signOutButton">
                 <PiSignOutBold />
             </SignOut> 
         </Container>

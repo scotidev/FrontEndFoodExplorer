@@ -45,10 +45,15 @@ export const Container = styled.div`
                 align-self: start;
                 display: flex;
                 align-items: center;
+                transition: .5s;
 
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                     font-size: 2.4rem;
                 }
+            }
+
+            >.back:hover {
+                color: ${({ theme }) => theme.COLORS.LIGHT_500};
             }
 
             >img {
