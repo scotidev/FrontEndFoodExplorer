@@ -28,7 +28,7 @@ import tea from '../../assets/images/tea.png'
 
 //página
 
-export default function UserHome() {
+export function UserHome() {
     const carousel = useRef()
     const [width, setWidth] = useState(0)
 
