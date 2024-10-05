@@ -5,7 +5,7 @@ import { Footer } from '../../components/Footer'
 import { PiX } from "react-icons/pi";
 import { PiMagnifyingGlass } from "react-icons/pi"
 
-export default function AdminMenu() {
+export function AdminMenu() {
     
     return(
         <Container>

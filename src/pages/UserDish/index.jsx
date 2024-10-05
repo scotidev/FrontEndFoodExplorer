@@ -10,7 +10,7 @@ import { PiCaretLeftBold } from "react-icons/pi";
 import juice from '../../assets/images/juice.png'
 
 
-export default function UserDish() {
+export function UserDish() {
     return(
         <Container>
             <HeaderUser></HeaderUser>

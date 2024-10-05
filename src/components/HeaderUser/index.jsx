@@ -1,3 +1,5 @@
+import { useAuth } from '../../hooks/auth';
+
 import { Container, Menu, Searchbar, Orders, SignOut } from './styles'
 import { Logo } from '../Logo'
 import { OrderButton } from '../OrderButton';
@@ -8,6 +10,8 @@ import { PiReceipt } from 'react-icons/pi'
 import { PiSignOutBold } from "react-icons/pi";
 
 export function HeaderUser() {
+    const { signOut } = useAuth()
+
     return(
         <Container>
             <Menu>
@@ -27,7 +31,7 @@ export function HeaderUser() {
 
             <OrderButton title={'Pedidos (0)'} id='OrdersDesktop'/>
 
-            <SignOut id="signOutButton">
+            <SignOut id="signOutButton" onClick={signOut}>
                 <PiSignOutBold />
             </SignOut> 
         </Container>

@@ -26,7 +26,7 @@ import ravanello from '../../assets/images/ravanello.png'
 import soda from '../../assets/images/soda.png'
 import tea from '../../assets/images/tea.png'
 
-export default function AdminHome() {
+export function AdminHome() {
     const carousel = useRef()
     const [width, setWidth] = useState(0)
 

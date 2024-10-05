@@ -8,7 +8,7 @@ import { PiUploadSimpleBold } from "react-icons/pi";
 import { VscClose } from "react-icons/vsc";
 import { HiOutlinePlus } from "react-icons/hi2";
 
-export default function AdminEditDish() {
+export function AdminEditDish() {
 
     return (
         <Container>

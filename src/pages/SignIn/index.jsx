@@ -11,7 +11,7 @@ export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
-  const signIn = useAuth()
+  const { signIn } = useAuth()
 
   function handleSignIn() {
     signIn({ email, password });
@@ -45,9 +45,9 @@ export function SignIn() {
             />
           </div>
 
-          <Button title="Entrar" />
+          <Button title="Entrar" onClick={handleSignIn}/>
 
-          <Link to="/register" onClick={handleSignIn}>Criar conta</Link>
+          <Link to="/register" >Criar conta</Link>
         </div>
     </Container>
   )
