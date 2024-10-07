@@ -28,7 +28,7 @@ export function HeaderAdmin() {
                 <Input placeholder='Busque por pratos ou ingredientes'/>
             </Searchbar>
 
-            <Button title={'Novo prato'} id='NewDishBtn' />
+            <Button title={'Novo prato'} id='NewDishBtn'/>
 
             <SignOut id="signOutButton" onClick={signOut}>
                 <PiSignOutBold />
