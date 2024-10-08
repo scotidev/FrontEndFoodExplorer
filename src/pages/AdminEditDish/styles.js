@@ -18,20 +18,23 @@ export const Container = styled.div`
             
         }
 
-        >.backButton, h1 {
+        >a {
+            align-self: start;
+        }
+
+        >a .backButton, h1 {
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
             font-family: 'Poppins', sans-serif;
             line-height: 140%;
             align-self: start;
         }
 
-        >.backButton {
+        >a .backButton {
             background-color: transparent;
             
             width: fit-content;
             display: flex;
             align-items: center;
-            align-self: start;
 
             font-size: 1.6rem;
             font-weight: 500;
@@ -46,7 +49,7 @@ export const Container = styled.div`
             }
         }
 
-        >.backButton:hover {
+        >a .backButton:hover {
             color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
 

@@ -1,3 +1,5 @@
+import { Link, useNavigate } from "react-router-dom"
+
 import { Container } from './styles'
 import { HeaderAdmin } from '../../components/HeaderAdmin'
 import { Button } from '../../components/Button'
@@ -16,10 +18,12 @@ export function AdminEditDish() {
 
             <form action="">
 
-                <button className="backButton">
+                <Link to="/">
+                    <button className="backButton">
                         <PiCaretLeftBold />
                         voltar
-                </button>
+                    </button>
+                </Link>
 
                 <h1>Editar prato</h1>
 

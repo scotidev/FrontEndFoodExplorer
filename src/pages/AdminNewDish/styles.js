@@ -17,15 +17,19 @@ export const Container = styled.div`
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             
         }
+        
+        >a {
+            align-self: start;
+        }
 
-        >.backButton, h1 {
+        >a .backButton, h1 {
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
             font-family: 'Poppins', sans-serif;
             line-height: 140%;
             align-self: start;
         }
 
-        >.backButton {
+        >a .backButton {
             background-color: transparent;
             
             width: fit-content;
@@ -46,7 +50,7 @@ export const Container = styled.div`
             }
         }
 
-        >.backButton:hover {
+        >a .backButton:hover {
             color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
 

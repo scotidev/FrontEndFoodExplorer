@@ -55,19 +55,18 @@ export const Container = styled.nav`
         }
     }
 
-    >#NewDishBtn {
+    >a {
         display: none;
-            
+
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             display: inline-block;
-
-            width: 22rem;
             margin-bottom: 2rem ;
-            font-size: 1.4rem;
+
             white-space: nowrap;
         }
+        
     }
-
+    
     >#signOutButton:hover {
         color: ${({ theme }) => theme.COLORS.LIGHT_500};
         transition: .5s;

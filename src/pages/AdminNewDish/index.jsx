@@ -1,3 +1,5 @@
+import { Link, useNavigate } from "react-router-dom"
+
 import { Container } from './styles'
 import { HeaderAdmin } from '../../components/HeaderAdmin'
 import { Button } from '../../components/Button'
@@ -9,17 +11,18 @@ import { VscClose } from "react-icons/vsc";
 import { HiOutlinePlus } from "react-icons/hi2";
 
 export function AdminNewDish() {
-
     return (
         <Container>
             <HeaderAdmin></HeaderAdmin>
 
             <form action="">
 
-                <button className="backButton">
+                <Link to="/">
+                    <button className="backButton">
                         <PiCaretLeftBold />
                         voltar
-                </button>
+                    </button>
+                </Link>
 
                 <h1>Novo Prato</h1>
 
