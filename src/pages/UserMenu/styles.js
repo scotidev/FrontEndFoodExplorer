@@ -16,7 +16,7 @@ export const Container = styled.div`
 
         padding: 0 0 3rem 3rem;
 
-        >button {
+        >a button {
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
             background-color: transparent;
 
@@ -27,7 +27,7 @@ export const Container = styled.div`
             transition: .5s;
         }
 
-        >button:hover {
+        >a button:hover {
             color: ${({ theme }) => theme.COLORS.LIGHT_700};
         }
 

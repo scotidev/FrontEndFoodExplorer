@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 import { Container } from './styles'
 import { HeaderAdmin} from '../../components/HeaderAdmin'
 import { Ingredient } from '../../components/Ingredient'
@@ -17,10 +19,12 @@ export function AdminDish() {
             <div className="content">
 
                 <div className="backAndImageWrapper">
-                    <button className="back">
-                        <PiCaretLeftBold />
-                        voltar
-                    </button>
+                    <Link to ="/">
+                        <button className="back">
+                            <PiCaretLeftBold />
+                            voltar
+                        </button>
+                    </Link>
 
                     <img src={juice} alt=""  height={260} width={260}/>
                 </div>
@@ -37,8 +41,10 @@ export function AdminDish() {
                         <Ingredient title={'banana'} />
                         <Ingredient title={'picles'} />
                     </div>
-
-                    <Button title={'Editar Prato'} className='editButton'></Button>
+                    
+                    <Link to="/editDish/1">
+                        <Button title={'Editar Prato'} className='editButton'></Button>
+                    </Link>
                 </div>
             </div>
 

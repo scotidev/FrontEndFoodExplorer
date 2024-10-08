@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 import { Container } from './styles'
 import { HeaderUser} from '../../components/HeaderUser'
 import { Ingredient } from '../../components/Ingredient'
@@ -18,10 +20,12 @@ export function UserDish() {
             <div className="content">
 
                 <div className="backAndImageWrapper">
-                    <button className="back">
-                        <PiCaretLeftBold />
-                        voltar
-                    </button>
+                    <Link to="/">
+                        <button className="back">
+                            <PiCaretLeftBold />
+                            voltar
+                        </button>
+                    </Link>
 
                     <img src={juice} alt=""  height={260} width={260}/>
                 </div>

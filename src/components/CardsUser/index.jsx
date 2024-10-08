@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 import { Container, Favorite, Image, Title, Description, Price } from "./styles";
 import { Stepper } from '../Stepper'
 import { Button } from '../Button'
@@ -13,10 +15,12 @@ export function CardsUser({image, title, description, price, ...rest }) {
                 <Favorite>
                     <PiHeartStraightBold />
                 </Favorite>
-
-                <Image>
-                    <img src={(image)} alt="Foto de prato de comida" width={88} height={88}/>
-                </Image>
+                
+                <Link to="/dish/1">
+                    <Image>
+                        <img src={(image)} alt="Foto de prato de comida" width={88} height={88}/>
+                    </Image>
+                </Link>
 
                 <Title>
                     {title}

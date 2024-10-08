@@ -14,9 +14,11 @@ export function CardsAdmin({image, title, description, price, ...rest }) {
                     </Edit>
                 </Link>
 
-                <Image>
-                    <img src={(image)} alt="Foto de prato de comida" width={88} height={88}/>
-                </Image>
+                <Link to="adminDish">
+                    <Image>
+                        <img src={(image)} alt="Foto de prato de comida" width={88} height={88}/>
+                    </Image>
+                </Link>
 
                 <Title>
                     {title}

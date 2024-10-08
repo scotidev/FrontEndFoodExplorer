@@ -1,4 +1,5 @@
 import { useAuth } from '../../hooks/auth';
+import { Link } from "react-router-dom"
 
 import { Container, Menu, Searchbar, Orders, SignOut } from './styles'
 import { Logo } from '../Logo'
@@ -14,9 +15,11 @@ export function HeaderUser() {
 
     return(
         <Container>
-            <Menu>
-                <PiListBold />
-            </Menu>
+            <Link to="/menu">
+                <Menu>
+                    <PiListBold />
+                </Menu>
+            </Link>
 
             <Logo></Logo>
 

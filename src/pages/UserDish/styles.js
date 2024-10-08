@@ -31,7 +31,11 @@ export const Container = styled.div`
             flex-direction: column;
             align-items: center;
             
-            >.back {
+            >a {
+                align-self: start;
+            }
+            
+            >a .back {
                 background-color: transparent;
                 color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
@@ -42,7 +46,6 @@ export const Container = styled.div`
             
                 width: fit-content;
 
-                align-self: start;
                 display: flex;
                 align-items: center;
                 transition: .5s;
@@ -52,7 +55,7 @@ export const Container = styled.div`
                 }
             }
 
-            >.back:hover {
+            >a .back:hover {
                 color: ${({ theme }) => theme.COLORS.LIGHT_500};
             }
 

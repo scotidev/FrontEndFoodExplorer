@@ -31,7 +31,11 @@ export const Container = styled.div`
             flex-direction: column;
             align-items: center;
 
-            >.back {
+            >a {
+                align-self: flex-start;
+            }
+
+            >a .back {
                 background-color: transparent;
                 color: ${({ theme }) => theme.COLORS.LIGHT_300};
                 
@@ -39,7 +43,6 @@ export const Container = styled.div`
                 display: flex;
                 align-items: center;
                 justify-content: start;
-                align-self: flex-start;
                 
                 font-family: 'Poppins', sans-serif;
                 font-size: 2.4rem;
@@ -53,7 +56,7 @@ export const Container = styled.div`
                 }
             }
 
-            >.back:hover {
+            >a .back:hover {
                 color: ${({ theme }) => theme.COLORS.LIGHT_500};
             }
         }
@@ -100,6 +103,7 @@ export const Container = styled.div`
             >.ingredientsWrapper {
                 float: left;
                 text-align: center;
+                margin-bottom: 3rem;
 
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                     text-align: start;
@@ -111,9 +115,17 @@ export const Container = styled.div`
                 }
             }
 
-            >.editButton {
-                margin-top: 3rem;
-                max-width: 200px;
+            >a {
+                align-items: center;
+            }
+
+            >a .editButton {
+                margin-bottom: 8rem;
+
+                @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                    margin: 3rem 0 0 1.5rem;
+                    max-width: 200px;
+                } 
             }
         }        
     }
