@@ -23,11 +23,9 @@ export function UserHome() {
         const fetchDishes = async () => {
             try {
                 const response = await api.get('/dishes'); // Usa a instância do axios
-                console.log('API Response:', response.data); // Verifique a resposta da API
                 // Verifique se a resposta é um array
                 if (Array.isArray(response.data)) {
                     const allDishes = response.data;
-                    console.log('All Dishes:', allDishes); // Log dos dados completos
                     setDishes(allDishes.filter(dish => dish.category === 'food'));
                     setDeserts(allDishes.filter(dish => dish.category === 'dessert'));
                     setDrinks(allDishes.filter(dish => dish.category === 'drink'));
@@ -47,12 +45,6 @@ export function UserHome() {
 
         fetchDishes();
     }, []);
-
-    useEffect(() => {
-        console.log('Dishes:', dishes);
-        console.log('Deserts:', deserts);
-        console.log('Drinks:', drinks);
-    }, [dishes, deserts, drinks]);
 
     return (
         <Container>
@@ -82,6 +74,7 @@ export function UserHome() {
                     {dishes.map(dish => (
                         <CardsUser 
                             key={dish.id}
+                            id={dish.id}
                             image={`${api.defaults.baseURL}/files/${dish.image}`} // Construa o caminho completo da imagem
                             title={`${dish.title} >`}
                             description={dish.description}
@@ -107,6 +100,7 @@ export function UserHome() {
                     {deserts.map(dish => (
                         <CardsUser 
                             key={dish.id}
+                            id={dish.id}
                             image={`${api.defaults.baseURL}/files/${dish.image}`} // Construa o caminho completo da imagem
                             title={`${dish.title} >`}
                             description={dish.description}
@@ -132,6 +126,7 @@ export function UserHome() {
                     {drinks.map(dish => (
                         <CardsUser 
                             key={dish.id}
+                            id={dish.id}
                             image={`${api.defaults.baseURL}/files/${dish.image}`} // Construa o caminho completo da imagem
                             title={`${dish.title} >`}
                             description={dish.description}

@@ -1,24 +1,42 @@
-import { Link } from "react-router-dom"
-
-import { Container } from './styles'
-import { HeaderUser} from '../../components/HeaderUser'
-import { Ingredient } from '../../components/Ingredient'
-import { Stepper } from '../../components/Stepper'
-import { OrderButton } from '../../components/OrderButton'
-import { Footer } from '../../components/Footer'
-
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { api } from '../../services/api';
+import { Container } from './styles';
+import { HeaderUser } from '../../components/HeaderUser';
+import { Ingredient } from '../../components/Ingredient';
+import { Stepper } from '../../components/Stepper';
+import { OrderButton } from '../../components/OrderButton';
+import { Footer } from '../../components/Footer';
 import { PiCaretLeftBold } from "react-icons/pi";
 
-import juice from '../../assets/images/juice.png'
-
-
 export function UserDish() {
-    return(
+    const { id } = useParams();
+    const [dishData, setDishData] = useState({
+        title: '',
+        description: '',
+        ingredients: [],
+        image: '',
+        price: ''
+    });
+
+    useEffect(() => {
+        const fetchDish = async () => {
+            try {
+                const response = await api.get(`/dishes/${id}`);
+                const dish = response.data;
+                setDishData(dish);
+            } catch (error) {
+                console.error('Error fetching dish data:', error);
+            }
+        };
+        fetchDish();
+    }, [id]);
+
+    return (
         <Container>
-            <HeaderUser></HeaderUser>
+            <HeaderUser />
 
             <div className="content">
-
                 <div className="backAndImageWrapper">
                     <Link to="/">
                         <button className="back">
@@ -27,31 +45,28 @@ export function UserDish() {
                         </button>
                     </Link>
 
-                    <img src={juice} alt=""  height={260} width={260}/>
+                    {dishData.image && (
+                        <>
+                            <img src={`${api.defaults.baseURL}/files/${dishData.image}`} alt={dishData.title} height={260} width={260} onError={(e) => console.error('Error loading image:', e)} />
+                        </>
+                    )}
                 </div>
 
                 <div className="ingredientsAndDescriptionWrapper">
-                    <h1>Salada de Salada</h1>
-                    <p>Salada salada salada salada salada salada salada salada salada salada salada salada.</p>
+                    <h1>{dishData.title}</h1>
+                    <p>{dishData.description}</p>
 
                     <div className="ingredientsWrapper">
-                        <Ingredient title={'alface'} />
-                        <Ingredient title={'requeijão'} />
-                        <Ingredient title={'cebola'} />
-                        <Ingredient title={'cebolinha'} />
-                        <Ingredient title={'banana'} />
-                        <Ingredient title={'picles'} />
+                        {dishData.ingredients.map((ingredient, index) => (
+                            <Ingredient key={index} title={ingredient.name} />
+                        ))}
                     </div>
-
-                    <div className='stepperAndButtonWrapper'>
-                        <Stepper></Stepper>
-
-                        <OrderButton title={'Pedir - R$ 49,50'}></OrderButton>
-                    </div>
+                    
+                    <Stepper />
+                    <OrderButton title={`Incluir - R$${dishData.price}`}/>
                 </div>
             </div>
-
-            <Footer></Footer>
+            <Footer />
         </Container>
-    )
+    );
 }

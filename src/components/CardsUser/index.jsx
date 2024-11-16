@@ -1,24 +1,20 @@
-import { Link } from "react-router-dom"
-
+import { Link } from "react-router-dom";
 import { Container, Favorite, Image, Title, Description, Price } from "./styles";
-import { Stepper } from '../Stepper'
-import { Button } from '../Button'
-
+import { Stepper } from '../Stepper';
+import { Button } from '../Button';
 import { PiHeartStraightBold } from "react-icons/pi";
 
-
-export function CardsUser({image, title, description, price, ...rest }) {
-    
-    return(
+export function CardsUser({ id, image, title, description, price, ...rest }) {
+    return (
         <Container {...rest}>
             <div className="card">
                 <Favorite>
                     <PiHeartStraightBold />
                 </Favorite>
                 
-                <Link to="/dish/1">
+                <Link to={`/dish/${id}`}>
                     <Image>
-                        <img src={(image)} alt="Foto de prato de comida" width={88} height={88}/>
+                        <img src={image} alt="Foto de prato de comida" width={88} height={88} />
                     </Image>
                 </Link>
 
@@ -32,13 +28,12 @@ export function CardsUser({image, title, description, price, ...rest }) {
 
                 <Price>
                     {`R$ ` + price}
-                </Price>
+                </Price>    
                 <div className="stepperAndBtnWrap">
-                    <Stepper></Stepper>
-                
-                    <Button title='incluir' id='addDishBtn'></Button>
+                    <Stepper />
+                    <Button title='incluir' id='addDishBtn' />
                 </div>
             </div>
         </Container>
-    )
+    );
 }

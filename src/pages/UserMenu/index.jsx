@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from '../../hooks/auth';
 
 import { Container } from './styles'
-import { Input } from '../../components/Input'
+import { SearchInput } from '../../components/SearchInput'
 import { Footer } from '../../components/Footer'
 
 import { PiX } from "react-icons/pi";
@@ -29,7 +29,7 @@ export function UserMenu() {
             </div>
 
             <div className="content">
-                <Input 
+                <SearchInput 
                     placeholder='Busque por pratos ou ingredientes'
                     icon={PiMagnifyingGlass}
                     id='search'

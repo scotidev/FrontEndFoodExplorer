@@ -14,7 +14,14 @@ export function SignIn() {
   const { signIn } = useAuth()
 
   function handleSignIn() {
+    event.preventDefault();
     signIn({ email, password });
+  }
+
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      handleSignIn();
+    }
   }
 
   return(
@@ -42,6 +49,7 @@ export function SignIn() {
               type="password"
               id="password"
               onChange={e => setPassword(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
           </div>
 

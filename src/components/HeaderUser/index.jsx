@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { Container, Menu, Searchbar, Orders, SignOut } from './styles'
 import { Logo } from '../Logo'
 import { OrderButton } from '../OrderButton';
-import { Input } from '../Input';
+import { SearchInput } from '../SearchInput';
 
 import { PiListBold } from "react-icons/pi";
 import { PiReceipt } from 'react-icons/pi'
@@ -29,7 +29,7 @@ export function HeaderUser() {
             </Orders>
 
             <Searchbar>
-                <Input placeholder='Busque por pratos ou ingredientes'/>
+                <SearchInput placeholder='Busque por pratos ou ingredientes'/>
             </Searchbar>
 
             <OrderButton title={'Pedidos (0)'} id='OrdersDesktop'/>

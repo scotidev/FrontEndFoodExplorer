@@ -15,10 +15,12 @@ export function SignUp() {
   const navigate = useNavigate()
 
   function handleSignUp() {
+    event.preventDefault();
+
     if(!name || !email || !password) {
       return alert("Preencha todos os campos.")
     }
-
+    
     api.post("/users", {name, email, password})
     .then(() => {
       alert("Usuário cadastrado com sucesso!") 
@@ -31,6 +33,12 @@ export function SignUp() {
         alert(error)
       }
     })
+  }
+
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      handleSignUp();
+    }
   }
 
   return(
@@ -68,6 +76,7 @@ export function SignUp() {
               type="password"
               id="password"
               onChange={e => setPassword(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
           </div>
 
