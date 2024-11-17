@@ -28,9 +28,11 @@ export const Container = styled.div`
         text-align: star;
 
         border: none;
+        border-radius: 5px;
     }
 
     >input:focus {
+        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_400};
         outline: none;
     }
 

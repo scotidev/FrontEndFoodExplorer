@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
-import { Container, Favorite, Image, Title, Description, Price } from "./styles";
-import { Stepper } from '../Stepper';
-import { Button } from '../Button';
-import { PiHeartStraightBold } from "react-icons/pi";
+import { Link } from 'react-router-dom'
+
+import { Stepper } from '../Stepper'
+import { Button } from '../Button'
+
+import { PiHeartStraightBold } from 'react-icons/pi'
+import { Container, Favorite, Image, Title, Description, Price } from './styles'
 
 export function CardsUser({ id, image, title, description, price, ...rest }) {
     return (
@@ -29,11 +31,11 @@ export function CardsUser({ id, image, title, description, price, ...rest }) {
                 <Price>
                     {`R$ ` + price}
                 </Price>    
-                <div className="stepperAndBtnWrap">
+                <div className='stepperAndBtnWrap'>
                     <Stepper />
                     <Button title='incluir' id='addDishBtn' />
                 </div>
             </div>
         </Container>
-    );
+    )
 }

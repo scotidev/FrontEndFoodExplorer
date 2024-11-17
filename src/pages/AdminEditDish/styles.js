@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
@@ -13,10 +13,6 @@ export const Container = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
-        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-            
-        }
 
         >a {
             align-self: start;
@@ -185,6 +181,7 @@ export const Container = styled.div`
                     border: none;
                     border-radius: 5px;
                     margin-top: 1.6rem;
+                    margin-bottom: 1.6rem;
         
                     font-family: 'Roboto', sans-serif;
                     font-size: 1.4rem;
@@ -214,97 +211,122 @@ export const Container = styled.div`
                 display: flex;
                 gap: 3.2rem;
             }
-
-            .desktopFlow {
-                width: 100%;
-
-                h2 {
-                    margin: 2.4rem 0 1.6rem;
-    
-                    @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                        
-                    }
-                }
     
                 >.ingredientsContainer {
-                    background-color: ${({ theme }) => theme.COLORS.DARK_800};
-    
-                    height: fit-content;
-                    padding: .4rem .8rem;
+                    background-color: transparent;
                     border-radius: 8px;
-                    margin-bottom: 2.4rem;
                 
-                    float: left;
     
                     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                         min-width: 80%;
+                        display: flex;
+                        flex-direction: column;
                     }
-                
-                    >.ingredient, #addIngredient {
-                        height: 3.2rem;
-                        width: fit-content;
-                        border-radius: 8px;
-                        padding: 1rem 1rem;
-    
+
+                    >.ingredientsList {
+                        background-color: ${({ theme }) => theme.COLORS.DARK_800};
                         display: inline-flex;
-                        text-align: center;
-                        align-items: center;
-                        justify-content: center;
-    
-                        font-family: 'Roboto', sans-serif;
-                        font-size: 1.6rem;
-                        font-weight: 400;
-                    }
-                
-                    >.ingredient {
-                        background-color: ${({ theme }) => theme.COLORS.LIGHT_600};
-                        color: ${({ theme }) => theme.COLORS.LIGHT_100};
-                    
-                        gap: .8rem;
-                        margin: .8rem 1.6rem .8rem;
-    
-                        >button {
-                            background-color: transparent;
+                        flex-wrap: wrap;
+
+                        margin-top: 1.6rem;
+                        border-radius: 5px;
+
+                        @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                            min-height: 5.7rem;
+                            height: fit-content;
+                            width: 100%;
+                        }
+
+                        >.ingredientItem {
+                            background-color: ${({ theme }) => theme.COLORS.LIGHT_600};
                             color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    
-                            height: 1.2rem;
-                        }
-                    }
-    
-                    >#addIngredient {
-                        background-color: transparent;
-                        color: ${({ theme }) => theme.COLORS.LIGHT_500};
-                        border: 1px dashed #7C7C8A;
-    
-                        gap: .8rem;
-                        margin: .8rem 1.6rem .8rem;
 
-                        transition: .5s;
-    
-                        >svg {
-                            margin-left: .8rem;
-                        }
-                    }
+                            display: flex;
+                            align-items: center;
 
-                    >#addIngredient:hover {
-                        background-color: ${({ theme }) => theme.COLORS.DARK_600};
-                        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+                            width: fit-content;
+                            margin: .8rem .8rem .8rem;
+                            height: 3.2rem;
+                            padding: .1rem 1.2rem;
+                            border-radius: 5px;
+    
+                            font-family: 'Poppins', sans-serif;
+                            font-weight: 500;
+                            font-size: 1.2rem;
+    
+                            >button {
+                                background-color: transparent;
+                                color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    
+                                height: 1.2rem;
+                                margin-left: .5rem;
+                            }
+                        }
+                        
+                        
+                        >.addIngredient {
+                            display: flex;
+                            justify-content: start;
+                            align-items: center;
+    
+                            height: 3.2rem;
+                            
+                            border: 2px dashed #7C7C8A;
+                            border-radius: 8px;
+        
+                            margin: .8rem 1.6rem .8rem;
+    
+                            width: auto;
+
+                            @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                                
+                            }
+    
+                            >#newIngredient {
+                                background-color: transparent;
+                                color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        
+                                padding: .8rem 1.2rem;
+                                
+                                border: none;
+        
+                                font-family: 'Roboto', sans-serif;
+                                font-weight: 400;
+                                font-size: 1.4rem;
+                                width: 10rem;
+                                flex-shrink: 1;
+                                flex-grow: 0;
+                            }
+
+                            >button {
+                                background-color: transparent;
+                                color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+                                >svg {
+                                    margin: .4rem .8rem 0 0;
+                                    font-size: 1.6rem;
+                                }
+                            }
+                        }
                     }
                 }
-    
-            }
 
             .priceContainer {
                 width: 100%;
 
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                    align-self: center ;
+                    align-self: center;
                     max-width: 30%;
                 }
 
                 >label {
                     display: block;
                     margin-bottom: 1.6rem;
+                    margin-top: 2.4rem;
+
+                    @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                        margin-top: 0;
+                    }
                 }
 
                 >input {
@@ -314,7 +336,6 @@ export const Container = styled.div`
                     }
                 }
 
-                //tirar o stepper do input de preço
                 input::-webkit-outer-spin-button,
                 input::-webkit-inner-spin-button {
                     -webkit-appearance: none;
@@ -330,7 +351,7 @@ export const Container = styled.div`
             >.descriptionContainer {
                 margin-top: 2.4rem;
 
-                #textarea {
+                #description {
                     background-color: ${({ theme }) => theme.COLORS.DARK_800};
                     color: ${({ theme }) => theme.COLORS.LIGHT_500};
         

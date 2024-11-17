@@ -15,8 +15,6 @@ export function AdminRoutes() {
       <Route path="/newDish" element={<AdminNewDish />} />
       <Route path="/adminDish/:id" element={<AdminDish />} />
       <Route path="/adminMenu" element={<AdminMenu />} />
-
     </Routes>
   )
 }
-//<Route path="*" exact={true} element={<NotFound />} />

@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { api } from '../../services/api';
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 
-import { Container } from './styles';
-import { HeaderAdmin } from '../../components/HeaderAdmin';
-import { Button } from '../../components/Button';
-import { Footer } from '../../components/Footer';
+import { api } from '../../services/api'
+import { Link } from "react-router-dom"
 
-import { PiCaretLeftBold } from "react-icons/pi";
-import { PiUploadSimpleBold } from "react-icons/pi";
-import { VscClose } from "react-icons/vsc";
-import { HiOutlinePlus } from "react-icons/hi2";
+import { Container } from './styles'
+import { HeaderAdmin } from '../../components/HeaderAdmin'
+import { Button } from '../../components/Button'
+import { Footer } from '../../components/Footer'
+
+import { PiCaretLeftBold } from "react-icons/pi"
+import { PiUploadSimpleBold } from "react-icons/pi"
+import { VscClose } from "react-icons/vsc"
+import { HiOutlinePlus } from "react-icons/hi2"
 
 export function AdminEditDish() {
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const { id } = useParams()
+    const [newIngredient, setNewIngredient] = useState('')
+    const [selectedImage, setSelectedImage] = useState(null)
+    const navigate = useNavigate()
     const [dishData, setDishData] = useState({
         id: '',
         title: '',
@@ -23,33 +26,30 @@ export function AdminEditDish() {
         ingredients: [],
         description: '',
         price: '',
-    });
-    const [newIngredient, setNewIngredient] = useState('');
-    const [selectedImage, setSelectedImage] = useState(null);
+    })
 
     useEffect(() => {
         const fetchDish = async () => {
             try {
-                const response = await api.get(`/dishes/${id}`);
-                const dish = response.data;
-                // Formatar o preço corretamente
-                dish.price = dish.price.toString().replace(',', '.');
-                setDishData(dish);
+                const response = await api.get(`/dishes/${id}`)
+                const dish = response.data
+                dish.price = dish.price.toString().replace(',', '.')
+                setDishData(dish)
             } catch (error) {
-                console.error('Error fetching dish data:', error);
+                console.error('Erro:', error)
             }
-        };
+        }
 
-        fetchDish();
-    }, [id]);
+        fetchDish()
+    }, [id])
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setDishData({ ...dishData, [name]: value });
+        const { name, value } = e.target
+        setDishData({ ...dishData, [name]: value })
     };
 
     const handleIngredientChange = (e) => {
-        setNewIngredient(e.target.value);
+        setNewIngredient(e.target.value)
     };
 
     const handleAddIngredient = () => {
@@ -58,13 +58,13 @@ export function AdminEditDish() {
                 ...dishData,
                 ingredients: [...dishData.ingredients, { name: newIngredient.trim() }],
             });
-            setNewIngredient('');
+            setNewIngredient('')
         }
     };
 
     const handleRemoveIngredient = (index) => {
-        const updatedIngredients = dishData.ingredients.filter((_, i) => i !== index);
-        setDishData({ ...dishData, ingredients: updatedIngredients });
+        const updatedIngredients = dishData.ingredients.filter((_, i) => i !== index)
+        setDishData({ ...dishData, ingredients: updatedIngredients })
     };
 
     const handleUpdate = async () => {
@@ -72,9 +72,9 @@ export function AdminEditDish() {
             const updatedDishData = {
                 ...dishData,
                 ingredients: dishData.ingredients.map(ingredient => ingredient.name),
-            };
+            }
 
-            await api.put(`/adminDishes/${id}`, updatedDishData);
+            await api.put(`/adminDishes/${id}`, updatedDishData)
 
             if (selectedImage) {
                 const formData = new FormData();
@@ -84,32 +84,33 @@ export function AdminEditDish() {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
-                });
+                })
             }
 
-            alert('Dish updated successfully!');
+            alert('Prato atualizado com sucesso!');
             navigate('/');
         } catch (error) {
-            console.error('Error updating dish:', error);
+            console.error('Erro:', error);
             if (error.response) {
-                console.error('Response data:', error.response.data);
+                console.error('Response:', error.response.data);
             }
         }
-    };
+    }
 
     const handleDelete = async () => {
         try {
             await api.delete(`/adminDishes/${id}`);
-            alert('Dish deleted successfully!');
+            alert('Prato deletado');
             navigate('/')
         } catch (error) {
-            console.error('Error deleting dish:', error);
+            console.error('Erro:', error);
         }
-    };
+    }
 
     return (
         <Container>
             <HeaderAdmin />
+
             <form>
                 <Link to="/">
                     <button className="backButton">
@@ -121,6 +122,7 @@ export function AdminEditDish() {
                 <h1>Editar prato</h1>
 
                 <section className="imageNameAndCategoryWrapper">
+
                     <div className="uploadContainer">
                         <h2>Imagem do Prato</h2>
                         <input type="file" id="upload" onChange={(e) => setSelectedImage(e.target.files[0])} />
@@ -160,6 +162,7 @@ export function AdminEditDish() {
                 </section>
 
                 <section className="ingredientsAndPriceWrapper">
+
                     <div className="ingredientsContainer">
                         <label htmlFor="ingredients">Ingredientes</label>
                         <div className="ingredientsList">
@@ -171,19 +174,20 @@ export function AdminEditDish() {
                                     </button>
                                 </div>
                             ))}
-                        </div>
-                        <div className="addIngredient">
-                            <input
-                                type="text"
-                                id="newIngredient"
-                                name="newIngredient"
-                                value={newIngredient}
-                                onChange={handleIngredientChange}
-                                placeholder="Adicionar ingrediente"
-                            />
-                            <button type="button" onClick={handleAddIngredient}>
-                                <HiOutlinePlus />
-                            </button>
+
+                            <div className="addIngredient">
+                                <input
+                                    type="text"
+                                    id="newIngredient"
+                                    name="newIngredient"
+                                    value={newIngredient}
+                                    onChange={handleIngredientChange}
+                                    placeholder="Adicionar"
+                                />
+                                <button type="button" onClick={handleAddIngredient}>
+                                    <HiOutlinePlus />
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -201,6 +205,7 @@ export function AdminEditDish() {
                 </section>
 
                 <section className="descriptionAndSaveButtonWrapper">
+                    
                     <div className="descriptionContainer">
                         <label htmlFor="description">Descrição</label>
                         <textarea

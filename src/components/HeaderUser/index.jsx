@@ -1,14 +1,14 @@
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth'
 import { Link } from "react-router-dom"
 
 import { Container, Menu, Searchbar, Orders, SignOut } from './styles'
 import { Logo } from '../Logo'
-import { OrderButton } from '../OrderButton';
-import { SearchInput } from '../SearchInput';
+import { OrderButton } from '../OrderButton'
+import { SearchInput } from '../SearchInput'
 
-import { PiListBold } from "react-icons/pi";
+import { PiListBold } from 'react-icons/pi'
 import { PiReceipt } from 'react-icons/pi'
-import { PiSignOutBold } from "react-icons/pi";
+import { PiSignOutBold } from 'react-icons/pi'
 
 export function HeaderUser() {
     const { signOut } = useAuth()

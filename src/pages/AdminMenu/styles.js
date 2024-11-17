@@ -48,7 +48,6 @@ export const Container = styled.div`
             align-items: flex-start;
             gap: 1rem;
         
-        
         >.exitContainer, .newDishContainer {
             border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000}; 
             width: 100%;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.footer`
@@ -54,7 +54,7 @@ export const Container = styled.footer`
         white-space: nowrap;
         
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-        font-size: 1.4rem;
+            font-size: 1.4rem;
         }
     }
 `

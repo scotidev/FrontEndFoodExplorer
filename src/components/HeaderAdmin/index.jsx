@@ -1,13 +1,13 @@
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth'
 import { Link, useNavigate } from "react-router-dom"
 
 import { Container, Menu, Searchbar, SignOut } from './styles'
 import { Logo } from '../Logo'
-import { Button } from '../Button';
+import { Button } from '../Button'
 import { SearchInput } from '../SearchInput'
 
-import { PiListBold } from "react-icons/pi";
-import { PiSignOutBold } from "react-icons/pi";
+import { PiListBold } from "react-icons/pi"
+import { PiSignOutBold } from "react-icons/pi"
 
 export function HeaderAdmin() {
     const { signOut } = useAuth()

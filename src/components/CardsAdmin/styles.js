@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
+import styled from 'styled-components';
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints';
 
 export const Container = styled.div`
     background-color: ${({ theme }) => theme.COLORS.DARK_200};
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
-    width: 21rem;
-    height: 29rem;
+    min-width: 19rem;
+    min-height: 26rem;
     padding: 2.4rem;
     border: 1px solid ${({ theme }) => theme.COLORS.DARK_300};
     border-radius: 8px;

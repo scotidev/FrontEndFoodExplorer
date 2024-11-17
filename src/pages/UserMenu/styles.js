@@ -46,8 +46,7 @@ export const Container = styled.div`
             width: 100%;
             padding: 2rem;
             align-items: flex-start;
-            gap: 1rem;
-        
+            gap: 1rem;        
         
         >.bottomBorder {
             border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000}; 

@@ -10,7 +10,7 @@ export function Footer() {
                 <span>food explorer</span>
             </div>
 
-            <p>© 2023 - Todos os direitos reservados.</p>
+            <p>© 2024 - Todos os direitos reservados.</p>
         </Container>
     )
 }

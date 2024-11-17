@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
+import styled from 'styled-components';
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints';
 
 export const Container = styled.div`
     background-color: ${({ theme }) => theme.COLORS.DARK_200};
@@ -89,7 +89,6 @@ export const Title = styled.h2`
     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
         font-size: 2.4rem;
         font-weight: 700;
-
     }
 `
 

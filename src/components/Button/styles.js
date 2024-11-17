@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.button`
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
@@ -16,11 +16,5 @@ export const Container = styled.button`
 
     &:hover {
         background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
-    }
-
-    &:disabled {
-        background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
-        
-        cursor: default;
     }
 `

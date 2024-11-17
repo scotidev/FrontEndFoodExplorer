@@ -1,39 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { api } from '../../services/api';
-import { useAuth } from '../../hooks/auth';
-import { Container, SearchResults } from './styles';
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { api } from '../../services/api'
+import { useAuth } from '../../hooks/auth'
+
+import { Container, SearchResults } from './styles'
 
 export function SearchInput({ icon: Icon, ...rest }) {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
-    const navigate = useNavigate();
-    const { user } = useAuth();
+    const [searchTerm, setSearchTerm] = useState("")
+    const [searchResults, setSearchResults] = useState([])
+
+    const navigate = useNavigate()
+    const { user } = useAuth()
 
     useEffect(() => {
         if (searchTerm) {
             const fetchSearchResults = async () => {
                 try {
-                    const response = await api.get(`/dishes?title=${searchTerm}`);
-                    setSearchResults(response.data);
+                    const response = await api.get(`/dishes?title=${searchTerm}`)
+                    setSearchResults(response.data)
                 } catch (error) {
-                    console.error('Error fetching search results:', error);
+                    console.error('Erro:', error)
                 }
-            };
+            }
 
-            fetchSearchResults();
+            fetchSearchResults()
         } else {
-            setSearchResults([]);
+            setSearchResults([])
         }
-    }, [searchTerm]);
+    }, [searchTerm])
 
     const handleResultClick = (id) => {
         if (user.role === 'admin') {
-            navigate(`/adminDish/${id}`);
+            navigate(`/adminDish/${id}`)
         } else {
-            navigate(`/dish/${id}`);
+            navigate(`/dish/${id}`)
         }
-    };
+    }
 
     return (
         <Container>
@@ -63,5 +65,5 @@ export function SearchInput({ icon: Icon, ...rest }) {
                 </SearchResults>
             )}
         </Container>
-    );
+    )
 }

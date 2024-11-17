@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { api } from '../../services/api';
-import { Container } from './styles';
-import { HeaderAdmin } from '../../components/HeaderAdmin';
-import { PiCaretLeftBold } from "react-icons/pi";
-import { Ingredient } from '../../components/Ingredient';
-import { Button } from '../../components/Button';
-import { Footer } from '../../components/Footer';
+import { useEffect, useState } from 'react'
+import { useParams, Link } from 'react-router-dom'
+
+import { api } from '../../services/api'
+
+import { Container } from './styles'
+import { HeaderAdmin } from '../../components/HeaderAdmin'
+import { Ingredient } from '../../components/Ingredient'
+import { Button } from '../../components/Button'
+import { Footer } from '../../components/Footer'
+
+import { PiCaretLeftBold } from "react-icons/pi"
 
 export function AdminDish() {
     const { id } = useParams();
@@ -15,7 +18,7 @@ export function AdminDish() {
         description: '',
         ingredients: [],
         image: ''
-    });
+    })
 
     useEffect(() => {
         const fetchDish = async () => {
@@ -24,11 +27,11 @@ export function AdminDish() {
                 const dish = response.data;
                 setDishData(dish);
             } catch (error) {
-                console.error('Error fetching dish data:', error);
+                console.error('Erro:', error);
             }
-        };
-        fetchDish();
-    }, [id]);
+        }
+        fetchDish()
+    }, [id])
 
     return (
         <Container>
@@ -37,7 +40,7 @@ export function AdminDish() {
             <div className="content">
                 <div className="backAndImageWrapper">
                     <Link to="/">
-                        <button className="back">
+                        <button className="backButton">
                             <PiCaretLeftBold />
                             voltar
                         </button>
@@ -45,7 +48,7 @@ export function AdminDish() {
 
                     {dishData.image && (
                         <>
-                            <img src={`${api.defaults.baseURL}/files/${dishData.image}`} alt={dishData.title} height={260} width={260} onError={(e) => console.error('Error loading image:', e)} />
+                            <img src={`${api.defaults.baseURL}/files/${dishData.image}`} alt={dishData.title} height={260} width={260}/>
                         </>
                     )}
                 </div>

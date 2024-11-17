@@ -33,13 +33,19 @@ export const Container = styled.div`
 
             >a {
                 align-self: flex-start;
+
+                @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                    height: 100%;
+                    
+                }
             }
 
-            >a .back {
+            >a .backButton {
                 background-color: transparent;
                 color: ${({ theme }) => theme.COLORS.LIGHT_300};
                 
                 width: fit-content;
+                margin-bottom: 1.4rem;
                 display: flex;
                 align-items: center;
                 justify-content: start;
@@ -56,8 +62,15 @@ export const Container = styled.div`
                 }
             }
 
-            >a .back:hover {
+            >a .backButton:hover {
                 color: ${({ theme }) => theme.COLORS.LIGHT_500};
+            }
+
+            >img {
+                @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                height: 45rem;
+                width: auto;
+            }
             }
         }
 
@@ -70,6 +83,7 @@ export const Container = styled.div`
             @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                 justify-content: start;
                 align-items: start;
+                width: 100%;
             } 
 
             >h1, p {
@@ -117,6 +131,7 @@ export const Container = styled.div`
 
             >a {
                 align-items: center;
+                width: 100%;
             }
 
             >a .editButton {
