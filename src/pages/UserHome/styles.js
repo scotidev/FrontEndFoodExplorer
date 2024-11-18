@@ -96,49 +96,11 @@ export const Container = styled.div`
     }
 
     >section {
+        align-self: flex-start;
 
         @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
             align-self: flex-start;
         }
-
-        @media (min-width: ${DEVICE_BREAKPOINTS.Desktop}) {
-            align-self: flex-start;
-            margin: 0 auto;
-        }
-
-        >.opacityAndLeftButtonContainer, .opacityAndRightButtonContainer {
-            display: none;
-
-            @media (min-width: ${DEVICE_BREAKPOINTS.Desktop}) {
-                position: absolute;
-                z-index: 1;
-                width: 31rem;
-                height: 48.5rem;
-                margin-top: 6.5rem;
-
-                display: flex;
-
-                >.leftButton, .rightButton {
-                    background-color: transparent;
-                    color: ${({ theme }) => theme.COLORS.LIGHT_300};
-                    font-size: 4rem;
-                    height: fit-content;
-                    align-self: center;
-                }
-            }
-        }
-
-        >.opacityAndLeftButtonContainer {
-            margin-left: 2rem;
-            transform: scaleX(1);
-        }
-
-        .opacityAndRightButtonContainer {
-            width: 34rem;
-            margin-left: 97rem;
-            margin-top: -50.7rem;
-            justify-content: end;
-        }        
 
         >h2 {
             font-size: 1.8rem;

@@ -8,7 +8,6 @@ import { HeaderUser } from '../../components/HeaderUser'
 import { Footer } from '../../components/Footer'
 import { CardsUser } from '../../components/CardsUser'
 
-import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
 import homeImg from '../../assets/images/homeImage.svg'
 
 export function UserHome() {
@@ -50,14 +49,6 @@ export function UserHome() {
         fetchDishes()
     }, [])
 
-    const scrollLeft = (ref) => {
-        ref.current.scrollLeft -= 300
-    }
-
-    const scrollRight = (ref) => {
-        ref.current.scrollLeft += 300
-    }
-
     return (
         <Container>
             <HeaderUser></HeaderUser>
@@ -75,12 +66,6 @@ export function UserHome() {
             whileTap={{ cursor: "grabbing"}}
             ref={carouselFood}
             >
-                <div 
-                className="opacityAndLeftButtonContainer"
-                style={{backgroundImage: 'linear-gradient(90deg, #000A0F 0%, rgba(0, 10, 15, 0.27)  100%)'}}>
-                    <button className="leftButton" onClick={() => scrollLeft(carouselFood)}><PiCaretLeftBold /></button>
-                </div>
-
                 <h2>Refeições</h2>
 
                 <motion.div 
@@ -103,22 +88,12 @@ export function UserHome() {
                     ))}
                 </motion.div>
 
-                <div className="opacityAndRightButtonContainer"
-                style={{backgroundImage: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)'}}>
-                    <button className="rightButton" onClick={() => scrollRight(carouselFood)}><PiCaretRightBold /></button>
-                </div>
             </motion.section>
                 
             <motion.section 
             whileTap={{ cursor: "grabbing"}}
             ref={carouselDessert}
             >
-
-                <div 
-                className="opacityAndLeftButtonContainer"
-                style={{backgroundImage: 'linear-gradient(90deg, #000A0F 0%, rgba(0, 10, 15, 0.27)  100%)'}}>
-                    <button className="leftButton" onClick={() => scrollLeft(carouselDessert)}><PiCaretLeftBold /></button>
-                </div>
 
                 <h2>Sobremesas</h2>
 
@@ -142,21 +117,12 @@ export function UserHome() {
                     ))}
                 </motion.div>
 
-                <div className="opacityAndRightButtonContainer"
-                style={{backgroundImage: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)'}}>
-                    <button className="rightButton" onClick={() => scrollRight(carouselDessert)}><PiCaretRightBold /></button>
-                </div>
             </motion.section>
                 
             <motion.section 
             whileTap={{ cursor: "grabbing"}}
             ref={carouselDrink}
             >
-                <div 
-                className="opacityAndLeftButtonContainer"
-                style={{backgroundImage: 'linear-gradient(90deg, #000A0F 0%, rgba(0, 10, 15, 0.27)  100%)'}}>
-                    <button className="leftButton" onClick={() => scrollLeft(carouselDrink)}><PiCaretLeftBold /></button>
-                </div>
 
                 <h2>Bebidas</h2>
 
@@ -180,10 +146,6 @@ export function UserHome() {
                     ))}
                 </motion.div>
 
-                <div className="opacityAndRightButtonContainer"
-                style={{backgroundImage: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)'}}>
-                    <button className="rightButton" onClick={() => scrollRight(carouselDrink)}><PiCaretRightBold /></button>
-                </div>
             </motion.section>
 
             <Footer />
