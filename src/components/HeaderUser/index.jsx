@@ -1,5 +1,5 @@
 import { useAuth } from '../../hooks/auth'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { Container, Menu, Searchbar, Orders, SignOut } from './styles'
 import { Logo } from '../Logo'
@@ -12,6 +12,12 @@ import { PiSignOutBold } from 'react-icons/pi'
 
 export function HeaderUser() {
     const { signOut } = useAuth()
+    const navigate = useNavigate()
+
+    function handleSignOut() {
+        signOut()
+        navigate("/")
+    }
 
     return(
         <Container>
@@ -34,7 +40,7 @@ export function HeaderUser() {
 
             <OrderButton title={'Pedidos (0)'} id='OrdersDesktop'/>
 
-            <SignOut id="signOutButton" onClick={signOut}>
+            <SignOut id="signOutButton" onClick={handleSignOut}>
                 <PiSignOutBold />
             </SignOut> 
         </Container>

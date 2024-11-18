@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { api } from '../../services/api';
-import { Container } from './styles';
-import { HeaderUser } from '../../components/HeaderUser';
-import { Ingredient } from '../../components/Ingredient';
-import { Stepper } from '../../components/Stepper';
-import { OrderButton } from '../../components/OrderButton';
-import { Footer } from '../../components/Footer';
-import { PiCaretLeftBold } from "react-icons/pi";
+import { useEffect, useState } from 'react'
+import { useParams, Link } from 'react-router-dom'
+
+import { api } from '../../services/api'
+
+import { Container } from './styles'
+import { HeaderUser } from '../../components/HeaderUser'
+import { Ingredient } from '../../components/Ingredient'
+import { Stepper } from '../../components/Stepper'
+import { OrderButton } from '../../components/OrderButton'
+import { Footer } from '../../components/Footer'
+
+import { PiCaretLeftBold } from "react-icons/pi"
 
 export function UserDish() {
     const { id } = useParams();
@@ -17,20 +20,20 @@ export function UserDish() {
         ingredients: [],
         image: '',
         price: ''
-    });
+    })
 
     useEffect(() => {
         const fetchDish = async () => {
             try {
-                const response = await api.get(`/dishes/${id}`);
-                const dish = response.data;
-                setDishData(dish);
+                const response = await api.get(`/dishes/${id}`)
+                const dish = response.data
+                setDishData(dish)
             } catch (error) {
-                console.error('Error fetching dish data:', error);
+                console.error('Erro:', error)
             }
-        };
-        fetchDish();
-    }, [id]);
+        }
+        fetchDish()
+    }, [id])
 
     return (
         <Container>
@@ -39,7 +42,7 @@ export function UserDish() {
             <div className="content">
                 <div className="backAndImageWrapper">
                     <Link to="/">
-                        <button className="back">
+                        <button className="backButton">
                             <PiCaretLeftBold />
                             voltar
                         </button>
@@ -47,7 +50,7 @@ export function UserDish() {
 
                     {dishData.image && (
                         <>
-                            <img src={`${api.defaults.baseURL}/files/${dishData.image}`} alt={dishData.title} height={260} width={260} onError={(e) => console.error('Error loading image:', e)} />
+                            <img src={`${api.defaults.baseURL}/files/${dishData.image}`} alt={dishData.title} height={260} width={260} />
                         </>
                     )}
                 </div>
@@ -62,8 +65,10 @@ export function UserDish() {
                         ))}
                     </div>
                     
-                    <Stepper />
-                    <OrderButton title={`Incluir - R$${dishData.price}`}/>
+                    <div className="stepperAndButtonWrapper">
+                        <Stepper />
+                        <OrderButton title={`Incluir - R$${dishData.price}`}/>
+                    </div>
                 </div>
             </div>
             <Footer />

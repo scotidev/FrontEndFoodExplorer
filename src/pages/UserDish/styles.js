@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
@@ -32,22 +32,28 @@ export const Container = styled.div`
             align-items: center;
             
             >a {
-                align-self: start;
+                align-self: flex-start;
+
+                @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+                    height: 100%; 
+                }
             }
             
-            >a .back {
+            >a .backButton {
                 background-color: transparent;
                 color: ${({ theme }) => theme.COLORS.LIGHT_300};
-
-                font-family: 'Poppins', sans-serif;
-                line-height: 140%;
-                font-size: 2.4rem;
-                font-weight: 500;
-            
+                
                 width: fit-content;
-
+                margin-bottom: 1.4rem;
                 display: flex;
                 align-items: center;
+                justify-content: start;
+                
+                font-family: 'Poppins', sans-serif;
+                font-size: 2.4rem;
+                font-weight: 500;
+                line-height: 140%;
+
                 transition: .5s;
 
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
@@ -55,19 +61,15 @@ export const Container = styled.div`
                 }
             }
 
-            >a .back:hover {
+            >a .backButton:hover {
                 color: ${({ theme }) => theme.COLORS.LIGHT_500};
             }
 
             >img {
-                margin: 1.6rem 0;
-
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                    width: 50%;
-                    height: auto;
-
-                    min-width: 250px;
-                }  
+                    height: 45rem;
+                    width: auto;
+                }
             }
         }
         
@@ -80,6 +82,7 @@ export const Container = styled.div`
             @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                 justify-content: start;
                 align-items: start;
+                width: 100%;
             } 
 
             >h1, p {
@@ -114,13 +117,14 @@ export const Container = styled.div`
             >.ingredientsWrapper {
                 float: left;
                 text-align: center;
+                margin-bottom: 3rem;
 
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                     text-align: start;
                 } 
 
                 >button{
-                    margin: 1rem 0 0 1rem;
+                    margin: 2rem 0 0 1.6rem;
                     display: inline-block;
                 }
             }
@@ -130,7 +134,7 @@ export const Container = styled.div`
                 align-items: center;
                 justify-content: center;
 
-                margin-top: 4.8rem;
+                margin-top: 2rem;
                 gap: 1.6rem;
             }
         }

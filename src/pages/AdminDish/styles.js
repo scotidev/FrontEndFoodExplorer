@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
@@ -35,8 +35,7 @@ export const Container = styled.div`
                 align-self: flex-start;
 
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                    height: 100%;
-                    
+                    height: 100%; 
                 }
             }
 
@@ -68,9 +67,9 @@ export const Container = styled.div`
 
             >img {
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                height: 45rem;
-                width: auto;
-            }
+                    height: 45rem;
+                    width: auto;
+                }
             }
         }
 
@@ -106,7 +105,8 @@ export const Container = styled.div`
             >p {
                 font-size: 1.6rem;
                 font-weight: 400;
-                text-align: center;margin-bottom: 2.4rem;
+                text-align: center;
+                margin-bottom: 2.4rem;
 
                 @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                     font-size: 2.4rem;

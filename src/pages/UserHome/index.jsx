@@ -1,54 +1,67 @@
-import { Container } from './styles';
-import { HeaderUser } from '../../components/HeaderUser';
-import { Footer } from '../../components/Footer';
-import React, { useEffect, useState, useRef } from 'react';
-import { api } from '../../services/api'; // Importa a instância do axios
-import { motion } from 'framer-motion';
-import { CardsUser } from '../../components/CardsUser';
-import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
-import homeImg from '../../assets/images/homeImage.svg';
+import { useEffect, useState, useRef } from 'react'
+import { motion } from 'framer-motion'
+
+import { api } from '../../services/api'
+
+import { Container } from './styles'
+import { HeaderUser } from '../../components/HeaderUser'
+import { Footer } from '../../components/Footer'
+import { CardsUser } from '../../components/CardsUser'
+
+import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi"
+import homeImg from '../../assets/images/homeImage.svg'
 
 export function UserHome() {
-    const [dishes, setDishes] = useState([]);
-    const [deserts, setDeserts] = useState([]);
-    const [drinks, setDrinks] = useState([]);
-    const carousel = useRef();
-    const [width, setWidth] = useState(0);
+    const [dishes, setDishes] = useState([])
+    const [desserts, setDesserts] = useState([])
+    const [drinks, setDrinks] = useState([])
+    const carouselFood = useRef()
+    const carouselDessert = useRef()
+    const carouselDrink = useRef()
+    const [width, setWidth] = useState(0)
 
     useEffect(() => {
-        setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
-    }, []);
+        setWidth(carouselFood.current?.scrollWidth - carouselFood.current?.offsetWidth)
+    }, [])
 
     useEffect(() => {
         const fetchDishes = async () => {
             try {
-                const response = await api.get('/dishes'); // Usa a instância do axios
-                // Verifique se a resposta é um array
+                const response = await api.get('/dishes')
                 if (Array.isArray(response.data)) {
-                    const allDishes = response.data;
-                    setDishes(allDishes.filter(dish => dish.category === 'food'));
-                    setDeserts(allDishes.filter(dish => dish.category === 'dessert'));
-                    setDrinks(allDishes.filter(dish => dish.category === 'drink'));
+                    const allDishes = response.data
+                    setDishes(allDishes.filter(dish => dish.category === 'food'))
+                    setDesserts(allDishes.filter(dish => dish.category === 'dessert'))
+                    setDrinks(allDishes.filter(dish => dish.category === 'drink'))
                 } else {
-                    console.error('Unexpected response format:', response.data);
-                    setDishes([]);
-                    setDeserts([]);
-                    setDrinks([]);
+                    console.error('Response:', response.data)
+                    setDishes([])
+                    setDesserts([])
+                    setDrinks([])
                 }
             } catch (error) {
-                console.error('Error fetching dishes:', error);
-                setDishes([]);
-                setDeserts([]);
-                setDrinks([]);
+                console.error('Erro:', error)
+                setDishes([])
+                setDesserts([])
+                setDrinks([])
             }
-        };
+        }
 
-        fetchDishes();
-    }, []);
+        fetchDishes()
+    }, [])
+
+    const scrollLeft = (ref) => {
+        ref.current.scrollLeft -= 300
+    }
+
+    const scrollRight = (ref) => {
+        ref.current.scrollLeft += 300
+    }
 
     return (
         <Container>
-            <HeaderUser />
+            <HeaderUser></HeaderUser>
+
             <div className='banner' 
                 style={{backgroundImage: 'linear-gradient(180deg, #091E26 0%, #00131C 100%)'}}>
                 <img src={homeImg} alt="Imagem de folhas e macarons" />
@@ -57,86 +70,123 @@ export function UserHome() {
                     <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
                 </div>
             </div>
-
-            <h2>Refeições</h2>
+                            
             <motion.section 
-                whileTap={{ cursor: "grabbing"}}
-                ref={carousel}
+            whileTap={{ cursor: "grabbing"}}
+            ref={carouselFood}
             >
+                <div 
+                className="opacityAndLeftButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, #000A0F 0%, rgba(0, 10, 15, 0.27)  100%)'}}>
+                    <button className="leftButton" onClick={() => scrollLeft(carouselFood)}><PiCaretLeftBold /></button>
+                </div>
+
+                <h2>Refeições</h2>
+
                 <motion.div 
-                    className="cardsWrapper"
-                    drag='x'
-                    dragConstraints={{ right: 0, left: -width }}
-                    initial={{ x: 100 }}
-                    animate={{ x: 0 }}
-                    transition={{ duration: 0.8 }}
+                className="cardsWrapper"
+                drag='x'
+                dragConstraints={{ right: 0, left: -width }}
+                initial={{ x: 100 }}
+                animate={{ x: 0 }}
+                transition={{ duration: 0.8 }}
                 >
                     {dishes.map(dish => (
                         <CardsUser 
-                            key={dish.id}
-                            id={dish.id}
-                            image={`${api.defaults.baseURL}/files/${dish.image}`} // Construa o caminho completo da imagem
-                            title={`${dish.title} >`}
-                            description={dish.description}
-                            price={dish.price}
-                        />
+                        key={dish.id}
+                        id={dish.id}
+                        image={`${api.defaults.baseURL}/files/${dish.image}`}
+                        title={`${dish.title} >`}
+                        description={dish.description}
+                        price={dish.price}
+                        ></CardsUser>
                     ))}
                 </motion.div>
-            </motion.section>
 
-            <h2>Sobremesas</h2>
+                <div className="opacityAndRightButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)'}}>
+                    <button className="rightButton" onClick={() => scrollRight(carouselFood)}><PiCaretRightBold /></button>
+                </div>
+            </motion.section>
+                
             <motion.section 
-                whileTap={{ cursor: "grabbing"}}
-                ref={carousel}
+            whileTap={{ cursor: "grabbing"}}
+            ref={carouselDessert}
             >
+
+                <div 
+                className="opacityAndLeftButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, #000A0F 0%, rgba(0, 10, 15, 0.27)  100%)'}}>
+                    <button className="leftButton" onClick={() => scrollLeft(carouselDessert)}><PiCaretLeftBold /></button>
+                </div>
+
+                <h2>Sobremesas</h2>
+
                 <motion.div 
-                    className="cardsWrapper"
-                    drag='x'
-                    dragConstraints={{ right: 0, left: -width }}
-                    initial={{ x: 100 }}
-                    animate={{ x: 0 }}
-                    transition={{ duration: 0.8 }}
+                className="cardsWrapper"
+                drag='x'
+                dragConstraints={{ right: 0, left: -width }}
+                initial={{ x: 100 }}
+                animate={{ x: 0 }}
+                transition={{ duration: 0.8 }}
                 >
-                    {deserts.map(dish => (
+                    {desserts.map(dish => (
                         <CardsUser 
-                            key={dish.id}
-                            id={dish.id}
-                            image={`${api.defaults.baseURL}/files/${dish.image}`} // Construa o caminho completo da imagem
-                            title={`${dish.title} >`}
-                            description={dish.description}
-                            price={dish.price}
-                        />
+                        key={dish.id}
+                        id={dish.id}
+                        image={`${api.defaults.baseURL}/files/${dish.image}`}
+                        title={`${dish.title} >`}
+                        description={dish.description}
+                        price={dish.price}
+                        ></CardsUser>
                     ))}
                 </motion.div>
-            </motion.section>
 
-            <h2>Bebidas</h2>
+                <div className="opacityAndRightButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)'}}>
+                    <button className="rightButton" onClick={() => scrollRight(carouselDessert)}><PiCaretRightBold /></button>
+                </div>
+            </motion.section>
+                
             <motion.section 
-                whileTap={{ cursor: "grabbing"}}
-                ref={carousel}
+            whileTap={{ cursor: "grabbing"}}
+            ref={carouselDrink}
             >
+                <div 
+                className="opacityAndLeftButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, #000A0F 0%, rgba(0, 10, 15, 0.27)  100%)'}}>
+                    <button className="leftButton" onClick={() => scrollLeft(carouselDrink)}><PiCaretLeftBold /></button>
+                </div>
+
+                <h2>Bebidas</h2>
+
                 <motion.div 
-                    className="cardsWrapper"
-                    drag='x'
-                    dragConstraints={{ right: 0, left: -width }}
-                    initial={{ x: 100 }}
-                    animate={{ x: 0 }}
-                    transition={{ duration: 0.8 }}
+                className="cardsWrapper"
+                drag='x'
+                dragConstraints={{ right: 0, left: -width }}
+                initial={{ x: 100 }}
+                animate={{ x: 0 }}
+                transition={{ duration: 0.8 }}
                 >
                     {drinks.map(dish => (
                         <CardsUser 
-                            key={dish.id}
-                            id={dish.id}
-                            image={`${api.defaults.baseURL}/files/${dish.image}`} // Construa o caminho completo da imagem
-                            title={`${dish.title} >`}
-                            description={dish.description}
-                            price={dish.price}
-                        />
+                        key={dish.id}
+                        id={dish.id}
+                        image={`${api.defaults.baseURL}/files/${dish.image}`}
+                        title={`${dish.title} >`}
+                        description={dish.description}
+                        price={dish.price}
+                        ></CardsUser>
                     ))}
                 </motion.div>
+
+                <div className="opacityAndRightButtonContainer"
+                style={{backgroundImage: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)'}}>
+                    <button className="rightButton" onClick={() => scrollRight(carouselDrink)}><PiCaretRightBold /></button>
+                </div>
             </motion.section>
 
             <Footer />
         </Container>
-    );
+    )
 }

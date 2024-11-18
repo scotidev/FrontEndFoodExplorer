@@ -1,130 +1,131 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { api } from '../../services/api'; // Importando a instância do Axios de forma desestruturada
-import { Container } from './styles'; // Importando estilos
-import { HeaderAdmin } from '../../components/HeaderAdmin'; // Importando o componente HeaderAdmin de forma desestruturada
-import { Button } from '../../components/Button'; // Importando o componente Button
-import { Footer } from '../../components/Footer'; // Importando o componente Footer
-import { PiCaretLeftBold, PiUploadSimpleBold } from 'react-icons/pi'; // Importando ícones
-import { VscClose } from 'react-icons/vsc';
-import { HiOutlinePlus } from 'react-icons/hi2';
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+
+import { api } from '../../services/api'
+
+import { Container } from './styles'
+import { HeaderAdmin } from '../../components/HeaderAdmin'
+import { Button } from '../../components/Button'
+import { Footer } from '../../components/Footer'
+
+import { PiCaretLeftBold, PiUploadSimpleBold } from 'react-icons/pi'
+import { VscClose } from 'react-icons/vsc'
+import { HiOutlinePlus } from 'react-icons/hi2'
 
 export function AdminNewDish() {
-  const navigate = useNavigate();
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('');
-  const [ingredients, setIngredients] = useState([]);
-  const [newIngredient, setNewIngredient] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [image, setImage] = useState(null); // Inicializando o estado como null
+  const navigate = useNavigate()
+  const [title, setTitle] = useState('')
+  const [category, setCategory] = useState('')
+  const [ingredients, setIngredients] = useState([])
+  const [newIngredient, setNewIngredient] = useState('')
+  const [description, setDescription] = useState('')
+  const [price, setPrice] = useState('')
+  const [image, setImage] = useState(null)
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'title') setTitle(value);
-    if (name === 'category') setCategory(value);
-    if (name === 'description') setDescription(value);
-    if (name === 'price') setPrice(value);
-  };
+    const { name, value } = e.target
+    if (name === 'title') setTitle(value)
+    if (name === 'category') setCategory(value)
+    if (name === 'description') setDescription(value)
+    if (name === 'price') setPrice(value)
+  }
 
   const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-  };
+    setCategory(e.target.value)
+  }
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
+    setImage(e.target.files[0])
+  }
 
   const handleIngredientChange = (e) => {
-    setNewIngredient(e.target.value);
-  };
+    setNewIngredient(e.target.value)
+  }
 
   const handleAddIngredient = () => {
     if (newIngredient.trim() !== '') {
-      setIngredients([...ingredients, { name: newIngredient.trim() }]);
-      setNewIngredient('');
+      setIngredients([...ingredients, { name: newIngredient.trim() }])
+      setNewIngredient('')
     }
-  };
+  }
 
   const handleRemoveIngredient = (index) => {
-    const updatedIngredients = ingredients.filter((_, i) => i !== index);
-    setIngredients(updatedIngredients);
-  };
+    const updatedIngredients = ingredients.filter((_, i) => i !== index)
+    setIngredients(updatedIngredients)
+  }
 
   const handleCreateDish = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    // Validações
     if (!title.trim()) {
       alert('Por favor, insira o nome do prato.');
-      return;
+      return
     }
     if (!category.trim() || !['food', 'dessert', 'drink'].includes(category)) {
-      alert('Por favor, selecione uma categoria válida: Refeição, Sobremesa ou Bebida.');
-      return;
+      alert('Por favor, selecione uma categoria válida.')
+      return
     }
     if (!description.trim()) {
-      alert('Por favor, insira a descrição do prato.');
-      return;
+      alert('Por favor, insira a descrição do prato.')
+      return
     }
     if (!price.trim() || isNaN(price) || Number(price) <= 0) {
-      alert('Por favor, insira um preço válido.');
-      return;
+      alert('Por favor, insira um preço válido.')
+      return
     }
     if (!image) {
-      alert('Por favor, selecione uma imagem para o prato.');
-      return;
+      alert('Por favor, selecione uma imagem para o prato.')
+      return
     }
     if (ingredients.length === 0) {
-      alert('Por favor, adicione pelo menos um ingrediente.');
-      return;
+      alert('Por favor, adicione pelo menos um ingrediente.')
+      return
     }
 
     try {
-      const token = localStorage.getItem('@foodexplorer:token'); // Usando a chave correta para buscar o token
+      const token = localStorage.getItem('@foodexplorer:token')
       if (!token) {
-        alert('Token não encontrado. Por favor, faça login novamente.');
-        navigate('/login'); // Redireciona para a página de login
-        return;
+        alert('Token não encontrado')
       }
 
-      const formData = new FormData();
-      formData.append('title', title);
-      formData.append('category', category);
-      formData.append('description', description);
+      const formData = new FormData()
+      formData.append('title', title)
+      formData.append('category', category)
+      formData.append('description', description)
       formData.append('price', price);
       formData.append('image', image);
       ingredients.forEach((ingredient, index) => {
-        formData.append(`ingredients[${index}]`, ingredient.name);
-      });
+        formData.append(`ingredients[${index}]`, ingredient.name)
+      })
 
       const response = await api.post('/adminDishes', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         },
-      });
-      console.log(response.data);
-      alert('Prato criado com sucesso!');
-      navigate('/'); // Redireciona para a página inicial
+      })
+      console.log(response.data)
+      alert('Prato criado com sucesso!')
+      navigate('/')
     } catch (error) {
-      console.error('Erro ao criar prato:', error);
+      console.error('Erro ao criar prato:', error)
       if (error.response) {
-        console.error('Response data:', error.response.data);
+        console.error('Response:', error.response.data)
       }
-      alert('Erro ao criar prato. Tente novamente.');
+      alert('Erro ao criar prato. Tente novamente.')
     }
-  };
+  }
 
   return (
     <Container>
       <HeaderAdmin />
-      <form onSubmit={handleCreateDish}>
+
+      <form>
         <Link to="/">
-          <Button className="backButton">
+          <button className="backButton">
             <PiCaretLeftBold />
             voltar
-          </Button>
+          </button>
         </Link>
 
         <h1>Criar novo prato</h1>
@@ -136,7 +137,7 @@ export function AdminNewDish() {
             <label htmlFor="upload">
               <div className="uploadBox">
                 <PiUploadSimpleBold />
-                <p>Selecione imagem para alterá-la</p>
+                <p>Selecione a imagem </p>
               </div>
             </label>
           </div>
@@ -149,13 +150,18 @@ export function AdminNewDish() {
               name="title"
               value={title}
               onChange={handleInputChange}
-              placeholder="Ex: Feijoada"
+              placeholder="Ex: Salada Ceasar"
             />
           </div>
 
           <div className="categoryContainer">
             <label htmlFor="category">Categoria</label>
-            <select id="category" name="category" value={category} onChange={handleCategoryChange}>
+            <select 
+              id="category" 
+              name="category" 
+              value={category} 
+              onChange={handleCategoryChange}>
+
               <option value="">Selecione uma categoria</option>
               <option value="food">Refeição</option>
               <option value="dessert">Sobremesa</option>
@@ -164,32 +170,8 @@ export function AdminNewDish() {
           </div>
         </section>
 
-        <section className="descriptionAndPriceWrapper">
-          <div className="descriptionContainer">
-            <label htmlFor="description">Descrição</label>
-            <textarea
-              id="description"
-              name="description"
-              value={description}
-              onChange={handleInputChange}
-              placeholder="Ex: Feijoada completa com todos os acompanhamentos"
-            />
-          </div>
-
-          <div className="priceContainer">
-            <label htmlFor="price">Preço</label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              value={price}
-              onChange={handleInputChange}
-              placeholder="Ex: 25.00"
-            />
-          </div>
-        </section>
-
         <section className="ingredientsAndPriceWrapper">
+
           <div className="ingredientsContainer">
             <label htmlFor="ingredients">Ingredientes</label>
             <div className="ingredientsList">
@@ -200,31 +182,54 @@ export function AdminNewDish() {
                     <VscClose />
                   </button>
                 </div>
-              ))}
+                ))}
+
+                <div className="addIngredient">
+                  <input
+                    type="text"
+                    id="newIngredient"
+                    name="newIngredient"
+                    value={newIngredient}
+                    onChange={handleIngredientChange}
+                    placeholder="Adicionar"
+                  />
+                  <button type="button" onClick={handleAddIngredient}>
+                    <HiOutlinePlus />
+                  </button>
+                </div>
             </div>
-            <div className="addIngredient">
-              <input
-                type="text"
-                id="newIngredient"
-                name="newIngredient"
-                value={newIngredient}
-                onChange={handleIngredientChange}
-                placeholder="Adicionar ingrediente"
-              />
-              <button type="button" onClick={handleAddIngredient}>
-                <HiOutlinePlus />
-              </button>
-            </div>
+          </div>
+
+          <div className="priceContainer">
+            <label htmlFor="price">Preço</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              value={price}
+              onChange={handleInputChange}
+              placeholder="Ex: 19.90"
+            />
           </div>
         </section>
 
-        <Button type="submit">
-          Criar Prato
-        </Button>
+        <section className="descriptionAndSaveButtonWrapper">
+
+          <div className="descriptionContainer">
+            <label htmlFor="description">Descrição</label>
+            <textarea
+              id="description"
+              name="description"
+              value={description}
+              onChange={handleInputChange}
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+            ></textarea>
+          </div>
+
+          <Button title={'Criar prato'} type="submit" id="saveButton" onClick={handleCreateDish}/>
+        </section>
       </form>
       <Footer />
     </Container>
   );
 }
-
-export default AdminNewDish;

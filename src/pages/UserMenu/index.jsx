@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth'
 
 import { Container } from './styles'
 import { SearchInput } from '../../components/SearchInput'

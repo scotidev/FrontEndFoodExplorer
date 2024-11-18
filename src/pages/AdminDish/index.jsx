@@ -12,7 +12,7 @@ import { Footer } from '../../components/Footer'
 import { PiCaretLeftBold } from "react-icons/pi"
 
 export function AdminDish() {
-    const { id } = useParams();
+    const { id } = useParams()
     const [dishData, setDishData] = useState({
         title: '',
         description: '',
@@ -23,11 +23,11 @@ export function AdminDish() {
     useEffect(() => {
         const fetchDish = async () => {
             try {
-                const response = await api.get(`/dishes/${id}`);
-                const dish = response.data;
-                setDishData(dish);
+                const response = await api.get(`/dishes/${id}`)
+                const dish = response.data
+                setDishData(dish)
             } catch (error) {
-                console.error('Erro:', error);
+                console.error('Erro:', error)
             }
         }
         fetchDish()

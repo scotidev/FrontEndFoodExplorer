@@ -215,12 +215,11 @@ export const Container = styled.div`
                 >.ingredientsContainer {
                     background-color: transparent;
                     border-radius: 8px;
-                
+                    display: flex;
+                    flex-direction: column;
     
                     @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
                         min-width: 80%;
-                        display: flex;
-                        flex-direction: column;
                     }
 
                     >.ingredientsList {
@@ -278,10 +277,6 @@ export const Container = styled.div`
     
                             width: auto;
 
-                            @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-                                
-                            }
-    
                             >#newIngredient {
                                 background-color: transparent;
                                 color: ${({ theme }) => theme.COLORS.LIGHT_500};
@@ -371,7 +366,6 @@ export const Container = styled.div`
                         min-height: 18rem;
                     }
                 }
-        
             }
 
             >.buttonsContainer {

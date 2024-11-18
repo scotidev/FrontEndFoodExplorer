@@ -16,7 +16,7 @@ export const Container = styled.div`
 
         padding: 0 0 3rem 3rem;
 
-        > a button {
+        >a button {
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
             background-color: transparent;
 
