@@ -1,55 +1,40 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Container = styled.div`
-    background-color: ${({ theme }) => theme.COLORS.DARK_900};
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-        
-    width: 100%;
-    border-radius: 5px;
-        
-    >input{
-        color: ${({ theme }) => theme.COLORS.LIGHT_400};
-        background-color: transparent;
+  display: flex;
+  align-items: center;
 
-        display: flex;
-        justify-content: center;
-        padding-left: 16px;
+  width: 100%;
+  border-radius: 5px;
+  padding: 0 1.6rem;
+  height: 4.8rem;
 
-        width: 100%;
-        height: 4.8rem;
+  > svg {
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+    font-size: 2rem;
+    margin-right: 1.4rem;
+  }
 
-        font-family: 'Roboto', sans-serif;
-        font-size: 1.6rem;
-        font-weight: 400;
-        line-height: 100%;
-        text-align: star;
+  > input {
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+    background-color: transparent;
 
-        border: none;
-        border-radius: 5px;
-    }
+    flex-grow: 1;
+    height: 100%;
 
-    >input:focus {
-        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_400};
-        outline: none;
-    }
+    font-family: "Roboto", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 100%;
+    text-align: start;
 
-    >button {
-        background-color: transparent;
-        
-        >svg {
-        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+    border: none;
+    outline: none;
+  }
 
-        font-size: 2.4rem;
-
-        margin-right: 15px;
-        transition: .5s;
-        }
-
-        >svg:hover {
-            color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        }
-    }    
-`
+  > input:focus {
+    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_400};
+  }
+`;
