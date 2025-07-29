@@ -11,14 +11,15 @@ export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn } = useAuth();
+  const { signIn, showError } = useAuth();
 
   function handleSignIn() {
     event.preventDefault();
     if (!email || !password) {
-      alert("Por favor, preencha o e-mail e a senha.");
+      showError("Por favor, preencha o e-mail e a senha.");
       return;
     }
+
     signIn({ email, password });
   }
 
@@ -38,7 +39,7 @@ export function SignIn() {
         <div className="inputWrapper">
           <label htmlFor="email">Email</label>
           <Input
-            placeholder="Exemplo: exemplo@email.com.br"
+            placeholder="exemplo@email.com"
             type="text"
             id="email"
             onChange={(e) => setEmail(e.target.value)}

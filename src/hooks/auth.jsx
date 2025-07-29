@@ -1,52 +1,82 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../services/api";
 
+// Cria um contexto React para compartilhar o estado de autenticação entre componentes, sem precisar passar props manualmente.
 export const AuthContext = createContext({});
 
-function AuthProvider({ children }) {
+// Wrapper das rotas que gerencia o estado de autenticação e disponibiliza funções para seus filhos.
+function AuthProvider({ children, showError, showSuccess }) {
+  // `data` armazena as informações do usuário logado.
+  // `setData` é a função para atualizar esse estado.
   const [data, setData] = useState({});
 
   async function signIn({ email, password }) {
     try {
-      api.defaults.withCredentials = true;
-
+      // Faz uma requisição POST, que retorna os dados do usuário, O token JWT em si NÃO está em `response.data`, mas sim no cookie.
       const response = await api.post("/sessions", { email, password });
       const { user } = response.data;
 
+      // Fz as informações do usuário persistirem mesmo após o navegador ser fechado ou a página recarregada.
       localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
 
+      // Atualiza o estado `data` com as informações do usuário.
       setData({ user });
+
+      // O navegador vai reenviar o cookie "token" automaticamente nas requisições futuras,
+      // porque a instância 'api' (Axios) já foi configurada globalmente com `withCredentials: true` no arquivo `api.js`.
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        showError(error.response.data.message);
       } else {
-        alert("Não foi possível fazer login.");
+        showError("Não foi possível fazer login.");
       }
     }
   }
 
-  function signOut() {
+  async function signOut() {
     localStorage.removeItem("@foodexplorer:user");
+    // Limpa o estado `data` para remover as informações do usuário.
     setData({});
   }
 
+  // Verifica se há um usuário salvo no localStorage para restaurar a sessão, é executado apenas uma vez.
   useEffect(() => {
+    // Tenta obter os dados do usuário do localStorage.
     const user = localStorage.getItem("@foodexplorer:user");
-    if (user) {
-      api.defaults.withCredentials = true;
-      setData({
-        user: JSON.parse(user),
-      });
-    }
-  }, []);
 
+    // Se houver dados de usuário no localStorage:
+    if (user) {
+      try {
+        // Converte a string JSON de volta para um objeto JavaScript.
+        const parsedUser = JSON.parse(user);
+
+        setData({
+          user: parsedUser,
+        });
+      } catch (e) {
+        // Se houver um erro ao parsear o JSON, faz logout.
+        localStorage.removeItem("@foodexplorer:user");
+        showError(
+          "Sua sessão foi corrompida. Por favor, faça login novamente."
+        );
+      }
+    }
+  }, [showError, showSuccess]); // Adicionados como dependência para garantir que o efeito tenha a versão mais recente da função.
+
+  // O componente AuthContext.Provider torna os valores `signIn`, `user` (dados do usuário) e `signOut`
+  // disponíveis para todos os componentes filhos que estiverem dentro de `AuthProvider`.
   return (
-    <AuthContext.Provider value={{ signIn, user: data.user, signOut }}>
+    <AuthContext.Provider
+      value={{ signIn, user: data.user, signOut, showError, showSuccess }}
+    >
       {children}
     </AuthContext.Provider>
   );
 }
 
+// Simplifica o consumo do `AuthContext`.
+// Qualquer componente que precisar acessar as funções ou o estado de autenticação
+// pode simplesmente chamar `useAuth()` em vez de `useContext(AuthContext)`.
 function useAuth() {
   const context = useContext(AuthContext);
   return context;

@@ -7,6 +7,8 @@ import { Logo } from "../../components/Logo/index.jsx";
 import { Input } from "../../components/Input/index.jsx";
 import { Button } from "../../components/Button/index.jsx";
 
+import { useAuth } from "../../hooks/auth.jsx";
+
 export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,6 +16,13 @@ export function SignUp() {
   const [loading, setLoading] = useState(false); // Adiciona estado de carregamento
 
   const navigate = useNavigate();
+  const { showError, showSuccess } = useAuth();
+
+  function isValidEmail(email) {
+    // Expressão regular para validar formatode email (texto@texto.dominio)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 
   async function handleSignUp(event) {
     // Torna a função assíncrona
@@ -28,17 +37,21 @@ export function SignUp() {
       return alert("A senha deve ter no mínimo 6 caracteres.");
     }
 
+    if (!isValidEmail(email)) {
+      return showError("Por favor, digite um formato de e-mail válido.");
+    }
+
     setLoading(true); // Ativa o estado de carregamento
 
     try {
       await api.post("/users", { name, email, password });
-      alert("Usuário cadastrado com sucesso!");
+      showSuccess("Usuário cadastrado com sucesso!");
       navigate("/");
     } catch (error) {
       if (error.response) {
         alert(error.response.data.message);
       } else {
-        alert("Não foi possível cadastrar. Verifique sua conexão.");
+        showSuccess("Não foi possível cadastrar. Verifique sua conexão.");
       }
     } finally {
       setLoading(false); // Desativa o estado de carregamento, independentemente do sucesso ou erro

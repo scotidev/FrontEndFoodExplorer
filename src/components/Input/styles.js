@@ -34,7 +34,7 @@ export const Container = styled.div`
     outline: none;
   }
 
-  > input:focus {
+  &:focus-within {
     border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_400};
   }
 `;

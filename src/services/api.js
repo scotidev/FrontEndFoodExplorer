@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://foodexplorer-api-z2el.onrender.com",
+  baseURL: "http://localhost:3333",
   withCredentials: true,
 });
