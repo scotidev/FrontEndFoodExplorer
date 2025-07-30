@@ -13,8 +13,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
+  white-space: nowrap;
+
   > svg {
-    width: 2.2rem;
-    height: 2.5rem;
+    width: clamp(3rem, 2rem + 2vw, 4rem);
+    height: clamp(3rem, 2rem + 2vw, 4rem);
   }
 `;

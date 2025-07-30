@@ -20,13 +20,14 @@ function PrivateAdminRoute({ children }) {
 
   // Se o usuário não estiver logado ou não for admin, redireciona
   if (!user || user.role !== USER_ROLE.ADMIN) {
-    return <Navigate to="/access-denied" />;
+    return <Navigate to="/accessDenied" />;
   }
 
   // Se for admin, renderiza o componente filho (a página protegida)
   return children;
 }
 
+// Função de Rotas do Aplicativo
 export function AppRoutes() {
   return (
     <Routes>
@@ -49,7 +50,7 @@ export function AppRoutes() {
           </PrivateAdminRoute>
         }
       />
-      <Route path="/access-denied" element={<AccessDenied />} />
+      <Route path="/accessDenied" element={<AccessDenied />} />
       <Route path="*" element={<NotFound />} />{" "}
     </Routes>
   );

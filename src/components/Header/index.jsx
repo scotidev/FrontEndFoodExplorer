@@ -1,16 +1,18 @@
 import { useAuth } from "../../hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 
-import { Container, Menu, Searchbar, SignOut, Orders } from "./styles"; // Importe todos os componentes de estilo necessários
+import { Container, Menu, Searchbar, SignOut, Orders } from "./styles";
 import { Logo } from "../Logo";
-import { Button } from "../Button"; // O Button para "Novo prato"
-import { OrderButton } from "../OrderButton"; // O OrderButton para "Pedidos"
+import { Button } from "../Button";
 import { SearchInput } from "../SearchInput";
+import { OrderButton } from "../OrderButton";
 
-import { PiListBold, PiSignOutBold, PiReceipt } from "react-icons/pi"; // Importe todos os ícones necessários
+import { PiListBold } from "react-icons/pi";
+import { PiSignOutBold } from "react-icons/pi";
+import { PiReceipt } from "react-icons/pi";
 
-export function Header() {
-  const { signOut, user } = useAuth(); // Obtenha o usuário do contexto de autenticação
+export function Header({ onSearchChange }) {
+  const { signOut, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   function handleSignOut() {
@@ -18,55 +20,48 @@ export function Header() {
     navigate("/");
   }
 
-  const isAdmin = user && user.role === "admin"; // Verifica se o usuário é admin
-
   return (
-    <Container>
-      {/* Menu para Mobile - Visível para ambos os usuários */}
-      <Link to={isAdmin ? "/adminMenu" : "/menu"}>
+    <Container $isAdmin={isAdmin}>
+      <Link to={"/menu"} className="menuButton">
         <Menu>
           <PiListBold />
         </Menu>
       </Link>
 
-      {/* Logo e "admin" badge para Admin / Apenas Logo para User */}
-      {isAdmin ? (
-        <div className="LogoWrap">
-          <Logo />
-          <span>admin</span>
-        </div>
-      ) : (
+      <div className="logoWrapper">
         <Logo />
-      )}
+        {isAdmin && <span>admin</span>}
+      </div>
 
-      {/* Searchbar - Visível apenas em Desktop */}
-      <Searchbar>
-        <SearchInput placeholder="Busque por pratos ou ingredientes" />
-      </Searchbar>
+      <div className="desktopWrapper">
+        <Searchbar>
+          <SearchInput
+            placeholder="Busque por pratos ou ingredientes"
+            onChange={(e) => onSearchChange(e.target.value)}
+          />
+        </Searchbar>
 
-      {/* Botão "Novo prato" para Admin / Botão "Pedidos" para User - Visível apenas em Desktop */}
-      {isAdmin ? (
-        <Link to="/newDish">
-          <Button title={"Novo prato"} />
-        </Link>
-      ) : (
-        <>
-          {/* Pedidos mobile com contador (se você tiver a lógica de contador de itens no carrinho) */}
-          <Orders id="OrdersButton">
-            <PiReceipt />
-            <span>0</span>{" "}
-            {/* Substituir '0' pelo contador real de itens no carrinho */}
-          </Orders>
-          {/* Botão de pedidos desktop */}
-          <OrderButton title={"Pedidos (0)"} id="OrdersDesktop" />{" "}
-          {/* Substituir '0' pelo contador real */}
-        </>
-      )}
+        {isAdmin && (
+          <Link to="/newDish" className="newDishButton">
+            <Button title={"Novo prato"} />
+          </Link>
+        )}
 
-      {/* Botão de Sair - Visível apenas em Desktop */}
-      <SignOut id="signOutButton" onClick={handleSignOut}>
-        <PiSignOutBold />
-      </SignOut>
+        {!isAdmin && (
+          <div className="ordersWrapper">
+            <Orders className="ordersMobile">
+              <PiReceipt />
+              <span>0</span>
+            </Orders>
+
+            <OrderButton title={"Pedidos (0)"} className="ordersDesktop" />
+          </div>
+        )}
+
+        <SignOut className="signOutButton" onClick={handleSignOut}>
+          <PiSignOutBold />
+        </SignOut>
+      </div>
     </Container>
   );
 }

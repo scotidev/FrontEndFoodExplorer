@@ -13,11 +13,11 @@ export function SignIn() {
 
   const { signIn, showError } = useAuth();
 
-  function handleSignIn() {
+  function handleSignIn(event) {
     event.preventDefault();
+
     if (!email || !password) {
-      showError("Por favor, preencha o e-mail e a senha.");
-      return;
+      return showError("Por favor, preencha o e-mail e a senha.");
     }
 
     signIn({ email, password });
@@ -25,13 +25,13 @@ export function SignIn() {
 
   function handleKeyPress(event) {
     if (event.key === "Enter") {
-      handleSignIn();
+      handleSignIn(event);
     }
   }
 
   return (
     <Container>
-      <Logo></Logo>
+      <Logo />
 
       <div className="loginBox">
         <h2>Faça login</h2>

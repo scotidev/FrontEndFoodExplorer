@@ -1,11 +1,15 @@
+// src/components/SearchInput/index.jsx (ATUALIZADO)
+
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 
 import { Container, SearchResults } from "./styles";
+import { PiMagnifyingGlass } from "react-icons/pi"; // <--- Importe o ícone aqui
 
-export function SearchInput({ icon: Icon, ...rest }) {
+export function SearchInput({ ...rest }) {
+  // <--- Removida a prop 'icon'
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -13,7 +17,6 @@ export function SearchInput({ icon: Icon, ...rest }) {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  // Função de busca com useCallback para otimização
   const fetchSearchResults = useCallback(async (term) => {
     if (!term) {
       setSearchResults([]);
@@ -32,13 +35,11 @@ export function SearchInput({ icon: Icon, ...rest }) {
     }
   }, []);
 
-  // Implementação do debounce para a busca
   useEffect(() => {
     const handler = setTimeout(() => {
       fetchSearchResults(searchTerm);
-    }, 500); // Debounce de 500ms
+    }, 500);
 
-    // Cleanup: Limpa o timer anterior se o searchTerm mudar antes do tempo
     return () => {
       clearTimeout(handler);
     };
@@ -50,34 +51,28 @@ export function SearchInput({ icon: Icon, ...rest }) {
     } else {
       navigate(`/dish/${id}`);
     }
-    // Opcional: Limpa os resultados e o termo de busca após clicar em um item
     setSearchResults([]);
     setSearchTerm("");
   };
 
-  // Função para lidar com o clique na lupa (se necessário, pode ser apenas visual)
   const handleMagnifyingGlassClick = () => {
-    // Se a lupa for clicável para disparar a busca imediatamente,
-    // você pode chamar fetchSearchResults(searchTerm) aqui.
-    // No entanto, como já temos o debounce, o clique na lupa pode ser
-    // mais para focar no input ou dar um feedback visual.
-    // Pela sua descrição, a busca é reativa à digitação.
+    // Ação para o clique na lupa, se necessário.
+    // Atualmente, a busca já é feita via debounce no useEffect.
   };
 
   return (
     <Container>
-      {Icon && <Icon size={20} onClick={handleMagnifyingGlassClick} />}
+      <PiMagnifyingGlass size={20} onClick={handleMagnifyingGlassClick} />{" "}
+      {/* <--- Ícone hardcoded aqui */}
       <input
         type="text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         {...rest}
       />
-      {/* Opcional: Feedback visual de carregamento */}
       {isSearching && searchTerm && (
         <p className="loading-feedback">Buscando...</p>
       )}
-
       {searchResults.length > 0 && (
         <SearchResults>
           {searchResults.map((result) => (

@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 
 import { ThemeProvider } from "styled-components";
@@ -6,7 +6,7 @@ import theme from "./styles/theme";
 import GlobalStyles from "./styles/global";
 
 import { AuthProvider } from "./hooks/auth";
-import { Error } from "./components/Error";
+import { Toast } from "./components/Toast";
 import { Routes } from "./routes";
 
 const App = () => {
@@ -39,7 +39,7 @@ const App = () => {
         </AuthProvider>
 
         {error && (
-          <Error
+          <Toast
             message={error.message}
             type={error.type}
             onClose={closeError}
@@ -47,7 +47,7 @@ const App = () => {
         )}
 
         {success && (
-          <Error
+          <Toast
             message={success.message}
             type={success.type}
             onClose={closeSuccess}

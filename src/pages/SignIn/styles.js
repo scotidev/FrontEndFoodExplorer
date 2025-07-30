@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
-export const Container = styled.div`
+export const Container = styled.form`
   height: 100vh;
   width: 100vw;
 
@@ -20,11 +20,6 @@ export const Container = styled.div`
     font-size: 1.7rem;
 
     white-space: nowrap;
-
-    > svg {
-      min-height: 4rem;
-      min-width: 4rem;
-    }
   }
 
   > .loginBox {
@@ -35,7 +30,7 @@ export const Container = styled.div`
 
       padding: 6.4rem;
       border-radius: 16px;
-      max-width: 45rem;
+      width: 55rem;
     }
 
     > h2 {

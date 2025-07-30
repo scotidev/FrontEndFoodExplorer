@@ -1,5 +1,12 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import { api } from "../services/api";
+import { USER_ROLE } from "../utils/roles.js";
 
 // Cria um contexto React para compartilhar o estado de autenticação entre componentes, sem precisar passar props manualmente.
 export const AuthContext = createContext({});
@@ -10,34 +17,39 @@ function AuthProvider({ children, showError, showSuccess }) {
   // `setData` é a função para atualizar esse estado.
   const [data, setData] = useState({});
 
-  async function signIn({ email, password }) {
-    try {
-      // Faz uma requisição POST, que retorna os dados do usuário, O token JWT em si NÃO está em `response.data`, mas sim no cookie.
-      const response = await api.post("/sessions", { email, password });
-      const { user } = response.data;
+  const signIn = useCallback(
+    async ({ email, password }) => {
+      try {
+        // Faz uma requisição POST, que retorna os dados do usuário, O token JWT em si NÃO está em `response.data`, mas sim no cookie.
+        const response = await api.post("/sessions", { email, password });
+        const { user } = response.data;
 
-      // Fz as informações do usuário persistirem mesmo após o navegador ser fechado ou a página recarregada.
-      localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+        // Fz as informações do usuário persistirem mesmo após o navegador ser fechado ou a página recarregada.
+        localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+        showSuccess("Login realizado com sucesso!");
 
-      // Atualiza o estado `data` com as informações do usuário.
-      setData({ user });
+        // Atualiza o estado `data` com as informações do usuário.
+        setData({ user });
 
-      // O navegador vai reenviar o cookie "token" automaticamente nas requisições futuras,
-      // porque a instância 'api' (Axios) já foi configurada globalmente com `withCredentials: true` no arquivo `api.js`.
-    } catch (error) {
-      if (error.response) {
-        showError(error.response.data.message);
-      } else {
-        showError("Não foi possível fazer login.");
+        // O navegador vai reenviar o cookie "token" automaticamente nas requisições futuras,
+        // porque a instância 'api' (Axios) já foi configurada globalmente com `withCredentials: true` no arquivo `api.js`.
+      } catch (error) {
+        if (error.response) {
+          showError(error.response.data.message);
+        } else {
+          showError("Não foi possível fazer login.");
+        }
       }
-    }
-  }
+    },
+    [showError, showSuccess]
+  );
 
-  async function signOut() {
+  const signOut = useCallback(async () => {
     localStorage.removeItem("@foodexplorer:user");
     // Limpa o estado `data` para remover as informações do usuário.
     setData({});
-  }
+    showSuccess("Logout realizado.");
+  }, [showSuccess]);
 
   // Verifica se há um usuário salvo no localStorage para restaurar a sessão, é executado apenas uma vez.
   useEffect(() => {
@@ -61,13 +73,22 @@ function AuthProvider({ children, showError, showSuccess }) {
         );
       }
     }
-  }, [showError, showSuccess]); // Adicionados como dependência para garantir que o efeito tenha a versão mais recente da função.
+  }, [showError]); // Adicionados como dependência para garantir que o efeito tenha a versão mais recente da função.
+
+  const isAdmin = data.user && data.user.role === USER_ROLE.ADMIN;
 
   // O componente AuthContext.Provider torna os valores `signIn`, `user` (dados do usuário) e `signOut`
   // disponíveis para todos os componentes filhos que estiverem dentro de `AuthProvider`.
   return (
     <AuthContext.Provider
-      value={{ signIn, user: data.user, signOut, showError, showSuccess }}
+      value={{
+        signIn,
+        user: data.user,
+        signOut,
+        showError,
+        showSuccess,
+        isAdmin,
+      }}
     >
       {children}
     </AuthContext.Provider>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "../../hooks/auth.jsx";
 import { api } from "../../services/api.js";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -7,13 +8,11 @@ import { Logo } from "../../components/Logo/index.jsx";
 import { Input } from "../../components/Input/index.jsx";
 import { Button } from "../../components/Button/index.jsx";
 
-import { useAuth } from "../../hooks/auth.jsx";
-
 export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false); // Adiciona estado de carregamento
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const { showError, showSuccess } = useAuth();
@@ -25,23 +24,21 @@ export function SignUp() {
   }
 
   async function handleSignUp(event) {
-    // Torna a função assíncrona
-    event.preventDefault(); // Garante que o evento padrão de submissão do formulário seja prevenido
+    event.preventDefault();
 
     if (!name || !email || !password) {
-      return alert("Preencha todos os campos.");
-    }
-
-    if (password.length < 6) {
-      // Adiciona validação de senha mínima
-      return alert("A senha deve ter no mínimo 6 caracteres.");
+      return showError("Preencha todos os campos.");
     }
 
     if (!isValidEmail(email)) {
-      return showError("Por favor, digite um formato de e-mail válido.");
+      return showError("Digite um formato de e-mail válido.");
     }
 
-    setLoading(true); // Ativa o estado de carregamento
+    if (password.length < 6) {
+      return showError("A senha deve ter no mínimo 6 caracteres.");
+    }
+
+    setLoading(true);
 
     try {
       await api.post("/users", { name, email, password });
@@ -49,25 +46,25 @@ export function SignUp() {
       navigate("/");
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        showError(error.response.data.message);
       } else {
-        showSuccess("Não foi possível cadastrar. Verifique sua conexão.");
+        showError("Não foi possível cadastrar.");
       }
     } finally {
-      setLoading(false); // Desativa o estado de carregamento, independentemente do sucesso ou erro
+      setLoading(false);
     }
   }
 
-  // handleKeyPress agora chama handleSignUp, que já previne o default
   function handleKeyPress(event) {
     if (event.key === "Enter") {
-      handleSignUp(event); // Passa o evento para handleSignUp
+      handleSignUp(event);
     }
   }
 
   return (
     <Container>
-      <Logo /> {/* Componentes sem filhos podem ser self-closing */}
+      <Logo />
+
       <div className="loginBox">
         <h2>Crie sua conta</h2>
 
@@ -78,16 +75,19 @@ export function SignUp() {
             type="text"
             id="name"
             onChange={(e) => setName(e.target.value)}
+            onKeyPress={handleKeyPress}
+            autoFocus
           />
         </div>
 
         <div className="inputWrapper">
           <label htmlFor="email">Email</label>
           <Input
-            placeholder="Exemplo: exemplo@email.com.br"
+            placeholder="exemplo@email.com.br"
             type="text"
             id="email"
             onChange={(e) => setEmail(e.target.value)}
+            onKeyPress={handleKeyPress}
           />
         </div>
 
@@ -105,7 +105,7 @@ export function SignUp() {
         <Button
           title={loading ? "Cadastrando..." : "Cadastrar"}
           onClick={handleSignUp}
-          disabled={loading} // Desabilita o botão durante o carregamento
+          disabled={loading}
         />
 
         <Link to="/">Já tenho uma conta</Link>
