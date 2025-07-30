@@ -39,7 +39,7 @@ export function Cards({
         )}
 
         {/* Link da Imagem e Título */}
-        <Link to={isAdmin ? `/adminDish/${id}` : `/dish/${id}`}>
+        <Link to={isAdmin ? `/dish/${id}` : `/dish/${id}`}>
           <Image>
             <img
               src={image}

@@ -4,13 +4,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { api } from "../../services/api";
 
 import { Container } from "./styles";
-import { HeaderAdmin } from "../../components/HeaderAdmin";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 
 import { PiCaretLeftBold, PiUploadSimpleBold } from "react-icons/pi";
 import { VscClose } from "react-icons/vsc";
 import { HiOutlinePlus } from "react-icons/hi2";
+import { Header } from "../../components/Header";
 
 export function NewDish() {
   const navigate = useNavigate();
@@ -126,7 +126,7 @@ export function NewDish() {
 
   return (
     <Container>
-      <HeaderAdmin />
+      <Header />
 
       <form onSubmit={handleCreateDish}>
         <Link to="/">

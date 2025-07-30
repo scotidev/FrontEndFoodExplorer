@@ -5,8 +5,6 @@ import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth"; // Importar hook de autenticação
 
 import { Container } from "./styles";
-import { HeaderAdmin } from "../../components/HeaderAdmin"; // Manter import para o admin
-import { HeaderUser } from "../../components/HeaderUser"; // Manter import para o user
 import { Ingredient } from "../../components/Ingredient";
 import { Button } from "../../components/Button"; // Usado para o botão de editar
 import { Stepper } from "../../components/Stepper"; // Usado para o stepper do usuário
@@ -14,6 +12,7 @@ import { OrderButton } from "../../components/OrderButton"; // Usado para o bot�
 import { Footer } from "../../components/Footer";
 
 import { PiCaretLeftBold } from "react-icons/pi";
+import { Header } from "../../components/Header";
 
 export function DishDetails() {
   const { id } = useParams();
@@ -51,7 +50,7 @@ export function DishDetails() {
 
   return (
     <Container>
-      {isAdmin ? <HeaderAdmin /> : <HeaderUser />}{" "}
+      <Header />
       {/* Renderiza o cabeçalho condicionalmente */}
       <div className="content">
         <div className="backAndImageWrapper">
