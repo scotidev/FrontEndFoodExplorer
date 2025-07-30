@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container } from "./styles";
 
-// Componente Toast para exibir mensagens temporárias.
 // Recebe 'message' (o texto a ser exibido), 'type' (para estilização, ex: 'error', 'success')
 // e 'onClose' (função para chamar quando o toast deve ser fechado/removido).
 export function Toast({ message, type = "error", onClose }) {

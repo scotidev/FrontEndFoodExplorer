@@ -3,13 +3,13 @@ import { PiPencilSimpleBold, PiHeartStraightBold } from "react-icons/pi"; // Imp
 
 import {
   Container,
-  ControlButton,
+  EditButton,
   Image,
   Title,
   Description,
   Price,
-} from "./styles"; // Renomeada Edit/Favorite para ControlButton
-import { Stepper } from "../Stepper"; // Certifique-se de que Stepper e Button existam
+} from "./styles";
+import { Stepper } from "../Stepper";
 import { Button } from "../Button";
 
 export function Cards({
@@ -21,25 +21,22 @@ export function Cards({
   isAdmin,
   ...rest
 }) {
-  // Adicionada prop isAdmin
   return (
     <Container {...rest}>
-      <div className="card">
-        {/* Botão de controle condicional (Edição para Admin, Favorito para Usuário) */}
+      <div className="cardWrapper">
         {isAdmin ? (
           <Link to={`/editDish/${id}`}>
-            <ControlButton className="edit-button">
+            <EditButton>
               <PiPencilSimpleBold />
-            </ControlButton>
+            </EditButton>
           </Link>
         ) : (
-          <ControlButton className="favorite-button">
+          <EditButton>
             <PiHeartStraightBold />
-          </ControlButton>
+          </EditButton>
         )}
 
-        {/* Link da Imagem e Título */}
-        <Link to={isAdmin ? `/dish/${id}` : `/dish/${id}`}>
+        <Link to={`/dish/${id}`}>
           <Image>
             <img
               src={image}
@@ -50,20 +47,16 @@ export function Cards({
           </Image>
         </Link>
 
-        <Title>
-          {/* O sufixo ">" é tratado diretamente no Home.jsx para manter o title do card puro */}
-          {title}
-        </Title>
+        <Title>{title}</Title>
 
         <Description>{description}</Description>
 
-        <Price>{`R$ ` + price}</Price>
+        <Price>{`R$ ` + String(price).replace(".", ",")}</Price>
 
-        {/* Stepper e Botão de Incluir (apenas para Usuário) */}
         {!isAdmin && (
-          <div className="stepperAndBtnWrap">
+          <div className="stepperButtonWrapper">
             <Stepper />
-            <Button title="incluir" id="addDishBtn" />
+            <Button title="incluir" className="addDishButton" />
           </div>
         )}
       </div>

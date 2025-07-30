@@ -1,20 +1,21 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Container = styled.button`
-    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+  color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
-    width: 100%;
-    height: 4.8rem;
-    padding: 1.2rem 2.4rem;
-    border-radius: 5px;
+  width: fit-content;
+  min-width: 9rem;
+  min-height: 4rem;
+  padding: 1.2rem 2.4rem;
+  border-radius: 5px;
 
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
 
-    transition: .3s;
+  transition: 0.3s;
 
-    &:hover {
-        background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
-    }
-`
+  &:hover {
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
+  }
+`;
