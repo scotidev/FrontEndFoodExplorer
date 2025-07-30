@@ -44,15 +44,6 @@ export const Container = styled.nav`
     padding: 0;
     margin: 0;
 
-    > .ordersWrapper {
-      > .ordersMobile {
-        display: block;
-      }
-      > .ordersDesktop {
-        display: none;
-      }
-    }
-
     > .newDishButton {
       display: none;
     }
@@ -64,12 +55,7 @@ export const Container = styled.nav`
     justify-content: space-between;
     gap: 3.2rem;
 
-    > .menuButton {
-      display: none;
-    }
-
     > .logoWrapper {
-      display: flex;
       flex-direction: column;
       flex-shrink: 0;
       gap: 0;
@@ -81,31 +67,16 @@ export const Container = styled.nav`
 
     > .desktopWrapper {
       width: 100%;
-      gap: 5rem;
+      gap: 3.2rem;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      > .ordersWrapper {
-        > .ordersMobile {
-          display: none;
-        }
-
-        > .ordersDesktop {
-          display: block;
-        }
-      }
-
       > .newDishButton {
-        display: block;
+        display: flex;
         white-space: nowrap;
       }
-    }
-
-    > .signOutButton:hover {
-      color: ${({ theme }) => theme.COLORS.LIGHT_500};
-      transition: 0.5s;
     }
   }
 `;
@@ -128,8 +99,8 @@ export const Searchbar = styled.div`
   display: none;
 
   @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-    display: block;
-    width: 80%;
+    display: flex;
+    width: 100%;
   }
 `;
 
@@ -137,42 +108,55 @@ export const Orders = styled.button`
   background-color: transparent;
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
   font-size: 3rem;
-  position: relative; /* Para posicionar o span do contador */
+  position: relative;
+
   > svg {
-    /* Aplica ao ícone dentro do botão Menu */
     vertical-align: middle;
-  }
-  @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-    display: none; /* Esconde no desktop, pois o OrderButton entra em cena */
   }
 
   > span {
-    background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font-family: "Poppins", sans-serif;
-    font-size: 1.2rem;
-    font-weight: 500;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 99px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     top: -3px;
     right: -5px;
-    cursor: pointer;
+
+    width: 2rem;
+    height: 2rem;
+    border-radius: 99px;
+
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+    display: none;
   }
 `;
 
 export const SignOut = styled.button`
   display: none;
+
   @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-    display: block;
-    margin-right: auto;
+    display: flex;
+    flex-shrink: 0;
+
     background-color: transparent;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
+    min-width: 0;
+    width: 5rem;
+
     font-size: 3.2rem;
+
+    &:hover {
+      color: ${({ theme }) => theme.COLORS.LIGHT_500};
+      transition: 0.3s;
+    }
   }
 `;

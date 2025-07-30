@@ -5,9 +5,9 @@ export const Container = styled.button`
   background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
-  width: 21.6rem;
+  width: fit-content;
   height: 5.6rem;
-  padding: 1.6rem 3.3rem;
+  padding: 1.4rem 2.2rem;
   border-radius: 5px;
 
   display: flex;
@@ -17,6 +17,7 @@ export const Container = styled.button`
 
   font-family: "Poppins", sans-serif;
   font-weight: 500;
+  white-space: nowrap;
 
   transition: 0.3s;
 
@@ -28,16 +29,7 @@ export const Container = styled.button`
     font-size: 3.5rem;
   }
 
-  @media (max-width: ${DEVICE_BREAKPOINTS.Tablet}) {
-    width: 100%;
-  }
-
-  @media (max-width: 480px) {
-    width: 18rem;
-    padding: 1rem 2rem;
-    font-size: 1.4rem;
-    > svg {
-      font-size: 3rem;
-    }
+  @media (max-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+    display: none;
   }
 `;

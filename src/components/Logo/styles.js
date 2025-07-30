@@ -5,7 +5,7 @@ export const Container = styled.div`
 
   font-family: "Roboto", sans-serif;
   font-weight: 700;
-  font-size: clamp(1.2rem, 0.8rem + 2vw, 2.4rem);
+  font-size: clamp(1.2rem, 0.8rem + 2vw, 1.8rem);
 
   gap: 1.1rem;
 
@@ -16,7 +16,7 @@ export const Container = styled.div`
   white-space: nowrap;
 
   > svg {
-    width: clamp(3rem, 2rem + 2vw, 4rem);
-    height: clamp(3rem, 2rem + 2vw, 4rem);
+    width: clamp(3rem, 2rem + 2vw, 3.8rem);
+    height: clamp(3rem, 2rem + 2vw, 3.8rem);
   }
 `;

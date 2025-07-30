@@ -48,17 +48,17 @@ export function Header({ onSearchChange }) {
         )}
 
         {!isAdmin && (
-          <div className="ordersWrapper">
-            <Orders className="ordersMobile">
+          <>
+            <Orders>
               <PiReceipt />
               <span>0</span>
             </Orders>
 
-            <OrderButton title={"Pedidos (0)"} className="ordersDesktop" />
-          </div>
+            <OrderButton title={"Pedidos (0)"} />
+          </>
         )}
 
-        <SignOut className="signOutButton" onClick={handleSignOut}>
+        <SignOut onClick={handleSignOut}>
           <PiSignOutBold />
         </SignOut>
       </div>
