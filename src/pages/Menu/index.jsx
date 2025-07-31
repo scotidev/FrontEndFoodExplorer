@@ -3,7 +3,6 @@ import { useAuth } from "../../hooks/auth"; // Importar useAuth para verificar o
 
 import { Container } from "./styles";
 import { SearchInput } from "../../components/SearchInput";
-import { Footer } from "../../components/Footer";
 
 import { PiX, PiMagnifyingGlass } from "react-icons/pi";
 
@@ -54,8 +53,6 @@ export function Menu() {
           <button onClick={handleSignOut}>Sair</button>
         </div>
       </div>
-
-      <Footer />
     </Container>
   );
 }

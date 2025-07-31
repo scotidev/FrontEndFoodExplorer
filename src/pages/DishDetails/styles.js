@@ -7,8 +7,6 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center; /* Centraliza o conteúdo principal horizontalmente */
 
-  overflow-y: auto; /* Permite rolagem se o conteúdo for maior que a tela */
-
   > .content {
     width: 75%; /* Largura do conteúdo em mobile e desktop */
     margin-top: 12rem; /* Espaço para o Header */

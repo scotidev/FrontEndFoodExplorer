@@ -9,10 +9,8 @@ import { Ingredient } from "../../components/Ingredient";
 import { Button } from "../../components/Button"; // Usado para o botão de editar
 import { Stepper } from "../../components/Stepper"; // Usado para o stepper do usuário
 import { OrderButton } from "../../components/OrderButton"; // Usado para o botão de pedido do usuário
-import { Footer } from "../../components/Footer";
 
 import { PiCaretLeftBold } from "react-icons/pi";
-import { Header } from "../../components/Header";
 
 export function DishDetails() {
   const { id } = useParams();
@@ -50,7 +48,6 @@ export function DishDetails() {
 
   return (
     <Container>
-      <Header />
       {/* Renderiza o cabeçalho condicionalmente */}
       <div className="content">
         <div className="backAndImageWrapper">
@@ -100,7 +97,6 @@ export function DishDetails() {
           )}
         </div>
       </div>
-      <Footer />
     </Container>
   );
 }

@@ -4,7 +4,6 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 export const Container = styled.div`
   color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
-  height: 100vh;
   width: 100%;
   position: relative; /* Mudado de absolute para relative para melhor fluxo de documento */
 
@@ -13,8 +12,7 @@ export const Container = styled.div`
 
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
-  overflow-y: auto; /* Adicionado para permitir rolagem vertical do conteúdo */
-
+  flex: 1;
   > .banner {
     display: flex;
     align-self: center;
@@ -132,11 +130,5 @@ export const Container = styled.div`
         display: none;
       }
     }
-  }
-
-  > footer {
-    position: relative; /* Permite que o footer siga o fluxo do documento */
-    margin-top: auto; /* Empurra o footer para o final do Container */
-    width: 100%; /* Garante que o footer ocupe a largura total */
   }
 `;

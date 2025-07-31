@@ -5,12 +5,10 @@ import { api } from "../../services/api";
 
 import { Container } from "./styles";
 import { Button } from "../../components/Button";
-import { Footer } from "../../components/Footer";
 
 import { PiCaretLeftBold, PiUploadSimpleBold } from "react-icons/pi";
 import { VscClose } from "react-icons/vsc";
 import { HiOutlinePlus } from "react-icons/hi2";
-import { Header } from "../../components/Header";
 
 export function NewDish() {
   const navigate = useNavigate();
@@ -126,8 +124,6 @@ export function NewDish() {
 
   return (
     <Container>
-      <Header />
-
       <form onSubmit={handleCreateDish}>
         <Link to="/">
           <button className="backButton">
@@ -238,7 +234,6 @@ export function NewDish() {
           <Button title={"Criar prato"} type="submit" id="saveButton" />
         </section>
       </form>
-      <Footer />
     </Container>
   );
 }

@@ -5,9 +5,7 @@ import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 
 import { Container } from "./styles";
-import { Header } from "../../components/Header";
 import { Cards } from "../../components/Cards";
-import { Footer } from "../../components/Footer";
 
 import homeImg from "../../assets/images/homeImage.svg";
 
@@ -83,7 +81,6 @@ export function Home() {
 
   return (
     <Container>
-      <Header />
       <div
         className="banner"
         style={{
@@ -145,7 +142,6 @@ export function Home() {
           </motion.div>
         </motion.section>
       ))}
-      <Footer />
     </Container>
   );
 }

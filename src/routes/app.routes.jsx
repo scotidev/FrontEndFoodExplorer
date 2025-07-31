@@ -2,6 +2,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/auth";
 import { USER_ROLE } from "../utils/roles";
 
+// Layout
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { AppLayout, Content } from "../styles/layout";
+
 // Páginas comuns e condicionais
 import { Home } from "../pages/Home";
 import { DishDetails } from "../pages/DishDetails";
@@ -30,28 +35,35 @@ function PrivateAdminRoute({ children }) {
 // Função de Rotas do Aplicativo
 export function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/dish/:id" element={<DishDetails />} />
-      <Route path="/menu" element={<Menu />} />
-      <Route
-        path="/newDish"
-        element={
-          <PrivateAdminRoute>
-            <NewDish />
-          </PrivateAdminRoute>
-        }
-      />
-      <Route
-        path="/editDish/:id"
-        element={
-          <PrivateAdminRoute>
-            <EditDish />
-          </PrivateAdminRoute>
-        }
-      />
-      <Route path="/accessDenied" element={<AccessDenied />} />
-      <Route path="*" element={<NotFound />} />{" "}
-    </Routes>
+    <AppLayout>
+      <Header />
+      <Content>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dish/:id" element={<DishDetails />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route
+            path="/newDish"
+            element={
+              <PrivateAdminRoute>
+                <NewDish />
+              </PrivateAdminRoute>
+            }
+          />
+          <Route
+            path="/editDish/:id"
+            element={
+              <PrivateAdminRoute>
+                <EditDish />
+              </PrivateAdminRoute>
+            }
+          />
+          <Route path="/accessDenied" element={<AccessDenied />} />
+          <Route path="*" element={<NotFound />} />{" "}
+        </Routes>
+      </Content>
+
+      <Footer />
+    </AppLayout>
   );
 }

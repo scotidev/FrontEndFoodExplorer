@@ -31,6 +31,7 @@ export const Container = styled.nav`
 
     > span {
       color: ${({ theme }) => theme.COLORS.CAKE_200};
+      font-family: Roboto;
       font-size: 1rem;
     }
   }
