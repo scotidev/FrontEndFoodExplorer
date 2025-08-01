@@ -21,7 +21,7 @@ export const Container = styled.nav`
     grid-area: menu;
   }
 
-  > .logoWrapper {
+  > .logoButton {
     grid-area: logo;
     display: flex;
     align-items: center;
@@ -31,7 +31,7 @@ export const Container = styled.nav`
 
     > span {
       color: ${({ theme }) => theme.COLORS.CAKE_200};
-      font-family: Roboto;
+      font-family: "Roboto";
       font-size: 1rem;
     }
   }
@@ -56,7 +56,7 @@ export const Container = styled.nav`
     justify-content: space-between;
     gap: 3.2rem;
 
-    > .logoWrapper {
+    > .logoButton {
       flex-direction: column;
       flex-shrink: 0;
       gap: 0;

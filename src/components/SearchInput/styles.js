@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"; // Importar se for usar media queries aqui
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   position: relative;
@@ -8,32 +8,40 @@ export const Container = styled.div`
 
   width: 100%;
   border-radius: 5px;
-  height: 4.8rem; /* Define a altura do container principal */
-  background-color: ${({ theme }) =>
-    theme.COLORS.DARK_900}; /* Move o background para o container */
-  padding: 0 1.6rem; /* Padding horizontal para o conteúdo interno */
+  height: 4.8rem;
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};
+  padding: 0 1.6rem;
 
-  > svg {
-    /* Estilo do ícone da lupa */
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    font-size: 2.4rem;
-    margin-right: 1.4rem;
+  > button {
+    /* Estilo do botão da lupa */
+    background: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: 0.3s;
+    margin-right: 1.4rem;
 
-    &:hover {
-      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    > svg {
+      color: ${({ theme }) => theme.COLORS.LIGHT_400};
+      font-size: 2.4rem;
+      transition: 0.3s;
+
+      &:hover {
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+      }
     }
   }
 
   > input {
-    flex: 1; /* Permite que o input ocupe todo o espaço restante */
+    flex: 1;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    background-color: transparent; /* Input sem fundo próprio, usa o do container */
+    background-color: transparent;
     border: none;
     outline: none;
 
-    height: 100%; /* Ocupa a altura total do container */
+    height: 100%;
 
     font-family: "Roboto", sans-serif;
     font-size: 1.6rem;
@@ -41,14 +49,22 @@ export const Container = styled.div`
     line-height: 100%;
     text-align: start;
 
+    &::placeholder {
+      /* Estilo para o placeholder */
+      color: ${({ theme }) => theme.COLORS.LIGHT_500};
+    }
+
     &:focus {
       border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_400};
-      border-radius: 5px; /* Garante que a borda de foco também seja arredondada */
+      border-radius: 5px;
+      /* Remove o padding padrão do input quando focado, se o border de 1px deslocar */
+      padding: 0 0.5rem;
+      /* Ajuste a largura do input para compensar a borda se necessário */
+      box-sizing: border-box;
     }
   }
 
   .loading-feedback {
-    /* Estilo opcional para feedback de carregamento */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -58,6 +74,7 @@ export const Container = styled.div`
     padding: 0.5rem 1rem;
     border-radius: 5px;
     z-index: 1001;
+    white-space: nowrap;
   }
 `;
 
@@ -72,46 +89,67 @@ export const SearchResults = styled.div`
   right: 0;
   z-index: 1000;
   overflow-y: auto;
-  max-height: 250px; /* Definido um max-height fixo para a rolagem interna */
+  max-height: 250px;
 
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+  border: 1px solid ${({ theme }) => theme.COLORS.DARK_800}; /* Borda mais discreta */
+  border-radius: 0 0 5px 5px; /* Apenas as bordas de baixo arredondadas */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+
+  /* Adicionado para preencher o espaço do scrollbar, se visível */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.LIGHT_500};
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.COLORS.DARK_700};
+  }
 
   .searchResultItem {
-    padding: 0.8rem 1.6rem; /* Padding ajustado para melhor espaçamento */
+    padding: 1rem 1.6rem; /* Padding ajustado para melhor espaçamento */
     cursor: pointer;
+    border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_800}; /* Separador entre itens */
+
+    &:last-child {
+      border-bottom: none; /* Remove borda do último item */
+    }
 
     &:hover {
-      background-color: ${({ theme }) =>
-        theme.COLORS.TOMATO_400}; /* Cor de hover para item de busca */
+      background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
 
     strong {
-      font-size: 2rem;
-      text-decoration: underline;
+      font-size: 1.8rem; /* Ajustado para um tamanho mais comum */
+      font-weight: 700; /* Negrito */
+      color: ${({ theme }) => theme.COLORS.LIGHT_100}; /* Cor mais visível */
+      text-decoration: none; /* Removido sublinhado padrão */
     }
 
     ul {
       display: flex;
-      flex-wrap: wrap; /* Permite que os ingredientes quebrem linha */
+      flex-wrap: wrap;
       gap: 0.8rem;
-      margin: 0;
+      margin-top: 0.5rem; /* Espaçamento entre título e ingredientes */
       padding: 0;
       list-style: none;
+      color: ${({ theme }) =>
+        theme.COLORS.LIGHT_400}; /* Cor para ingredientes */
     }
 
     li {
-      font-size: 1.5rem;
-      padding: 0.4rem 0;
-      white-space: nowrap; /* Evita que o nome do ingrediente quebre */
+      font-size: 1.4rem; /* Ajuste para ingredientes */
+      white-space: nowrap;
+      background-color: ${({ theme }) =>
+        theme.COLORS.DARK_700}; /* Fundo para cada ingrediente */
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
     }
   }
 
-  /* Estilos para responsividade da caixa de resultados, se necessário */
   @media (max-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-    /* Exemplo de ajuste de max-height para mobile */
-    max-height: 200px;
+    max-height: 180px; /* Ajuste para mobile se necessário */
   }
 `;

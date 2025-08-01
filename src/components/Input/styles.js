@@ -11,12 +11,6 @@ export const Container = styled.div`
   padding: 0 1.6rem;
   height: 4.8rem;
 
-  > svg {
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    font-size: 2rem;
-    margin-right: 1.4rem;
-  }
-
   > input {
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
     background-color: transparent;

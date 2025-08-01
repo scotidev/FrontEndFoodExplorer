@@ -1,9 +1,9 @@
-import { Container } from './styles'
+import { Container } from "./styles";
 
 export function Ingredient({ title }) {
-    return(
-    <Container type='button'>
-        {title}
+  return (
+    <Container type="button" disabled={true}>
+      {title}
     </Container>
-    )
+  );
 }

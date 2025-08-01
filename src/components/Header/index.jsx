@@ -11,7 +11,7 @@ import { PiListBold } from "react-icons/pi";
 import { PiSignOutBold } from "react-icons/pi";
 import { PiReceipt } from "react-icons/pi";
 
-export function Header({ onSearchChange }) {
+export function Header() {
   const { signOut, isAdmin } = useAuth();
   const navigate = useNavigate();
 
@@ -28,17 +28,14 @@ export function Header({ onSearchChange }) {
         </Menu>
       </Link>
 
-      <div className="logoWrapper">
+      <Link to={"/"} className="logoButton">
         <Logo />
         {isAdmin && <span>admin</span>}
-      </div>
+      </Link>
 
       <div className="desktopWrapper">
         <Searchbar>
-          <SearchInput
-            placeholder="Busque por pratos ou ingredientes"
-            onChange={(e) => onSearchChange(e.target.value)}
-          />
+          <SearchInput placeholder="Busque por pratos ou ingredientes" />
         </Searchbar>
 
         {isAdmin && (
