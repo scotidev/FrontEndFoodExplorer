@@ -1,6 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
 
-// Keyframes para a animação de entrada
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -12,7 +11,6 @@ const fadeIn = keyframes`
   }
 `;
 
-// Keyframes para a animação de saída
 const fadeOut = keyframes`
   from {
     opacity: 1;
@@ -25,28 +23,38 @@ const fadeOut = keyframes`
 `;
 
 export const Container = styled.div`
-  position: fixed; // Posição fixa na tela, fora do fluxo normal do documento.
-  top: 0; // Alinha ao topo da viewport.
-  left: 0; // Alinha à esquerda da viewport.
-  width: 100%; // Ocupa toda a largura da tela.
-  padding: 1.6rem; // Espaçamento interno.
-  text-align: center; // Centraliza o texto.
-  color: ${({ theme }) => theme.COLORS.LIGHT_100}; // Cor do texto.
-  font-weight: bold; // Negrito para o texto.
-  z-index: 9999; // Garante que o toast esteja acima de outros elementos.
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); // Sombra para destaque.
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.6rem;
+  z-index: 100;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
 
   // Cores de fundo baseadas no tipo do toast
+  color: ${({ type, theme }) => {
+    switch (type) {
+      case "success":
+        return theme.COLORS.CAKE_100;
+      case "error":
+        return theme.COLORS.LIGHT_300;
+      default:
+        return theme.COLORS.LIGHT_300;
+    }
+  }};
+
   background-color: ${({ type, theme }) => {
     switch (type) {
       case "success":
-        return theme.COLORS.MINT; // Exemplo de cor verde para sucesso
+        return theme.COLORS.MINT;
       case "error":
-        return theme.COLORS.TOMATO_300; // Exemplo de cor vermelha para erro (ou TOMATO_300 se definido)
-      case "info":
-        return theme.COLORS.BLUE_200; // Exemplo de cor azul para informação
+        return theme.COLORS.TOMATO_300;
       default:
-        return theme.COLORS.TOMATO_300; // Padrão para erro
+        return theme.COLORS.TOMATO_300;
     }
   }};
 
@@ -54,9 +62,9 @@ export const Container = styled.div`
   ${({ isvisible }) =>
     isvisible
       ? css`
-          animation: ${fadeIn} 0.3s forwards;
+          animation: ${fadeIn} 0.5s forwards;
         `
       : css`
-          animation: ${fadeOut} 0.3s forwards;
+          animation: ${fadeOut} 0.5s forwards;
         `}
 `;
