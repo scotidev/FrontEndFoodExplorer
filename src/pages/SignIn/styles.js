@@ -69,7 +69,7 @@ export const Container = styled.form`
     }
 
     > button {
-      min-width: 22rem;
+      width: 100%;
     }
 
     > a {
