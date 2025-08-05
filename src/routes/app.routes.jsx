@@ -5,7 +5,7 @@ import { USER_ROLE } from "../utils/roles";
 // Layout
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { AppLayout, Content } from "../styles/layout";
+import { AppLayout } from "../components/AppLayout";
 
 // Páginas comuns e condicionais
 import { Home } from "../pages/Home";
@@ -35,35 +35,31 @@ function PrivateAdminRoute({ children }) {
 // Função de Rotas do Aplicativo
 export function AppRoutes() {
   return (
-    <AppLayout>
-      <Header />
-      <Content>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dish/:id" element={<DishDetails />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route
-            path="/newDish"
-            element={
-              <PrivateAdminRoute>
-                <NewDish />
-              </PrivateAdminRoute>
-            }
-          />
-          <Route
-            path="/editDish/:id"
-            element={
-              <PrivateAdminRoute>
-                <EditDish />
-              </PrivateAdminRoute>
-            }
-          />
-          <Route path="/accessDenied" element={<AccessDenied />} />
-          <Route path="*" element={<NotFound />} />{" "}
-        </Routes>
-      </Content>
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/dish/:id" element={<DishDetails />} />
+        <Route path="/menu" element={<Menu />} />
 
-      <Footer />
-    </AppLayout>
+        <Route
+          path="/newDish"
+          element={
+            <PrivateAdminRoute>
+              <NewDish />
+            </PrivateAdminRoute>
+          }
+        />
+        <Route
+          path="/editDish/:id"
+          element={
+            <PrivateAdminRoute>
+              <EditDish />
+            </PrivateAdminRoute>
+          }
+        />
+      </Route>
+      <Route path="/accessDenied" element={<AccessDenied />} />
+      <Route path="*" element={<NotFound />} />{" "}
+    </Routes>
   );
 }
