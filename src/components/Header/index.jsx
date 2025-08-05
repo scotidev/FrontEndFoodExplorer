@@ -35,7 +35,7 @@ export function Header() {
 
       <div className="desktopWrapper">
         <Searchbar>
-          <SearchInput placeholder="Busque por pratos ou ingredientes" />
+          <SearchInput />
         </Searchbar>
 
         {isAdmin && (

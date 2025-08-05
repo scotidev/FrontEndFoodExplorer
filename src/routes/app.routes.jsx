@@ -39,7 +39,6 @@ export function AppRoutes() {
       <Route path="/" element={<AppLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/dish/:id" element={<DishDetails />} />
-        <Route path="/menu" element={<Menu />} />
 
         <Route
           path="/newDish"
@@ -58,6 +57,7 @@ export function AppRoutes() {
           }
         />
       </Route>
+      <Route path="/menu" element={<Menu />} />
       <Route path="/accessDenied" element={<AccessDenied />} />
       <Route path="*" element={<NotFound />} />{" "}
     </Routes>
