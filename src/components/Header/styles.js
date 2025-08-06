@@ -48,6 +48,10 @@ export const Container = styled.nav`
     > .newDishButton {
       display: none;
     }
+
+    > .orderButton {
+      display: none;
+    }
   }
 
   @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
@@ -77,6 +81,10 @@ export const Container = styled.nav`
       > .newDishButton {
         display: flex;
         white-space: nowrap;
+      }
+
+      > .orderButton {
+        display: flex;
       }
     }
   }

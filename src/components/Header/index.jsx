@@ -51,7 +51,7 @@ export function Header() {
               <span>0</span>
             </Orders>
 
-            <OrderButton title={"Pedidos (0)"} />
+            <OrderButton title={"Pedidos (0)"} className="orderButton" />
           </>
         )}
 

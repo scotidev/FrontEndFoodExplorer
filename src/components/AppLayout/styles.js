@@ -8,4 +8,6 @@ export const AppLayout = styled.div`
 
 export const Content = styled.main`
   flex: 1;
+  overflow-y: auto;
+  padding-top: 14.4rem;
 `;

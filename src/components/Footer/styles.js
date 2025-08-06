@@ -7,6 +7,7 @@ export const Container = styled.footer`
   width: 100%;
   height: 6rem;
   padding: 2.4rem 6rem;
+  margin-top: 4.6rem;
   gap: 2.5rem;
 
   display: flex;
