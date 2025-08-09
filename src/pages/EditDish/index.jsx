@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 import { api } from "../../services/api";
-import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/auth.jsx";
 
 import { Container } from "./styles";
 import { Button } from "../../components/Button";
 
-import { PiCaretLeftBold } from "react-icons/pi";
-import { PiUploadSimpleBold } from "react-icons/pi";
+import { PiCaretLeftBold, PiUploadSimpleBold } from "react-icons/pi";
 import { VscClose } from "react-icons/vsc";
 import { HiOutlinePlus } from "react-icons/hi2";
 
 export function EditDish() {
   const { id } = useParams();
+  const { showSuccess, showError } = useAuth();
+  const navigate = useNavigate();
+
   const [newIngredient, setNewIngredient] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
-  const navigate = useNavigate();
   const [dishData, setDishData] = useState({
     id: "",
     title: "",
@@ -34,12 +35,12 @@ export function EditDish() {
         dish.price = dish.price.toString().replace(",", ".");
         setDishData(dish);
       } catch (error) {
-        console.error("Erro ao buscar prato:", error);
+        showError("Erro ao buscar prato.");
       }
     };
 
     fetchDish();
-  }, [id]);
+  }, [id, showError]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -86,17 +87,10 @@ export function EditDish() {
           },
         });
       }
-
-      alert("Prato atualizado com sucesso!");
+      showSuccess("Prato atualizado com sucesso!");
       navigate("/");
     } catch (error) {
-      console.error("Erro ao atualizar prato:", error);
-      if (error.response) {
-        console.error("Resposta da API:", error.response.data);
-      }
-      alert(
-        "Não foi possível atualizar o prato. Verifique os dados e tente novamente."
-      );
+      showError("Erro ao atualizar prato.");
     }
   };
 
@@ -105,20 +99,23 @@ export function EditDish() {
     if (confirmDelete) {
       try {
         await api.delete(`/adminDishes/${id}`);
-        alert("Prato deletado!");
+        showSuccess("Prato deletado!");
         navigate("/");
       } catch (error) {
-        console.error("Erro ao deletar prato:", error);
-        alert("Não foi possível deletar o prato.");
+        showError("Erro ao deletar prato.");
       }
     }
   };
+
+  function handleGoBack() {
+    navigate(-1);
+  }
 
   return (
     <Container>
       <form>
         <Link to="/">
-          <button className="backButton">
+          <button className="backButton" onClick={handleGoBack}>
             <PiCaretLeftBold />
             voltar
           </button>
@@ -209,7 +206,7 @@ export function EditDish() {
               name="price"
               value={dishData.price}
               onChange={handleInputChange}
-              placeholder="Ex: 19.90"
+              placeholder="Ex: 19,90"
             />
           </div>
         </section>

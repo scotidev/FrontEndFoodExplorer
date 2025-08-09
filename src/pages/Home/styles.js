@@ -31,7 +31,6 @@ export const Container = styled.div`
       justify-content: center;
 
       height: 26rem;
-      margin-top: 26rem;
     }
 
     > img {
