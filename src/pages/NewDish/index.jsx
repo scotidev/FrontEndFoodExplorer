@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
+import { useAuth } from "../../hooks/auth.jsx";
 import { api } from "../../services/api";
 
 import { Container } from "./styles";
@@ -11,6 +12,7 @@ import { VscClose } from "react-icons/vsc";
 import { HiOutlinePlus } from "react-icons/hi2";
 
 export function NewDish() {
+  const { showError, showSuccess } = useAuth();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -22,21 +24,29 @@ export function NewDish() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === "title") setTitle(value);
-    if (name === "description") setDescription(value);
-    if (name === "price") setPrice(value);
-  };
-
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
+    switch (name) {
+      case "title":
+        setTitle(value);
+        break;
+      case "category":
+        setCategory(value);
+        break;
+      case "description":
+        setDescription(value);
+        break;
+      case "price":
+        setPrice(value);
+        break;
+      case "newIngredient":
+        setNewIngredient(value);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
-  };
-
-  const handleIngredientChange = (e) => {
-    setNewIngredient(e.target.value);
   };
 
   const handleAddIngredient = () => {
@@ -58,36 +68,42 @@ export function NewDish() {
   const handleCreateDish = async (e) => {
     e.preventDefault();
 
-    if (!title.trim()) {
-      alert("Por favor, insira o nome do prato.");
-      return;
-    }
-    if (!category.trim() || !["food", "dessert", "drink"].includes(category)) {
-      alert("Por favor, selecione uma categoria válida.");
-      return;
-    }
-    if (!description.trim()) {
-      alert("Por favor, insira a descrição do prato.");
-      return;
-    }
-    if (!price.trim() || isNaN(price) || Number(price) <= 0) {
-      alert("Por favor, insira um preço válido e maior que zero.");
-      return;
-    }
-    if (!image) {
-      alert("Por favor, selecione uma imagem para o prato.");
-      return;
-    }
-    if (ingredients.length === 0) {
-      alert("Por favor, adicione pelo menos um ingrediente.");
-      return;
+    const validations = [
+      {
+        condition: !title.trim(),
+        message: "Por favor, insira o nome do prato.",
+      },
+      {
+        condition:
+          !category.trim() || !["food", "dessert", "drink"].includes(category),
+        message: "Por favor, selecione uma categoria válida.",
+      },
+      {
+        condition: !description.trim(),
+        message: "Por favor, insira a descrição do prato.",
+      },
+      {
+        condition: !price.trim() || isNaN(price) || Number(price) <= 0,
+        message: "Por favor, insira um preço válido e maior que zero.",
+      },
+      {
+        condition: !image,
+        message: "Por favor, selecione uma imagem para o prato.",
+      },
+      {
+        condition: ingredients.length === 0,
+        message: "Por favor, adicione pelo menos um ingrediente.",
+      },
+    ];
+
+    for (const validation of validations) {
+      if (validation.condition) {
+        showError(validation.message);
+        return;
+      }
     }
 
     try {
-      // Remover a busca de token do localStorage aqui, pois a API de serviços já deve lidar com isso via interceptor.
-      // Se não houver um interceptor global para o token, ele precisaria ser adicionado no `api.js` ou passado como cabeçalho.
-      // Assumindo que o `api` já está configurado para enviar o token.
-
       const formData = new FormData();
       formData.append("title", title);
       formData.append("category", category);
@@ -95,36 +111,27 @@ export function NewDish() {
       formData.append("price", price);
       formData.append("image", image);
       ingredients.forEach((ingredient) => {
-        formData.append("ingredients", ingredient.name); // O backend deve esperar um array de strings
+        formData.append("ingredients", ingredient.name);
       });
 
-      const response = await api.post("/adminDishes", formData, {
+      await api.post("/adminDishes", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response.data);
-      alert("Prato criado com sucesso!");
+      showSuccess("Prato criado com sucesso!");
       navigate("/");
     } catch (error) {
-      console.error("Erro ao criar prato:", error);
-      if (error.response) {
-        console.error("Response da API:", error.response.data);
-        alert(
-          `Erro ao criar prato: ${
-            error.response.data.message ||
-            "Verifique os dados e tente novamente."
-          }`
-        );
-      } else {
-        alert("Erro ao criar prato. Verifique sua conexão e tente novamente.");
-      }
+      const errorMessage =
+        error.response?.data?.message ||
+        "Erro ao criar prato. Tente novamente.";
+      showError(errorMessage);
     }
   };
 
   return (
     <Container>
-      <form onSubmit={handleCreateDish}>
+      <form>
         <Link to="/">
           <button className="backButton">
             <PiCaretLeftBold />
@@ -164,7 +171,7 @@ export function NewDish() {
               id="category"
               name="category"
               value={category}
-              onChange={handleCategoryChange}
+              onChange={handleInputChange}
             >
               <option value="">Selecione uma categoria</option>
               <option value="food">Refeição</option>
@@ -196,7 +203,7 @@ export function NewDish() {
                   id="newIngredient"
                   name="newIngredient"
                   value={newIngredient}
-                  onChange={handleIngredientChange}
+                  onChange={handleInputChange}
                   placeholder="Adicionar"
                 />
                 <button type="button" onClick={handleAddIngredient}>
@@ -231,7 +238,12 @@ export function NewDish() {
             ></textarea>
           </div>
 
-          <Button title={"Criar prato"} type="submit" id="saveButton" />
+          <Button
+            title={"Criar prato"}
+            type="submit"
+            id="saveButton"
+            onClick={handleCreateDish}
+          />
         </section>
       </form>
     </Container>
