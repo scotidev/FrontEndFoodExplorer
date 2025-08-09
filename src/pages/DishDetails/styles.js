@@ -124,13 +124,10 @@ export const Container = styled.div`
 
   @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
     > .content {
-      width: 100%;
-      max-width: 150rem;
-
       flex-direction: row;
       justify-content: center;
-      gap: 5rem;
-      padding: 0 5rem;
+      gap: 10rem;
+      padding: 3rem 5rem 0;
 
       > .backAndImageWrapper {
         padding-left: 5rem;

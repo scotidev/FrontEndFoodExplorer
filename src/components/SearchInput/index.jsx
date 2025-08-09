@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { api } from "../../services/api";
@@ -10,6 +10,7 @@ import { PiMagnifyingGlass } from "react-icons/pi";
 export function SearchInput({ icon: Icon, ...rest }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const searchRef = useRef(null);
 
   const navigate = useNavigate();
   const { showError } = useAuth();
@@ -36,8 +37,23 @@ export function SearchInput({ icon: Icon, ...rest }) {
     }
   }, [searchTerm, showError]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearchTerm("");
+        setSearchResults([]);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [searchRef]);
+
   return (
-    <Container>
+    <Container ref={searchRef}>
       <PiMagnifyingGlass className="icon" size={20} />
 
       <input
