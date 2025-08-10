@@ -22,6 +22,31 @@ export const Container = styled.div`
     gap: 1.2rem;
     height: 100%;
 
+    > a {
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    > a h3 {
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 1.4rem;
+      text-align: center;
+      white-space: nowrap;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    > a p {
+      display: none;
+    }
+
     > .stepperButtonWrapper {
       display: flex;
       flex-direction: column;
@@ -47,6 +72,31 @@ export const Container = styled.div`
     > .cardWrapper {
       gap: 1.5rem;
       padding: 3.8rem 0 2.4rem 0;
+
+      > a {
+        gap: 1.5rem;
+      }
+
+      > a h3 {
+        font-size: 2.4rem;
+        font-weight: 700;
+      }
+
+      > a p {
+        display: block;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        text-align: center;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-size: 1.4rem;
+
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        max-height: 2.8rem * 2;
+      }
 
       > .stepperButtonWrapper {
         flex-direction: row;
@@ -86,43 +136,6 @@ export const Image = styled.div`
       width: 17.6rem;
       height: auto;
     }
-  }
-`;
-
-export const Title = styled.h2`
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: 1.4rem;
-  text-align: center;
-  white-space: nowrap;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-
-  @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-    font-size: 2.4rem;
-    font-weight: 700;
-  }
-`;
-
-export const Description = styled.p`
-  display: none;
-
-  @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
-    display: block;
-
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 1.4rem;
-
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    max-height: 2.8rem * 2;
   }
 `;
 

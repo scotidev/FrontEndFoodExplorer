@@ -1,14 +1,7 @@
 import { Link } from "react-router-dom";
 import { PiPencilSimpleBold, PiHeartStraightBold } from "react-icons/pi";
 
-import {
-  Container,
-  EditButton,
-  Image,
-  Title,
-  Description,
-  Price,
-} from "./styles";
+import { Container, EditButton, Image, Price } from "./styles";
 import { Stepper } from "../Stepper";
 import { Button } from "../Button";
 
@@ -45,11 +38,11 @@ export function Cards({
               height={88}
             />
           </Image>
+
+          <h3>{title}</h3>
+
+          <p>{description}</p>
         </Link>
-
-        <Title>{title}</Title>
-
-        <Description>{description}</Description>
 
         <Price>{`R$ ` + String(price).replace(".", ",")}</Price>
 
