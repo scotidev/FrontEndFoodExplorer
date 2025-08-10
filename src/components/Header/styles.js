@@ -15,7 +15,7 @@ export const Container = styled.nav`
 
   position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 9;
 
   > .menuButton {
     grid-area: menu;

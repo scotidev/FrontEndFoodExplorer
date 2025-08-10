@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PiPencilSimpleBold, PiHeartStraightBold } from "react-icons/pi"; // Importa ambos os ícones
+import { PiPencilSimpleBold, PiHeartStraightBold } from "react-icons/pi";
 
 import {
   Container,

@@ -68,12 +68,9 @@ function AuthProvider({ children, showError, showSuccess }) {
       } catch (e) {
         // Se houver um erro ao parsear o JSON, faz logout.
         localStorage.removeItem("@foodexplorer:user");
-        showError(
-          "Sua sessão foi corrompida. Por favor, faça login novamente."
-        );
       }
     }
-  }, [showError]); // Adicionados como dependência para garantir que o efeito tenha a versão mais recente da função.
+  }, []);
 
   const isAdmin = data.user && data.user.role === USER_ROLE.ADMIN;
 
