@@ -40,13 +40,13 @@ export const Container = styled.div`
       text-align: left;
 
       > h1 {
-        font-size: 1.8rem;
+        font-size: 1.3rem;
         font-weight: 600;
         line-height: 140%;
       }
 
       > p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 400;
         line-height: 140%;
       }
