@@ -51,7 +51,15 @@ export function Header() {
               <span>0</span>
             </Orders>
 
-            <OrderButton title={"Pedidos (0)"} className="orderButton" />
+            <Link to="/favorites" className="favoritesOrdersButton">
+              <span>Favoritos</span>
+            </Link>
+
+            <Link to="/favorites" className="favoritesOrdersButton">
+              <span>Pedidos</span>
+            </Link>
+
+            <OrderButton title={"Carrinho (0)"} className="orderButton" />
           </>
         )}
 

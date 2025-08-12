@@ -14,6 +14,7 @@ import { HiOutlinePlus } from "react-icons/hi2";
 export function NewDish() {
   const { showError, showSuccess } = useAuth();
   const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [ingredients, setIngredients] = useState([]);
@@ -129,11 +130,15 @@ export function NewDish() {
     }
   };
 
+  function handleGoBack() {
+    navigate(-1);
+  }
+
   return (
     <Container>
       <form>
         <Link to="/">
-          <button className="backButton">
+          <button className="backButton" onClick={handleGoBack}>
             <PiCaretLeftBold />
             voltar
           </button>

@@ -36,6 +36,12 @@ export function Menu() {
       <div className="content">
         <SearchInput />
 
+        {!isAdmin && (
+          <Link to="/favorites">
+            <button>Favoritos</button>
+          </Link>
+        )}
+
         {isAdmin && (
           <Link to="/newDish">
             <button>Novo Prato</button>

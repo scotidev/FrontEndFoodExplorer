@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
@@ -15,6 +15,8 @@ import { PiCaretLeftBold } from "react-icons/pi";
 export function DishDetails() {
   const { id } = useParams();
   const { user, showError, showSuccess } = useAuth();
+  const navigate = useNavigate();
+
   const isAdmin = user && user.role === "admin";
 
   const [dishData, setDishData] = useState({
@@ -43,12 +45,16 @@ export function DishDetails() {
     );
   };
 
+  function handleGoBack() {
+    navigate(-1);
+  }
+
   return (
     <Container>
       <div className="content">
         <div className="backAndImageWrapper">
           <Link to="/">
-            <button className="backButton">
+            <button className="backButton" onClick={handleGoBack}>
               <PiCaretLeftBold />
               voltar
             </button>

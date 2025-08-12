@@ -16,6 +16,7 @@ export function Home() {
   const [dishes, setDishes] = useState([]);
   const [desserts, setDesserts] = useState([]);
   const [drinks, setDrinks] = useState([]);
+  const [favoriteDishIds, setFavoriteDishIds] = useState([]);
 
   const carouselFoodRef = useRef(null);
   const carouselDessertRef = useRef(null);
@@ -34,22 +35,32 @@ export function Home() {
   };
 
   useEffect(() => {
-    const fetchDishes = async () => {
+    const fetchHomeData = async () => {
       try {
-        const response = await api.get("/dishes");
-        if (Array.isArray(response.data)) {
-          const allDishes = response.data;
+        const [dishesResponse, favoritesResponse] = await Promise.all([
+          api.get("/dishes"),
+          api.get("/favorites"),
+        ]);
+
+        const allDishes = dishesResponse.data;
+        const favorites = favoritesResponse.data;
+
+        if (Array.isArray(allDishes) && Array.isArray(favorites)) {
+          const favoriteIds = favorites.map((fav) => fav.id);
+          setFavoriteDishIds(favoriteIds);
+
           setDishes(allDishes.filter((dish) => dish.category === "food"));
           setDesserts(allDishes.filter((dish) => dish.category === "dessert"));
           setDrinks(allDishes.filter((dish) => dish.category === "drink"));
         } else {
-          showError("Resposta inesperada.");
+          showError("Resposta inesperada do servidor.");
         }
       } catch (error) {
-        showError("Erro ao buscar pratos");
+        showError("Erro ao buscar dados.");
+        console.error(error);
       }
     };
-    fetchDishes();
+    fetchHomeData();
   }, [showError]);
 
   const sections = [
@@ -89,6 +100,7 @@ export function Home() {
                   description={dish.description}
                   price={dish.price}
                   isAdmin={isAdmin}
+                  isFavorite={favoriteDishIds.includes(dish.id)}
                 />
               ))}
             </div>

@@ -3,14 +3,13 @@ import { useAuth } from "../hooks/auth";
 import { USER_ROLE } from "../utils/roles";
 
 // Layout
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
 import { AppLayout } from "../components/AppLayout";
 
 // Páginas comuns e condicionais
 import { Home } from "../pages/Home";
 import { DishDetails } from "../pages/DishDetails";
 import { Menu } from "../pages/Menu";
+import { Favorites } from "../pages/Favorites";
 
 // Admin
 import { NewDish } from "../pages/NewDish";
@@ -39,6 +38,7 @@ export function AppRoutes() {
       <Route path="/" element={<AppLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/dish/:id" element={<DishDetails />} />
+        <Route path="/favorites" element={<Favorites />} />
 
         <Route
           path="/newDish"

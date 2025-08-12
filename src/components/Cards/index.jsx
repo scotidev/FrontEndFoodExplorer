@@ -1,5 +1,14 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { PiPencilSimpleBold, PiHeartStraightBold } from "react-icons/pi";
+
+import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
+
+import {
+  PiPencilSimpleBold,
+  PiHeartStraightBold,
+  PiHeartStraightFill,
+} from "react-icons/pi";
 
 import { Container, EditButton, Image, Price } from "./styles";
 import { Stepper } from "../Stepper";
@@ -12,8 +21,33 @@ export function Cards({
   description,
   price,
   isAdmin,
+  isFavorite: initialIsFavorite,
   ...rest
 }) {
+  const { showSuccess, showError } = useAuth();
+  const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
+
+  async function handleFavoriteToggle() {
+    try {
+      const response = await api.post("/favorites", { dish_id: id });
+      const { message, status } = response.data;
+
+      if (status === "added") {
+        setIsFavorite(true);
+        showSuccess(message);
+      } else if (status === "removed") {
+        setIsFavorite(false);
+        showError(message);
+      }
+    } catch (error) {
+      if (error.response) {
+        showError(error.response.data.message);
+      } else {
+        showError("Não foi possível adicionar/remover o prato.");
+      }
+    }
+  }
+
   return (
     <Container {...rest}>
       <div className="cardWrapper">
@@ -24,8 +58,8 @@ export function Cards({
             </EditButton>
           </Link>
         ) : (
-          <EditButton>
-            <PiHeartStraightBold />
+          <EditButton onClick={handleFavoriteToggle}>
+            {isFavorite ? <PiHeartStraightFill /> : <PiHeartStraightBold />}
           </EditButton>
         )}
 

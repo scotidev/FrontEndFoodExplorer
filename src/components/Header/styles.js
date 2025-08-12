@@ -52,6 +52,10 @@ export const Container = styled.nav`
     > .orderButton {
       display: none;
     }
+
+    > .favoritesOrdersButton {
+      display: none;
+    }
   }
 
   @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
@@ -85,6 +89,22 @@ export const Container = styled.nav`
 
       > .orderButton {
         display: flex;
+      }
+
+      > .favoritesOrdersButton {
+        display: block;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+        font-family: "Roboto";
+        font-size: 1.6rem;
+        font-weight: 400;
+
+        transition: 0.5s;
+
+        &:hover {
+          color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        }
       }
     }
   }
