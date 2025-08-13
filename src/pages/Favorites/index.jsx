@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
@@ -6,9 +7,13 @@ import { api } from "../../services/api";
 import { Container } from "./styles";
 import { Favorite } from "../../components/Favorite";
 
+import { ImFileEmpty } from "react-icons/im";
+import { PiCaretLeftBold } from "react-icons/pi";
+
 export function Favorites() {
-  const { showError } = useAuth();
+  const { showError, showSuccess } = useAuth();
   const [favorites, setFavorites] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchFavorites() {
@@ -20,7 +25,7 @@ export function Favorites() {
       }
     }
     fetchFavorites();
-  }, [showError]);
+  }, [showError, showSuccess]);
 
   async function handleRemoveFavorite(dishId) {
     try {
@@ -33,25 +38,40 @@ export function Favorites() {
       );
     } catch (err) {
       showError("Não foi possível remover o prato.");
-      console.error(err);
     }
   }
+
+  function handleGoBack() {
+    navigate(-1);
+  }
+
   return (
     <Container>
-      <h1>Meus Favoritos</h1>
+      <Link to="/">
+        <button className="backButton" onClick={handleGoBack}>
+          <PiCaretLeftBold />
+          voltar
+        </button>
+      </Link>
 
       {favorites.length > 0 ? (
-        <div className="favoritesList">
-          {favorites.map((dish) => (
-            <Favorite
-              key={String(dish.id)}
-              data={dish}
-              onRemoveFavorite={handleRemoveFavorite}
-            />
-          ))}
+        <div className="favoritesContainer">
+          <h1>Meus Favoritos</h1>
+          <div className="favoritesList">
+            {favorites.map((dish) => (
+              <Favorite
+                key={String(dish.id)}
+                data={dish}
+                onRemoveFavorite={handleRemoveFavorite}
+              />
+            ))}
+          </div>
         </div>
       ) : (
-        <p>Você ainda não tem pratos favoritos.</p>
+        <div className="noFavorites">
+          <ImFileEmpty />
+          <p>Você ainda não tem pratos favoritos.</p>
+        </div>
       )}
     </Container>
   );

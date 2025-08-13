@@ -13,6 +13,7 @@ export const Container = styled.div`
 
   padding: 1rem;
   width: 100%;
+  max-width: 38rem;
 
   > a {
     flex-shrink: 0;
@@ -28,6 +29,7 @@ export const Container = styled.div`
   > .details {
     display: flex;
     flex-direction: column;
+    gap: 0.8rem;
 
     > a {
       > h2 {
@@ -36,8 +38,6 @@ export const Container = styled.div`
         font-family: "Poppins", sans-serif;
         font-size: 2rem;
         font-weight: 500;
-
-        white-space: nowrap;
       }
     }
 
@@ -61,6 +61,12 @@ export const Container = styled.div`
       > img {
         width: 12rem;
         height: 12rem;
+      }
+    }
+
+    > .details {
+      button {
+        font-size: 1.6rem;
       }
     }
   }
