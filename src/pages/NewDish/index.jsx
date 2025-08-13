@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth.jsx";
 import { api } from "../../services/api";
 
 import { Container } from "./styles";
 import { Button } from "../../components/Button";
+import { BackButton } from "../../components/BackButton";
 
-import { PiCaretLeftBold, PiUploadSimpleBold } from "react-icons/pi";
+import { PiUploadSimpleBold } from "react-icons/pi";
 import { VscClose } from "react-icons/vsc";
 import { HiOutlinePlus } from "react-icons/hi2";
 
@@ -15,35 +16,19 @@ export function NewDish() {
   const { showError, showSuccess } = useAuth();
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [ingredients, setIngredients] = useState([]);
-  const [newIngredient, setNewIngredient] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [dishData, setDishData] = useState({
+    title: "",
+    category: "",
+    ingredients: [],
+    description: "",
+    price: "",
+  });
   const [image, setImage] = useState(null);
+  const [newIngredient, setNewIngredient] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    switch (name) {
-      case "title":
-        setTitle(value);
-        break;
-      case "category":
-        setCategory(value);
-        break;
-      case "description":
-        setDescription(value);
-        break;
-      case "price":
-        setPrice(value);
-        break;
-      case "newIngredient":
-        setNewIngredient(value);
-        break;
-      default:
-        break;
-    }
+    setDishData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleImageChange = (e) => {
@@ -52,74 +37,59 @@ export function NewDish() {
 
   const handleAddIngredient = () => {
     if (newIngredient.trim() !== "") {
-      setIngredients((prevIngredients) => [
-        ...prevIngredients,
-        { name: newIngredient.trim() },
-      ]);
+      setDishData((prevData) => ({
+        ...prevData,
+        ingredients: [...prevData.ingredients, { name: newIngredient.trim() }],
+      }));
       setNewIngredient("");
     }
   };
 
   const handleRemoveIngredient = (index) => {
-    setIngredients((prevIngredients) =>
-      prevIngredients.filter((_, i) => i !== index)
-    );
+    setDishData((prevData) => ({
+      ...prevData,
+      ingredients: prevData.ingredients.filter((_, i) => i !== index),
+    }));
   };
 
   const handleCreateDish = async (e) => {
     e.preventDefault();
 
-    const validations = [
-      {
-        condition: !title.trim(),
-        message: "Por favor, insira o nome do prato.",
-      },
-      {
-        condition:
-          !category.trim() || !["food", "dessert", "drink"].includes(category),
-        message: "Por favor, selecione uma categoria válida.",
-      },
-      {
-        condition: !description.trim(),
-        message: "Por favor, insira a descrição do prato.",
-      },
-      {
-        condition: !price.trim() || isNaN(price) || Number(price) <= 0,
-        message: "Por favor, insira um preço válido e maior que zero.",
-      },
-      {
-        condition: !image,
-        message: "Por favor, selecione uma imagem para o prato.",
-      },
-      {
-        condition: ingredients.length === 0,
-        message: "Por favor, adicione pelo menos um ingrediente.",
-      },
-    ];
-
-    for (const validation of validations) {
-      if (validation.condition) {
-        showError(validation.message);
-        return;
-      }
+    if (!dishData.title.trim()) {
+      return showError("Por favor, insira o nome do prato.");
+    }
+    if (!dishData.category.trim()) {
+      return showError("Por favor, selecione uma categoria.");
+    }
+    if (!dishData.description.trim()) {
+      return showError("Por favor, insira a descrição do prato.");
+    }
+    if (
+      !dishData.price.trim() ||
+      isNaN(dishData.price) ||
+      Number(dishData.price) <= 0
+    ) {
+      return showError("Por favor, insira um preço válido e maior que zero.");
+    }
+    if (!image) {
+      return showError("Por favor, selecione uma imagem para o prato.");
+    }
+    if (dishData.ingredients.length === 0) {
+      return showError("Por favor, adicione pelo menos um ingrediente.");
     }
 
     try {
       const formData = new FormData();
-      formData.append("title", title);
-      formData.append("category", category);
-      formData.append("description", description);
-      formData.append("price", price);
+      formData.append("title", dishData.title);
+      formData.append("category", dishData.category);
+      formData.append("description", dishData.description);
+      formData.append("price", dishData.price);
       formData.append("image", image);
-      ingredients.forEach((ingredient) => {
+      dishData.ingredients.forEach((ingredient) => {
         formData.append("ingredients", ingredient.name);
       });
 
-      await api.post("/adminDishes", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await api.post("/adminDishes", formData);
       showSuccess("Prato criado com sucesso!");
       navigate("/");
     } catch (error) {
@@ -130,20 +100,10 @@ export function NewDish() {
     }
   };
 
-  function handleGoBack() {
-    navigate(-1);
-  }
-
   return (
     <Container>
+      <BackButton />
       <form>
-        <Link to="/">
-          <button className="backButton" onClick={handleGoBack}>
-            <PiCaretLeftBold />
-            voltar
-          </button>
-        </Link>
-
         <h1>Criar novo prato</h1>
 
         <section className="imageNameAndCategoryWrapper">
@@ -164,7 +124,7 @@ export function NewDish() {
               type="text"
               id="title"
               name="title"
-              value={title}
+              value={dishData.title}
               onChange={handleInputChange}
               placeholder="Ex: Salada Ceasar"
             />
@@ -175,7 +135,7 @@ export function NewDish() {
             <select
               id="category"
               name="category"
-              value={category}
+              value={dishData.category}
               onChange={handleInputChange}
             >
               <option value="">Selecione uma categoria</option>
@@ -190,7 +150,7 @@ export function NewDish() {
           <div className="ingredientsContainer">
             <label htmlFor="ingredients">Ingredientes</label>
             <div className="ingredientsList">
-              {ingredients.map((ingredient, index) => (
+              {dishData.ingredients.map((ingredient, index) => (
                 <div key={index} className="ingredientItem">
                   <span>{ingredient.name}</span>
                   <button
@@ -208,7 +168,7 @@ export function NewDish() {
                   id="newIngredient"
                   name="newIngredient"
                   value={newIngredient}
-                  onChange={handleInputChange}
+                  onChange={(e) => setNewIngredient(e.target.value)}
                   placeholder="Adicionar"
                 />
                 <button type="button" onClick={handleAddIngredient}>
@@ -224,7 +184,7 @@ export function NewDish() {
               type="number"
               id="price"
               name="price"
-              value={price}
+              value={dishData.price}
               onChange={handleInputChange}
               placeholder="Ex: 19.90"
             />
@@ -237,7 +197,7 @@ export function NewDish() {
             <textarea
               id="description"
               name="description"
-              value={description}
+              value={dishData.description}
               onChange={handleInputChange}
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
             ></textarea>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
@@ -7,15 +7,13 @@ import { useAuth } from "../../hooks/auth";
 import { Container } from "./styles";
 import { Ingredient } from "../../components/Ingredient";
 import { Button } from "../../components/Button";
+import { BackButton } from "../../components/BackButton";
 import { Stepper } from "../../components/Stepper";
 import { OrderButton } from "../../components/OrderButton";
-
-import { PiCaretLeftBold } from "react-icons/pi";
 
 export function DishDetails() {
   const { id } = useParams();
   const { user, showError, showSuccess } = useAuth();
-  const navigate = useNavigate();
 
   const isAdmin = user && user.role === "admin";
 
@@ -45,30 +43,19 @@ export function DishDetails() {
     );
   };
 
-  function handleGoBack() {
-    navigate(-1);
-  }
-
   return (
     <Container>
+      <BackButton />
+
       <div className="content">
-        <div className="backAndImageWrapper">
-          <Link to="/">
-            <button className="backButton" onClick={handleGoBack}>
-              <PiCaretLeftBold />
-              voltar
-            </button>
-          </Link>
+        {dishData.image && (
+          <img
+            src={`${api.defaults.baseURL}/files/${dishData.image}`}
+            alt={dishData.title}
+          />
+        )}
 
-          {dishData.image && (
-            <img
-              src={`${api.defaults.baseURL}/files/${dishData.image}`}
-              alt={dishData.title}
-            />
-          )}
-        </div>
-
-        <div className="ingredientsAndDescriptionWrapper">
+        <div className="informationContainer">
           <h1>{dishData.title}</h1>
           <p>{dishData.description}</p>
 

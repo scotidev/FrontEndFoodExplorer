@@ -4,6 +4,11 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 export const Container = styled.div`
   width: 100%;
 
+  > button {
+    margin-left: calc((100% - 88%) / 2);
+    margin-bottom: 1rem;
+  }
+
   > form {
     width: 88%;
     margin: 0 auto;
@@ -11,26 +16,6 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
-
-    > a .backButton {
-      background-color: transparent;
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};
-
-      font-family: "Poppins", sans-serif;
-      font-size: 2.4rem;
-      font-weight: 500;
-      line-height: 140%;
-
-      display: flex;
-      align-items: center;
-      width: fit-content;
-
-      transition: 0.5s;
-
-      &:hover {
-        color: ${({ theme }) => theme.COLORS.LIGHT_500};
-      }
-    }
 
     > h1 {
       color: ${({ theme }) => theme.COLORS.LIGHT_300};

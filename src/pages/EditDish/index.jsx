@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth.jsx";
 
 import { Container } from "./styles";
 import { Button } from "../../components/Button";
+import { BackButton } from "../../components/BackButton";
 
-import { PiCaretLeftBold, PiUploadSimpleBold } from "react-icons/pi";
+import { PiUploadSimpleBold } from "react-icons/pi";
 import { VscClose } from "react-icons/vsc";
 import { HiOutlinePlus } from "react-icons/hi2";
 
@@ -107,20 +108,11 @@ export function EditDish() {
     }
   };
 
-  function handleGoBack() {
-    navigate(-1);
-  }
-
   return (
     <Container>
-      <form>
-        <Link to="/">
-          <button className="backButton" onClick={handleGoBack}>
-            <PiCaretLeftBold />
-            voltar
-          </button>
-        </Link>
+      <BackButton />
 
+      <form>
         <h1>Editar prato</h1>
 
         <section className="imageNameAndCategoryWrapper">

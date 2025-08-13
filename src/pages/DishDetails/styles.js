@@ -3,8 +3,14 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  > button {
+    align-self: start;
+    margin: 0 0 1rem 5rem;
+  }
 
   > .content {
     width: 75%;
@@ -15,49 +21,14 @@ export const Container = styled.div`
     justify-content: center;
     gap: 2rem;
 
-    > .backAndImageWrapper {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      > a {
-        align-self: flex-start;
-        margin-bottom: 1.4rem;
-      }
-
-      > a .backButton {
-        background-color: transparent;
-        color: ${({ theme }) => theme.COLORS.LIGHT_300};
-        border: none;
-
-        width: fit-content;
-        display: flex;
-        align-items: center;
-        justify-content: start;
-
-        font-family: "Poppins", sans-serif;
-        font-size: 2.4rem;
-        font-weight: 500;
-        line-height: 140%;
-
-        transition: 0.5s;
-        cursor: pointer;
-
-        &:hover {
-          color: ${({ theme }) => theme.COLORS.LIGHT_500};
-        }
-      }
-
-      > img {
-        height: 26.4rem;
-        width: 26.4rem;
-        object-fit: cover;
-        border-radius: 50%;
-      }
+    > img {
+      height: 26.4rem;
+      width: 26.4rem;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
-    > .ingredientsAndDescriptionWrapper {
+    > .informationContainer {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -104,6 +75,7 @@ export const Container = styled.div`
         align-items: center;
         justify-content: center;
       }
+
       > a .editButton {
         width: 28rem;
       }
@@ -123,35 +95,28 @@ export const Container = styled.div`
   }
 
   @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+    > button {
+      margin-left: 12rem;
+    }
+
     > .content {
       flex-direction: row;
-      justify-content: center;
       gap: 10rem;
       padding: 3rem 5rem 0;
 
-      > .backAndImageWrapper {
-        padding-left: 5rem;
+      > img {
+        height: 45rem;
         width: auto;
-        align-items: flex-start;
-
-        > a {
-          transform: translateX(-50%);
-        }
-
-        > img {
-          height: 45rem;
-          width: auto;
-        }
       }
 
-      > .ingredientsAndDescriptionWrapper {
+      > .informationContainer {
         justify-content: start;
         align-items: flex-start;
+        text-align: left;
 
         > h1 {
           font-size: 4rem;
           white-space: normal;
-          text-align: left;
         }
 
         > p {
