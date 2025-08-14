@@ -37,18 +37,17 @@ export function Home() {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const [dishesResponse, favoritesResponse] = await Promise.all([
-          api.get("/dishes"),
-          api.get("/favorites"),
-        ]);
-
+        const dishesResponse = await api.get("/dishes");
         const allDishes = dishesResponse.data;
-        const favorites = favoritesResponse.data;
+        let favoriteIds = [];
 
-        if (Array.isArray(allDishes) && Array.isArray(favorites)) {
-          const favoriteIds = favorites.map((fav) => fav.id);
+        if (!isAdmin) {
+          const favoritesResponse = await api.get("/favorites");
+          favoriteIds = favoritesResponse.data.map((fav) => fav.dish_id);
+        }
+
+        if (Array.isArray(allDishes)) {
           setFavoriteDishIds(favoriteIds);
-
           setDishes(allDishes.filter((dish) => dish.category === "food"));
           setDesserts(allDishes.filter((dish) => dish.category === "dessert"));
           setDrinks(allDishes.filter((dish) => dish.category === "drink"));
@@ -57,11 +56,10 @@ export function Home() {
         }
       } catch (error) {
         showError("Erro ao buscar dados.");
-        console.error(error);
       }
     };
     fetchHomeData();
-  }, [showError]);
+  }, [showError, isAdmin]);
 
   const sections = [
     { title: "Refeições", data: dishes, ref: carouselFoodRef },
