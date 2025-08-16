@@ -33,11 +33,36 @@ function CartProvider({ children }) {
     }
   }
 
+  async function handleUpdateQuantity(dish_id, quantity) {
+    if (quantity < 1) {
+      return;
+    }
+
+    try {
+      await api.patch(`/cart/${dish_id}`, { quantity });
+      fetchCartItems();
+    } catch (error) {
+      showError("Erro ao atualizar a quantidade do prato.");
+    }
+  }
+
+  async function handleRemoveItem(dish_id) {
+    try {
+      await api.delete(`/cart/${dish_id}`);
+      fetchCartItems();
+    } catch (error) {
+      showError("Erro ao remover o prato do carrinho.");
+    }
+  }
+
   return (
     <CartContext.Provider
       value={{
-        cartItems,
+        cart: cartItems,
+        cartItems: cartItems,
         handleAddItem,
+        handleUpdateQuantity,
+        handleRemoveItem,
       }}
     >
       {children}

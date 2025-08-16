@@ -49,7 +49,7 @@ export const Container = styled.nav`
       display: none;
     }
 
-    > .orderButton {
+    > .desktopOrderButton {
       display: none;
     }
 
@@ -82,12 +82,16 @@ export const Container = styled.nav`
       align-items: center;
       justify-content: center;
 
+      > .mobileOrderButton {
+        display: none;
+      }
+
       > .newDishButton {
         display: flex;
         white-space: nowrap;
       }
 
-      > .orderButton {
+      > .desktopOrderButton {
         display: flex;
       }
 

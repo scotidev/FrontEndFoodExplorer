@@ -1,4 +1,5 @@
 import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Container, Menu, Searchbar, SignOut, Orders } from "./styles";
@@ -13,7 +14,12 @@ import { PiReceipt } from "react-icons/pi";
 
 export function Header() {
   const { signOut, isAdmin } = useAuth();
+  const { cart } = useCart();
   const navigate = useNavigate();
+
+  const totalItemsInCart = cart
+    ? cart.reduce((acc, item) => acc + item.quantity, 0)
+    : 0;
 
   function handleSignOut() {
     signOut();
@@ -46,16 +52,21 @@ export function Header() {
 
         {!isAdmin && (
           <>
-            <Orders>
-              <PiReceipt />
-              <span>0</span>
-            </Orders>
+            <Link to="/cart" className="mobileOrderButton">
+              <Orders>
+                <PiReceipt />
+                <span>{totalItemsInCart}</span>
+              </Orders>
+            </Link>
 
             <Link to="/favorites" className="favoritesButton">
               <span>Favoritos</span>
             </Link>
 
-            <CartButton title={"Carrinho (0)"} className="orderButton" />
+            <CartButton
+              title={`Carrinho (${totalItemsInCart})`}
+              className="desktopOrderButton"
+            />
           </>
         )}
 
