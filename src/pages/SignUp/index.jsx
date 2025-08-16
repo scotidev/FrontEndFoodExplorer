@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../../hooks/auth.jsx";
+import { useToast } from "../../hooks/toast";
 import { api } from "../../services/api.js";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export function SignUp() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { showError, showSuccess } = useAuth();
+  const { showError, showSuccess } = useToast();
 
   function isValidEmail(email) {
     // Expressão regular para validar formatode email (texto@texto.dominio)

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { useAuth } from "../../hooks/auth";
+import { useToast } from "../../hooks/toast";
+import { useCart } from "../../hooks/cart";
 import { api } from "../../services/api";
 
 import {
@@ -24,8 +25,10 @@ export function Cards({
   isFavorite: initialIsFavorite,
   ...rest
 }) {
-  const { showSuccess, showError } = useAuth();
+  const { showError, showSuccess } = useToast();
+  const { handleAddItem } = useCart();
   const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
+  const [quantity, setQuantity] = useState(1);
 
   async function handleFavoriteToggle() {
     try {
@@ -45,6 +48,15 @@ export function Cards({
       } else {
         showError("Não foi possível adicionar/remover o prato.");
       }
+    }
+  }
+
+  async function handleAddToCart() {
+    try {
+      await handleAddItem(id, quantity);
+      showSuccess("Prato adicionado ao carrinho!");
+    } catch (error) {
+      showError("Não foi possível adicionar o prato ao carrinho.");
     }
   }
 
@@ -78,12 +90,16 @@ export function Cards({
           <p>{description}</p>
         </Link>
 
-        <Price>{`R$ ` + String(price).replace(".", ",")}</Price>
+        <Price>{`R$ ` + Number(price).toFixed(2).replace(".", ",")}</Price>
 
         {!isAdmin && (
           <div className="stepperButtonWrapper">
-            <Stepper />
-            <Button title="incluir" className="addDishButton" />
+            <Stepper quantity={quantity} setQuantity={setQuantity} />
+            <Button
+              title="incluir"
+              className="addDishButton"
+              onClick={handleAddToCart}
+            />
           </div>
         )}
       </div>

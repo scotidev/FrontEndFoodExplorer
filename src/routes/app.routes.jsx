@@ -10,6 +10,7 @@ import { Home } from "../pages/Home";
 import { DishDetails } from "../pages/DishDetails";
 import { Menu } from "../pages/Menu";
 import { Favorites } from "../pages/Favorites";
+import { Cart } from "../pages/Cart";
 
 // Admin
 import { NewDish } from "../pages/NewDish";
@@ -39,6 +40,7 @@ export function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/dish/:id" element={<DishDetails />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/cart" element={<Cart />} />
 
         <Route
           path="/newDish"

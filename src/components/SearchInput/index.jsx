@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { api } from "../../services/api";
-import { useAuth } from "../../hooks/auth";
+import { useToast } from "../../hooks/toast";
 
 import { Container, SearchResults } from "./styles";
 import { PiMagnifyingGlass } from "react-icons/pi";
@@ -13,7 +13,7 @@ export function SearchInput({ icon: Icon, ...rest }) {
   const searchRef = useRef(null);
 
   const navigate = useNavigate();
-  const { showError } = useAuth();
+  const { showError } = useToast();
 
   const handleResultClick = (id) => {
     navigate(`/dish/${id}`);

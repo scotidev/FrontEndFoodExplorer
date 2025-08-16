@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/auth.jsx";
+import { useToast } from "../../hooks/toast";
 import { useState } from "react";
 
 import { Container } from "./styles.js";
@@ -11,7 +12,8 @@ export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn, showError } = useAuth();
+  const { signIn } = useAuth();
+  const { showError } = useToast();
 
   function handleSignIn(event) {
     event.preventDefault();

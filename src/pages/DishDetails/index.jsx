@@ -3,20 +3,24 @@ import { useParams, Link } from "react-router-dom";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
+import { useToast } from "../../hooks/toast";
+import { useCart } from "../../hooks/cart";
 
 import { Container } from "./styles";
 import { Ingredient } from "../../components/Ingredient";
 import { Button } from "../../components/Button";
 import { BackButton } from "../../components/BackButton";
 import { Stepper } from "../../components/Stepper";
-import { OrderButton } from "../../components/OrderButton";
 
 export function DishDetails() {
   const { id } = useParams();
-  const { user, showError, showSuccess } = useAuth();
+  const { user } = useAuth();
+  const { showError, showSuccess } = useToast();
+  const { handleAddItem } = useCart();
 
   const isAdmin = user && user.role === "admin";
 
+  const [quantity, setQuantity] = useState(1);
   const [dishData, setDishData] = useState({
     title: "",
     description: "",
@@ -37,10 +41,13 @@ export function DishDetails() {
     fetchDish();
   }, [id]);
 
-  const handleAddDishToCart = () => {
-    showSuccess(
-      `${dishData.title} (R$${dishData.price}) adicionado ao carrinho!`
-    );
+  const handleAddDishToCart = async () => {
+    try {
+      await handleAddItem(id, quantity);
+      showSuccess("Prato adicionado ao carrinho!");
+    } catch (error) {
+      showError("Não foi possível adicionar o prato ao carrinho.");
+    }
   };
 
   return (
@@ -71,10 +78,11 @@ export function DishDetails() {
             </Link>
           ) : (
             <div className="stepperAndButtonWrapper">
-              <Stepper />
-              <OrderButton
+              <Stepper quantity={quantity} setQuantity={setQuantity} />
+              <Button
                 title={
-                  `incluir - R$` + String(dishData.price).replace(".", ",")
+                  `incluir - R$` +
+                  Number(dishData.price).toFixed(2).replace(".", ",")
                 }
                 onClick={handleAddDishToCart}
               />

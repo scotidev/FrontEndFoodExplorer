@@ -1,61 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { ThemeProvider } from "styled-components";
+
 import theme from "./styles/theme";
 import GlobalStyles from "./styles/global";
 
 import { AuthProvider } from "./hooks/auth";
-import { Toast } from "./components/Toast";
+import { ToastProvider } from "./hooks/toast";
+import { CartProvider } from "./hooks/cart";
+
 import { Routes } from "./routes";
 
-const App = () => {
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
-
-  const showError = (message) => {
-    setError({ message, type: "error" });
-  };
-
-  const closeError = () => {
-    setError(null);
-  };
-
-  const showSuccess = (message) => {
-    setSuccess({ message, type: "success" });
-    setError(null);
-  };
-
-  const closeSuccess = () => {
-    setSuccess(null);
-  };
-
-  return (
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <AuthProvider showError={showError} showSuccess={showSuccess}>
-          <Routes />
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <ToastProvider>
+        <AuthProvider>
+          <CartProvider>
+            <Routes />
+          </CartProvider>
         </AuthProvider>
-
-        {error && (
-          <Toast
-            message={error.message}
-            type={error.type}
-            onClose={closeError}
-          />
-        )}
-
-        {success && (
-          <Toast
-            message={success.message}
-            type={success.type}
-            onClose={closeSuccess}
-          />
-        )}
-      </ThemeProvider>
-    </React.StrictMode>
-  );
-};
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+      </ToastProvider>
+    </ThemeProvider>
+  </React.StrictMode>
+);

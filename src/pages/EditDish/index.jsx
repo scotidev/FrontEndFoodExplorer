@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { api } from "../../services/api";
-import { useAuth } from "../../hooks/auth.jsx";
+import { useToast } from "../../hooks/toast";
 
 import { Container } from "./styles";
 import { Button } from "../../components/Button";
@@ -14,7 +14,7 @@ import { HiOutlinePlus } from "react-icons/hi2";
 
 export function EditDish() {
   const { id } = useParams();
-  const { showSuccess, showError } = useAuth();
+  const { showError, showSuccess } = useToast();
   const navigate = useNavigate();
 
   const [newIngredient, setNewIngredient] = useState("");

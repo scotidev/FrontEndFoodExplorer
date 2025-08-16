@@ -5,7 +5,7 @@ import { Container, Menu, Searchbar, SignOut, Orders } from "./styles";
 import { Logo } from "../Logo";
 import { Button } from "../Button";
 import { SearchInput } from "../SearchInput";
-import { OrderButton } from "../OrderButton";
+import { CartButton } from "../CartButton";
 
 import { PiListBold } from "react-icons/pi";
 import { PiSignOutBold } from "react-icons/pi";
@@ -55,11 +55,11 @@ export function Header() {
               <span>Favoritos</span>
             </Link>
 
-            <Link to="/favorites" className="favoritesOrdersButton">
+            <Link to="/orders" className="favoritesOrdersButton">
               <span>Pedidos</span>
             </Link>
 
-            <OrderButton title={"Carrinho (0)"} className="orderButton" />
+            <CartButton title={"Carrinho (0)"} className="orderButton" />
           </>
         )}
 

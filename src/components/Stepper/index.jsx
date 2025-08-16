@@ -1,44 +1,29 @@
-import { useState } from "react";
-
 import { Container } from "./styles";
 import { PiMinusBold, PiPlusBold } from "react-icons/pi";
 
-export function Stepper({
-  initialCount = 1,
-  minCount = 1,
-  maxCount = 99,
-  onCountChange,
-  ...rest
-}) {
-  const [count, setCount] = useState(initialCount);
+export function Stepper({ quantity, setQuantity, ...rest }) {
+  const minCount = 1;
+  const maxCount = 99;
 
   const handleDecrement = () => {
-    if (count > minCount) {
-      const newCount = count - 1;
-      setCount(newCount);
-      if (onCountChange) {
-        onCountChange(newCount);
-      }
+    if (quantity > minCount) {
+      setQuantity(quantity - 1);
     }
   };
 
   const handleIncrement = () => {
-    if (count < maxCount) {
-      const newCount = count + 1;
-      setCount(newCount);
-      if (onCountChange) {
-        onCountChange(newCount);
-      }
+    if (quantity < maxCount) {
+      setQuantity(quantity + 1);
     }
   };
 
   return (
     <Container {...rest}>
-      <button onClick={handleDecrement} disabled={count === minCount}>
+      <button onClick={handleDecrement} disabled={quantity === minCount}>
         <PiMinusBold />
       </button>
-      <span> {String(count).padStart(2, "0")} </span>{" "}
-      <button onClick={handleIncrement} disabled={count === maxCount}>
+      <span> {String(quantity).padStart(2, "0")} </span>{" "}
+      <button onClick={handleIncrement} disabled={quantity === maxCount}>
         <PiPlusBold />
       </button>
     </Container>

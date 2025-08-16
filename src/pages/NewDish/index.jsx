@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAuth } from "../../hooks/auth.jsx";
 import { api } from "../../services/api";
+import { useToast } from "../../hooks/toast";
 
 import { Container } from "./styles";
 import { Button } from "../../components/Button";
@@ -13,7 +13,7 @@ import { VscClose } from "react-icons/vsc";
 import { HiOutlinePlus } from "react-icons/hi2";
 
 export function NewDish() {
-  const { showError, showSuccess } = useAuth();
+  const { showError, showSuccess } = useToast();
   const navigate = useNavigate();
 
   const [dishData, setDishData] = useState({

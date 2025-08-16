@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
+import { useToast } from "../../hooks/toast";
 
 import { Container } from "./styles";
 import { Cards } from "../../components/Cards";
@@ -10,7 +11,8 @@ import homeImg from "../../assets/images/homeImage.svg";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export function Home() {
-  const { user, showError } = useAuth();
+  const { user } = useAuth();
+  const { showError } = useToast();
   const isAdmin = user && user.role === "admin";
 
   const [dishes, setDishes] = useState([]);

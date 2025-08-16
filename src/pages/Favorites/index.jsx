@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
+import { useToast } from "../../hooks/toast";
 
 import { Container } from "./styles";
 import { Favorite } from "../../components/Favorite";
@@ -10,7 +10,7 @@ import { BackButton } from "../../components/BackButton";
 import { ImFileEmpty } from "react-icons/im";
 
 export function Favorites() {
-  const { showError, showSuccess } = useAuth();
+  const { showError, showSuccess } = useToast();
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
