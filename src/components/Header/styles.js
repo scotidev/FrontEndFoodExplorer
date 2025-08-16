@@ -53,7 +53,7 @@ export const Container = styled.nav`
       display: none;
     }
 
-    > .favoritesOrdersButton {
+    > .favoritesButton {
       display: none;
     }
   }
@@ -91,7 +91,7 @@ export const Container = styled.nav`
         display: flex;
       }
 
-      > .favoritesOrdersButton {
+      > .favoritesButton {
         display: block;
 
         color: ${({ theme }) => theme.COLORS.LIGHT_300};

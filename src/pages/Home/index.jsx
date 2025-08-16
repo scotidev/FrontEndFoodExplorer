@@ -12,7 +12,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export function Home() {
   const { user } = useAuth();
-  const { showError } = useToast();
+  const { showError, showSuccess } = useToast();
   const isAdmin = user && user.role === "admin";
 
   const [dishes, setDishes] = useState([]);
@@ -36,30 +36,58 @@ export function Home() {
     }
   };
 
-  useEffect(() => {
-    const fetchHomeData = async () => {
-      try {
-        const dishesResponse = await api.get("/dishes");
-        const allDishes = dishesResponse.data;
-        let favoriteIds = [];
-
-        if (!isAdmin) {
-          const favoritesResponse = await api.get("/favorites");
-          favoriteIds = favoritesResponse.data.map((fav) => fav.dish_id);
-        }
-
-        if (Array.isArray(allDishes)) {
-          setFavoriteDishIds(favoriteIds);
-          setDishes(allDishes.filter((dish) => dish.category === "food"));
-          setDesserts(allDishes.filter((dish) => dish.category === "dessert"));
-          setDrinks(allDishes.filter((dish) => dish.category === "drink"));
-        } else {
-          showError("Resposta inesperada do servidor.");
-        }
-      } catch (error) {
-        showError("Erro ao buscar dados.");
+  const fetchHomeData = async () => {
+    try {
+      const fetchPromises = [api.get("/dishes")];
+      if (!isAdmin) {
+        fetchPromises.push(api.get("/favorites"));
       }
-    };
+
+      const responses = await Promise.all(fetchPromises);
+      const allDishes = responses[0].data;
+      let favoriteIds = [];
+
+      if (!isAdmin) {
+        const favoritesResponse = responses[1];
+        favoriteIds = favoritesResponse.data.map((fav) => fav.id);
+      }
+
+      if (Array.isArray(allDishes)) {
+        setFavoriteDishIds(favoriteIds);
+        setDishes(allDishes.filter((dish) => dish.category === "food"));
+        setDesserts(allDishes.filter((dish) => dish.category === "dessert"));
+        setDrinks(allDishes.filter((dish) => dish.category === "drink"));
+      } else {
+        showError("Resposta inesperada do servidor.");
+      }
+    } catch (error) {
+      showError("Erro ao buscar pratos.");
+      console.error(error);
+    }
+  };
+
+  const handleFavoriteToggle = async (dish_id) => {
+    try {
+      const response = await api.post("/favorites", { dish_id });
+      const { message, status } = response.data;
+
+      if (status === "added") {
+        showSuccess(message);
+        setFavoriteDishIds((prevIds) => [...prevIds, dish_id]);
+      } else if (status === "removed") {
+        showError(message);
+        setFavoriteDishIds((prevIds) => prevIds.filter((id) => id !== dish_id));
+      }
+    } catch (error) {
+      if (error.response) {
+        showError(error.response.data.message);
+      } else {
+        showError("Não foi possível adicionar/remover o prato.");
+      }
+    }
+  };
+
+  useEffect(() => {
     fetchHomeData();
   }, [showError, isAdmin]);
 
@@ -101,6 +129,7 @@ export function Home() {
                   price={dish.price}
                   isAdmin={isAdmin}
                   isFavorite={favoriteDishIds.includes(dish.id)}
+                  onFavoriteToggle={handleFavoriteToggle}
                 />
               ))}
             </div>

@@ -51,12 +51,8 @@ export function Header() {
               <span>0</span>
             </Orders>
 
-            <Link to="/favorites" className="favoritesOrdersButton">
+            <Link to="/favorites" className="favoritesButton">
               <span>Favoritos</span>
-            </Link>
-
-            <Link to="/orders" className="favoritesOrdersButton">
-              <span>Pedidos</span>
             </Link>
 
             <CartButton title={"Carrinho (0)"} className="orderButton" />

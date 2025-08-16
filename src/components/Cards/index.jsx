@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import { useToast } from "../../hooks/toast";
 import { useCart } from "../../hooks/cart";
-import { api } from "../../services/api";
 
 import {
   PiPencilSimpleBold,
@@ -22,33 +21,16 @@ export function Cards({
   description,
   price,
   isAdmin,
-  isFavorite: initialIsFavorite,
+  isFavorite,
+  onFavoriteToggle,
   ...rest
 }) {
   const { showError, showSuccess } = useToast();
   const { handleAddItem } = useCart();
-  const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
   const [quantity, setQuantity] = useState(1);
 
-  async function handleFavoriteToggle() {
-    try {
-      const response = await api.post("/favorites", { dish_id: id });
-      const { message, status } = response.data;
-
-      if (status === "added") {
-        setIsFavorite(true);
-        showSuccess(message);
-      } else if (status === "removed") {
-        setIsFavorite(false);
-        showError(message);
-      }
-    } catch (error) {
-      if (error.response) {
-        showError(error.response.data.message);
-      } else {
-        showError("Não foi possível adicionar/remover o prato.");
-      }
-    }
+  async function handleFavoriteClick() {
+    onFavoriteToggle(id);
   }
 
   async function handleAddToCart() {
@@ -70,7 +52,7 @@ export function Cards({
             </EditButton>
           </Link>
         ) : (
-          <EditButton onClick={handleFavoriteToggle}>
+          <EditButton onClick={handleFavoriteClick}>
             {isFavorite ? <PiHeartStraightFill /> : <PiHeartStraightBold />}
           </EditButton>
         )}
