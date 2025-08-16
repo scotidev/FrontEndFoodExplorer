@@ -1,29 +1,34 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem 1rem;
-  min-height: 100vh;
   width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
+  padding: 0 2rem;
+
+  font-family: "Poppins", sans-serif;
 
   h1 {
-    font-size: 2.5rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+    margin: 2.4rem 0 1.6rem;
+
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 140%;
+    text-align: center;
   }
 
-  .cart-list {
+  .cartList {
+    background-color: ${({ theme }) => theme.COLORS.DARK_700};
+
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
-    width: 100%;
     max-height: 50vh;
+    padding: 1.2rem;
+
     overflow-y: auto;
-    padding-right: 1rem;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -32,38 +37,70 @@ export const Container = styled.div`
       background-color: ${({ theme }) => theme.COLORS.LIGHT_300};
       border-radius: 4px;
     }
-  }
 
-  .cart-item {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.5rem;
-    background-color: ${({ theme }) => theme.COLORS.DARK_900};
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    > .cartItem {
+      background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
-    img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+      width: 100%;
+      max-width: 39rem;
+      padding: 1.5rem;
+      border-radius: 8px;
 
-    .details {
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 1.5rem;
 
-      h3 {
-        font-size: 1.25rem;
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+      img {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        object-fit: cover;
       }
 
-      span {
-        font-size: 1rem;
-        color: ${({ theme }) => theme.COLORS.CAKE_200};
+      .details {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        h3 {
+          font-size: 1.6rem;
+          color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        }
+
+        span {
+          font-family: "Roboto", sans-serif;
+
+          font-size: 1.6rem;
+          color: ${({ theme }) => theme.COLORS.CAKE_200};
+          white-space: nowrap;
+        }
+      }
+
+      .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .stepper {
+          gap: 0.8rem;
+          padding: 0;
+          height: fit-content;
+        }
+
+        .removeButton {
+          color: ${({ theme }) => theme.COLORS.TOMATO_400};
+          background: transparent;
+
+          border: none;
+
+          font-family: "Roboto", sans-serif;
+          font-size: 1.6rem;
+          font-weight: 500;
+          text-align: center;
+
+          cursor: pointer;
+        }
       }
     }
   }
@@ -72,34 +109,27 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 1.5rem;
+    gap: 2rem;
     width: 100%;
+
+    margin-top: 3rem;
 
     h2 {
       font-size: 2rem;
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
 
-    .payment-button {
-      width: 100%;
-      max-width: 300px;
-      padding: 1rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: none;
-      background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
-      color: ${({ theme }) => theme.COLORS.LIGHT_100};
-      cursor: pointer;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
-      }
+    .buyButton {
+      width: 70%;
+      max-width: 30rem;
     }
   }
 
-  @media (max-width: 768px) {
-    padding: 1rem;
+  @media (min-width: ${DEVICE_BREAKPOINTS.Mobile}) {
+    .cartList {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 `;
