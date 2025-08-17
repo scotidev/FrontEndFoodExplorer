@@ -1,11 +1,13 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useToast } from "../hooks/toast.jsx";
 import { api } from "../services/api";
+import { useAuth } from "../hooks/auth";
 
 export const CartContext = createContext({});
 
 function CartProvider({ children }) {
   const { showError } = useToast();
+  const { token } = useAuth();
   const [cartItems, setCartItems] = useState([]);
 
   async function fetchCartItems() {
@@ -18,8 +20,10 @@ function CartProvider({ children }) {
   }
 
   useEffect(() => {
-    fetchCartItems();
-  }, []);
+    if (token) {
+      fetchCartItems();
+    }
+  }, [token]);
 
   async function handleAddItem(dish_id, quantity) {
     try {
