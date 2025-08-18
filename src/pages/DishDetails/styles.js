@@ -84,11 +84,12 @@ export const Container = styled.div`
         margin-top: 2rem;
         gap: 1.6rem;
 
-        > button {
+        > .addButton {
           width: 100%;
           max-width: 28rem;
           height: 5rem;
           padding: 1.2rem 2.4rem;
+          white-space: nowrap;
         }
       }
     }

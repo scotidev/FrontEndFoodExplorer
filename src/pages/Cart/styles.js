@@ -3,7 +3,7 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   width: 100%;
-  padding: 0 2rem;
+  padding: 0 1rem;
 
   font-family: "Poppins", sans-serif;
 
@@ -26,7 +26,8 @@ export const Container = styled.div`
     align-items: center;
     gap: 1.5rem;
     max-height: 50vh;
-    padding: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 8px;
 
     overflow-y: auto;
 
@@ -66,6 +67,12 @@ export const Container = styled.div`
         h3 {
           font-size: 1.6rem;
           color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+          transition: 0.5s;
+
+          &:hover {
+            color: ${({ theme }) => theme.COLORS.LIGHT_400};
+          }
         }
 
         span {
@@ -100,6 +107,11 @@ export const Container = styled.div`
           text-align: center;
 
           cursor: pointer;
+          transition: 0.5s;
+
+          &:hover {
+            color: ${({ theme }) => theme.COLORS.TOMATO_100};
+          }
         }
       }
     }
@@ -122,6 +134,27 @@ export const Container = styled.div`
     .buyButton {
       width: 70%;
       max-width: 30rem;
+    }
+  }
+
+  .emptyCart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 50vh;
+    width: 100%;
+
+    > p {
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
+
+    svg {
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+      font-size: 10rem;
     }
   }
 

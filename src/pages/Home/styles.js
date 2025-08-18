@@ -25,6 +25,7 @@ export const Container = styled.div`
     max-width: 125rem;
     height: 10rem;
     margin: 3rem 0;
+    padding: 0 0.4rem;
     border-radius: 8px;
 
     > img {

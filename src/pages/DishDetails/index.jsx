@@ -80,6 +80,7 @@ export function DishDetails() {
             <div className="stepperAndButtonWrapper">
               <Stepper quantity={quantity} setQuantity={setQuantity} />
               <Button
+                className="addButton"
                 title={
                   `incluir - R$` +
                   Number(dishData.price).toFixed(2).replace(".", ",")

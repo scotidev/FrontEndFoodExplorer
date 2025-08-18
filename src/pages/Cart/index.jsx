@@ -21,57 +21,59 @@ export function Cart() {
     <Container>
       <BackButton />
 
-      <h1>Meu Carrinho</h1>
+      {cartItems.length > 0 ? (
+        <>
+          <h1>Meu Carrinho</h1>
 
-      <div className="cartList">
-        {cartItems.length > 0 ? (
-          cartItems.map((item) => (
-            <div key={item.id} className="cartItem">
-              <Link to={`/dish/${item.dish_id}`}>
-                <img
-                  src={`${api.defaults.baseURL}/files/${item.image}`}
-                  alt={item.title}
-                />
-              </Link>
-
-              <div className="details">
+          <div className="cartList">
+            {cartItems.map((item) => (
+              <div key={item.id} className="cartItem">
                 <Link to={`/dish/${item.dish_id}`}>
-                  <h3>
-                    {item.quantity} x {item.title}
-                  </h3>
+                  <img
+                    src={`${api.defaults.baseURL}/files/${item.image}`}
+                    alt={item.title}
+                  />
                 </Link>
-                <span>R$ {(item.price * item.quantity).toFixed(2)}</span>
-              </div>
 
-              <div className="actions">
-                <Stepper
-                  className="stepper"
-                  quantity={item.quantity}
-                  setQuantity={(newQuantity) =>
-                    handleUpdateQuantity(item.id, newQuantity)
-                  }
-                />
-                <button
-                  onClick={() => handleRemoveItem(item.id)}
-                  className="removeButton"
-                >
-                  Remover
-                </button>
+                <div className="details">
+                  <Link to={`/dish/${item.dish_id}`}>
+                    <h3>
+                      {item.quantity} x {item.title}
+                    </h3>
+                  </Link>
+                  <span>R$ {(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+
+                <div className="actions">
+                  <Stepper
+                    className="stepper"
+                    quantity={item.quantity}
+                    setQuantity={(newQuantity) =>
+                      handleUpdateQuantity(item.id, newQuantity)
+                    }
+                  />
+                  <button
+                    onClick={() => handleRemoveItem(item.id)}
+                    className="removeButton"
+                  >
+                    Remover
+                  </button>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <div className="emptyCart">
-            <PiShoppingCartDuotone />
-            <p>O carrinho está vazio.</p>
+            ))}
           </div>
-        )}
-      </div>
 
-      <div className="summary">
-        <h2>Total: R$ {totalPrice.toFixed(2)}</h2>
-        <Button title="Comprar" className="buyButton" />
-      </div>
+          <div className="summary">
+            <h2>Total: R$ {totalPrice.toFixed(2)}</h2>
+            <Button title="Comprar" className="buyButton" />
+          </div>
+        </>
+      ) : (
+        <div className="emptyCart">
+          <PiShoppingCartDuotone />
+          <p>O carrinho está vazio.</p>
+        </div>
+      )}
     </Container>
   );
 }

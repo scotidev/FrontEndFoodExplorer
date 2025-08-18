@@ -6,7 +6,7 @@ import { useAuth } from "../hooks/auth";
 export const CartContext = createContext({});
 
 function CartProvider({ children }) {
-  const { showError } = useToast();
+  const { showError, showSuccess } = useToast();
   const { token } = useAuth();
   const [cartItems, setCartItems] = useState([]);
 
@@ -54,6 +54,7 @@ function CartProvider({ children }) {
     try {
       await api.delete(`/cart/${dish_id}`);
       fetchCartItems();
+      showSuccess("Item removido do carrinho.");
     } catch (error) {
       showError("Erro ao remover o prato do carrinho.");
     }
