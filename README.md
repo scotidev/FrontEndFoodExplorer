@@ -1,12 +1,15 @@
 # Food Explorer
 
-Projeto SPA feito para concluir o o curso Explorer Fullstack da Rocketseat.
+Aplicação SPA de um restaurante online, desenvolvida durante o curso Explorer Fullstack da Rocketseat. Este repositório contém o front-end construído com React + Vite, integrado a uma API própria.
 
-## Sobre
+## Preview
 
-O projeto simula uma aplicação de um restaurante online, feito de ponta a ponta, integrando back-end e front-end e consumindo sua própria API. O desenvolvimento desse projeto foi feito exclusivamente com o propósito de concluir o curso Explorer.
+<p align="center">
+  <img src="/public/screenshot1.jpg" alt="Menu" width="49%" />
+  <img src="/public/screenshot2.png" alt="Home" width="49%" />
+</p>
 
-## Hospedagem
+## Credenciais de teste
 
 O projeto está hospedado no hoster Netlify e pode ser acessado clicando no link a seguir:
 
@@ -16,30 +19,70 @@ Para efetuar login na aplicação, utilize as credenciais:
 
 **Administrador:**
 
-- login: admin@email.com
-- senha: 123456
+- **Administrador**
+  - login: admin@email.com
+  - senha: 123456
+- **Usuário**
+  - login: customer@email.com
+  - senha: 123456
 
-**Usuário:**
+Ou crie seu próprio usuário!
 
-- login: customer@email.com
-- senha: 123456
+## Sobre o projeto
 
-Ou, se preferir, crie seu próprio usuário!
+O Food Explorer permite que clientes naveguem por pratos, pesquisem por nome/ingrediente, favoritem itens e adicionem ao carrinho. Administradores podem gerenciar pratos (CRUD), incluindo criação, edição e exclusão. A aplicação possui rotas protegidas e controle de acesso por papéis de usuário.
+
+## Rodar o App Localmente
+
+- Node.js 18+ (recomendado LTS mais recente)
+- npm 9+ ou pnpm/yarn
+
+## Instalação e execução
+
+1. Clone o repositório
+   ```bash
+   git clone https://github.com/scotidevx/FrontEndFoodExplorer.git
+   cd FrontEndFoodExplorer
+   ```
+2. Instale as dependências
+   ```bash
+   npm install
+   ```
+3. Ambiente de desenvolvimento
+   ```bash
+   npm run dev
+   ```
+
+A base URL da API é configurada automaticamente por ambiente em `src/services/api.js`:
 
 ## Funcionalidades
 
+**Gerais:**
+
 - Login;
 - Cadastro de usuários;
-- Cadastro, Edição, Exclusão e Visualização de pratos (CRUD) pelo admin;
-- Visualização dos pratos por parte do usuário customer;
+- Visualização de Pratos;
 - Pesquisa dos pratos por nome e ingredientes;
-- Logout
+- Logout.
+
+**Admin:**
+
+- Cadastro, Edição, Exclusão e Visualização de pratos (CRUD);
+- Upload e atualização de imagens dos pratos.
+
+**Usuário:**
+
+- Favoritar e desfavoritar pratos;
+- Gerenciamento de carrinho (adicionar, atualizar quantidade e remover itens).
 
 ## Bibliotecas Utilizadas
 
 - Axios
-- Framer Motion
+- Styled Components
+- React DOM
+- React Router DOM
+- React Icons
 
-## Tecnologias Utilizadas
+## Tech Stack
 
 [![My Skills](https://skillicons.dev/icons?i=js,html,css,react,vite,styledcomponents)](https://skillicons.dev)
