@@ -5,8 +5,14 @@ Aplicação SPA de um restaurante online, desenvolvida durante o curso Explorer 
 ## Preview
 
 <p align="center">
-  <img src="/public/screenshot1.jpg" alt="Menu" width="49%" />
-  <img src="/public/screenshot2.png" alt="Home" width="49%" />
+  <div style="display: flex; gap: 10px; justify-content: center; align-items: stretch;">
+    <img src="/public/screenshot1.jpg" alt="Menu" style="width: 50%; height: auto; object-fit: cover;" />
+    <div style="display: flex; flex-direction: column; gap: 10px; width: 50%;">
+      <img src="/public/screenshot2.png" alt="Home" style="width: 100%; height: auto; object-fit: cover;" />
+      <img src="/public/screenshot3.png" alt="Cart" style="width: 100%; height: auto; object-fit: cover;" />
+      <img src="/public/screenshot4.png" alt="Admin" style="width: 100%; height: auto; object-fit: cover;" />
+    </div>
+  </div>
 </p>
 
 ## Credenciais de teste
